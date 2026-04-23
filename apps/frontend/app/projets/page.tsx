@@ -74,14 +74,14 @@ export default function Projects() {
 								<button
 									className={`${styles.filterButton} ${selectedStatus === "Tous" ? styles.active : ""}`}
 									onClick={() => setSelectedStatus("Tous")}>
-									• Tous
+									Tous
 								</button>
 								{statuses.map((status) => (
 									<button
 										key={status}
 										className={`${styles.filterButton} ${selectedStatus === status ? styles.active : ""}`}
 										onClick={() => setSelectedStatus(status)}>
-										• {status}
+										{status}
 									</button>
 								))}
 							</div>
@@ -93,14 +93,14 @@ export default function Projects() {
 								<button
 									className={`${styles.filterButton} ${selectedDomain === "Tous" ? styles.active : ""}`}
 									onClick={() => setSelectedDomain("Tous")}>
-									• Tous
+									Tous
 								</button>
 								{domains.map((domain) => (
 									<button
 										key={domain}
 										className={`${styles.filterButton} ${selectedDomain === domain ? styles.active : ""}`}
 										onClick={() => setSelectedDomain(domain)}>
-										• {domain}
+										{domain}
 									</button>
 								))}
 							</div>
@@ -182,7 +182,6 @@ export default function Projects() {
 					<div className={styles.timelineContent}>
 						{timelineEvents.map((event) => (
 							<div key={event.id} className={styles.timelineItem}>
-								<div className={styles.timelineCircle}></div>
 								<div className={styles.timelineYear}>{event.year}</div>
 								<div className={styles.timelineEventBody}>
 									<h3 className={styles.timelineEventTitle}>{event.title}</h3>
