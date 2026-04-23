@@ -1,19 +1,20 @@
 export type AlbumCategory = "Tous" | "Assainissement & Eau" | "Voirie - Awrach 2022" | "Douar Asselda - Vie quotidienne" | "Séisme 2023" | "Formation & Éducation" | "Événements & AG";
+export type Year = 0 | 2022 | 2023 | 2024 | 2025 | 2026;
 
 export interface Album {
   id: number;
   title: string;
   category: Exclude<AlbumCategory, "Tous">;
   image?: string;
-  date: string; // Format: "YYYY-MM-DD"
+  year: Exclude<Year, 0>;
 }
-
 export interface Video {
   id: number;
   title: string;
   thumbnail?: string;
-  date: string; // Format: "YYYY-MM-DD"
+  year: Exclude<Year, 0>;
 }
+
 
 export const albums: Album[] = [
   {
@@ -21,71 +22,71 @@ export const albums: Album[] = [
     title: "Assainissement & Eau",
     category: "Assainissement & Eau",
     image: "https://picsum.photos/400/280?random=1",
-    date: "2024-01-15"
+    year: 2024
   },
   {
     id: 2,
     title: "Voirie - Awrach 2022",
     category: "Voirie - Awrach 2022",
     image: "https://picsum.photos/400/280?random=2",
-    date: "2022-06-20"
+    year: 2022
   },
   {
     id: 3,
     title: "Douar Asselda - Vie quotidienne",
     category: "Douar Asselda - Vie quotidienne",
     image: "https://picsum.photos/400/280?random=3",
-    date: "2023-09-10"
+    year: 2023
   },
   {
     id: 4,
     title: "Séisme 2023",
     category: "Séisme 2023",
     image: "https://picsum.photos/400/280?random=4",
-    date: "2023-09-08"
+    year: 2023
   },
   {
     id: 5,
     title: "Formation & Éducation",
     category: "Formation & Éducation",
     image: "https://picsum.photos/400/280?random=5",
-    date: "2024-03-12"
+    year: 2024
   },
   {
     id: 6,
     title: "Événements & AG",
     category: "Événements & AG",
     image: "https://picsum.photos/400/280?random=6",
-    date: "2024-02-05"
+    year: 2024
   }
-];
+] as const;
 
 export const videos: Video[] = [
   {
     id: 1,
     title: "Reportage assainissement",
     thumbnail: "https://picsum.photos/400/280?random=7",
-    date: "2024-01-20"
+    year: 2024
   },
   {
     id: 2,
     title: "Douar Asselda - Avant séisme",
     thumbnail: "https://picsum.photos/400/280?random=8",
-    date: "2023-09-01"
+    year: 2023
   },
   {
     id: 3,
     title: "Aftermath & solidarité",
     thumbnail: "https://picsum.photos/400/280?random=9",
-    date: "2023-09-15"
+    year: 2023
   },
   {
     id: 4,
     title: "Programme Awrach",
     thumbnail: "https://picsum.photos/400/280?random=10",
-    date: "2022-07-10"
+    year: 2022
   }
-];
+] as const;
 
 export const albumCategories: Exclude<AlbumCategory, "Tous">[] = [
   "Assainissement & Eau",
@@ -96,6 +97,8 @@ export const albumCategories: Exclude<AlbumCategory, "Tous">[] = [
   "Événements & AG"
 ];
 
+export const itemYears: Exclude<Year, 0>[] = [2022, 2023, 2024, 2025, 2026];
+
 export const getAllAlbums = () => albums;
 export const getAllVideos = () => videos;
 
@@ -104,7 +107,7 @@ export const getAlbumsByCategory = (category: AlbumCategory) => {
   return albums.filter((album) => album.category === category);
 };
 
-export const getItemsByDate = (items: (Album | Video)[], dateFilter: string) => {
-  if (!dateFilter) return items;
-  return items.filter((item) => item.date.startsWith(dateFilter.substring(0, 7)));
+export const getItemsByYear = (items: (Album | Video)[], yearFilter: Year) => {
+  if (yearFilter === 0) return items;
+  return items.filter((item) => item.year === yearFilter);
 };

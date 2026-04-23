@@ -51,14 +51,14 @@ export default function Projects() {
 			{/* Section Héro */}
 			<section className={styles.projectsHero}>
 				<div className={styles.projectsOverlay}></div>
-				<div className={styles.projectsContent}>
+				<hgroup className={styles.projectsContent}>
 					<h1>Nos Projets</h1>
 					<p>
 						Depuis 1996, l'Association Asselda a conçu et réalisé des projets structurants pour la
 						communauté de Douar Asselda. Chaque projet répond à un besoin réel, identifié avec et pour ses
 						habitants.
 					</p>
-				</div>
+				</hgroup>
 			</section>
 
 			{/* Section Projets */}
@@ -111,10 +111,10 @@ export default function Projects() {
 					<div className={styles.projectsGrid}>
 						{filteredProjects.length > 0 ? (
 							filteredProjects.map((project) => (
-								<div key={project.id} className={styles.projectCard}>
+								<article key={project.id} className={styles.projectCard}>
 									<img src={project.image} alt={project.title} className={styles.projectImage} />
-									<div className={styles.projectBody}>
-										<div className={styles.projectMeta}>
+									<main className={styles.projectBody}>
+										<section className={styles.projectMeta}>
 											<span
 												className={styles.badge}
 												style={{ backgroundColor: getStatusColor(project.status) }}>
@@ -125,7 +125,7 @@ export default function Projects() {
 												style={{ backgroundColor: getDomainColor(project.domain) }}>
 												{project.domain}
 											</span>
-										</div>
+										</section>
 
 										<h3 className={styles.projectTitle}>{project.title}</h3>
 
@@ -161,8 +161,8 @@ export default function Projects() {
 												<strong>Résultats :</strong> {project.results}
 											</p>
 										)}
-									</div>
-								</div>
+									</main>
+								</article>
 							))
 						) : (
 							<div className={styles.emptyState}>Aucun projet ne correspond à cette sélection.</div>

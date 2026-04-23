@@ -7,24 +7,26 @@ import {
 	videos,
 	albumCategories,
 	getAlbumsByCategory,
-	getItemsByDate,
+	getItemsByYear,
 	type AlbumCategory,
+	type Year,
 	Album,
 	Video,
+	itemYears,
 } from "@/lib/gallery";
 
 export default function Gallery() {
 	const [selectedCategory, setSelectedCategory] = useState<AlbumCategory>("Tous");
-	const [selectedDate, setSelectedDate] = useState<string>("");
+	const [selectedYear, setSelectedYear] = useState<Year>(0);
 
 	const filteredAlbums = useMemo(() => {
 		let filtered = getAlbumsByCategory(selectedCategory);
-		return getItemsByDate(filtered, selectedDate);
-	}, [selectedCategory, selectedDate]);
+		return getItemsByYear(filtered, selectedYear);
+	}, [selectedCategory, selectedYear]);
 
 	const filteredVideos = useMemo(() => {
-		return getItemsByDate(videos, selectedDate);
-	}, [selectedDate]);
+		return getItemsByYear(videos, selectedYear);
+	}, [selectedYear]);
 
 	return (
 		<main>
@@ -49,7 +51,7 @@ export default function Gallery() {
 							<label className={styles.filterLabel}>Filtrer par album :</label>
 							<select
 								className={styles.filterSelect}
-								value={selectedCategory}
+								value={selectedYear}
 								onChange={(e) => setSelectedCategory(e.target.value as AlbumCategory)}>
 								<option value="Tous">Tous les albums</option>
 								{albumCategories.map((category) => (
@@ -61,13 +63,18 @@ export default function Gallery() {
 						</div>
 
 						<div className={styles.filterGroup}>
-							<label className={styles.filterLabel}>Filtrer par date :</label>
-							<input
-								type="month"
-								className={styles.filterDateInput}
-								value={selectedDate}
-								onChange={(e) => setSelectedDate(e.target.value)}
-							/>
+							<label className={styles.filterLabel}>Filtrer par année :</label>
+							<select
+								className={styles.filterSelect}
+								value={selectedYear}
+								onChange={(e) => setSelectedYear(parseInt(e.target.value) as Year)}>
+								<option value="0">Tous les albums</option>
+								{itemYears.map((year) => (
+									<option key={year} value={year}>
+										{year}
+									</option>
+								))}
+							</select>
 						</div>
 					</div>
 
