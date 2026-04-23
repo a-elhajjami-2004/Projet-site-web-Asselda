@@ -1,0 +1,441 @@
+.projectsHero {
+	position: relative;
+	min-height: 60vh;
+	background-image: url("https://picsum.photos/1600/900?random=25");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 80px 24px;
+}
+
+.projectsOverlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.projectsContent {
+	position: relative;
+	z-index: 2;
+	max-width: 800px;
+	color: white;
+}
+
+.projectsContent h1 {
+	font-size: 3rem;
+	line-height: 1.15;
+	font-weight: 700;
+	margin-bottom: 18px;
+}
+
+.projectsContent p {
+	font-size: 1.1rem;
+	line-height: 1.7;
+	color: rgba(255, 255, 255, 0.92);
+}
+
+.projectsSection {
+	background-color: #c8e6a0;
+	padding: 60px 24px;
+}
+
+.projectsContainer {
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+.filtersWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	margin-bottom: 40px;
+}
+
+.filterSection {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.filterLabel {
+	font-weight: 600;
+	color: #171717;
+	font-size: 0.95rem;
+}
+
+.filterButtonsGroup {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.filterButton {
+	padding: 8px 16px;
+	border: 2px solid #171717;
+	background-color: transparent;
+	color: #171717;
+	border-radius: 20px;
+	cursor: pointer;
+	font-size: 0.9rem;
+	font-weight: 500;
+	transition: 0.3s ease;
+}
+
+.filterButton:hover {
+	background-color: #171717;
+	color: #ffffff;
+}
+
+.filterButton.active {
+	background-color: #171717;
+	color: #ffffff;
+}
+
+.sectionTitle {
+	font-size: 1.8rem;
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 30px;
+	color: #171717;
+}
+
+.projectsGrid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 24px;
+	margin-bottom: 60px;
+}
+
+.projectCard {
+	background-color: #f5f1d9;
+	border-radius: 12px;
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: 300px 1fr;
+	gap: 24px;
+	padding: 20px;
+	transition: 0.3s ease;
+}
+
+.projectCard:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.projectImage {
+	width: 100%;
+	height: 250px;
+	background: linear-gradient(135deg, #cccccc 0%, #999999 100%);
+	border: 3px solid #999;
+	border-radius: 8px;
+	object-fit: cover;
+}
+
+.projectBody {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.projectMeta {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.badge {
+	display: inline-block;
+	padding: 4px 12px;
+	border-radius: 4px;
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #ffffff;
+}
+
+.projectTitle {
+	font-size: 1.3rem;
+	font-weight: 700;
+	color: #171717;
+	line-height: 1.4;
+	margin: 8px 0;
+}
+
+.projectDetail {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	font-size: 0.9rem;
+	color: #333333;
+}
+
+.projectDetailLabel {
+	font-weight: 600;
+	min-width: 140px;
+	color: #171717;
+}
+
+.projectDescription {
+	font-size: 0.9rem;
+	line-height: 1.6;
+	color: #555555;
+	margin: 8px 0;
+}
+
+.projectResults {
+	font-size: 0.9rem;
+	line-height: 1.6;
+	color: #2e7d32;
+	font-weight: 500;
+	margin-top: 12px;
+}
+
+.emptyState {
+	text-align: center;
+	padding: 60px 20px;
+	color: #171717;
+	font-size: 1.1rem;
+}
+
+/* Timeline Section */
+.timelineSection {
+	background-color: #ffffff;
+	padding: 60px 24px;
+}
+
+.timelineTitle {
+	font-size: 1.8rem;
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 50px;
+	color: #171717;
+}
+
+.timelineContainer {
+	max-width: 900px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.timelineLine {
+	position: absolute;
+	left: 30px;
+	top: 0;
+	width: 3px;
+	background-color: #2e7d32;
+	height: 0;
+	animation: expandTimeline 0s linear forwards;
+}
+
+.timelineContainer.visible .timelineLine {
+	animation: expandTimeline 1s linear forwards;
+}
+
+@keyframes expandTimeline {
+	from {
+		height: 0;
+	}
+	to {
+		height: 100%;
+	}
+}
+
+.timelineContent {
+	position: relative;
+	padding-left: 80px;
+}
+
+.timelineItem {
+	display: flex;
+	gap: 24px;
+	margin-bottom: 40px;
+	opacity: 0;
+	animation: fadeInUp 0.6s ease forwards;
+}
+
+.timelineItem:nth-child(1) {
+	animation-delay: 0.1s;
+}
+.timelineItem:nth-child(2) {
+	animation-delay: 0.2s;
+}
+.timelineItem:nth-child(3) {
+	animation-delay: 0.3s;
+}
+.timelineItem:nth-child(4) {
+	animation-delay: 0.4s;
+}
+.timelineItem:nth-child(5) {
+	animation-delay: 0.5s;
+}
+.timelineItem:nth-child(6) {
+	animation-delay: 0.6s;
+}
+.timelineItem:nth-child(7) {
+	animation-delay: 0.7s;
+}
+
+.timelineContainer.visible .timelineItem {
+	opacity: 1;
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.timelineCircle {
+	position: absolute;
+	left: 18px;
+	width: 24px;
+	height: 24px;
+	background-color: #2e7d32;
+	border-radius: 50%;
+	border: 4px solid #ffffff;
+	margin-top: 2px;
+}
+
+.timelineYear {
+	font-size: 0.85rem;
+	font-weight: 700;
+	color: #2e7d32;
+	min-width: 80px;
+}
+
+.timelineEventBody {
+	flex: 1;
+}
+
+.timelineEventTitle {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #171717;
+	line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+	.projectCard {
+		grid-template-columns: 250px 1fr;
+	}
+
+	.projectImage {
+		height: 200px;
+	}
+}
+
+@media (max-width: 768px) {
+	.projectsHero {
+		min-height: 50vh;
+		padding: 60px 20px;
+	}
+
+	.projectsContent h1 {
+		font-size: 2rem;
+	}
+
+	.projectsContent p {
+		font-size: 1rem;
+	}
+
+	.projectCard {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+
+	.projectImage {
+		height: 250px;
+	}
+
+	.filtersWrapper {
+		gap: 20px;
+	}
+
+	.filterButtonsGroup {
+		gap: 6px;
+	}
+
+	.filterButton {
+		padding: 6px 12px;
+		font-size: 0.85rem;
+	}
+
+	.projectsSection {
+		padding: 40px 16px;
+	}
+
+	.timelineSection {
+		padding: 40px 16px;
+	}
+
+	.timelineLine {
+		left: 22px;
+	}
+
+	.timelineCircle {
+		left: 11px;
+		width: 20px;
+		height: 20px;
+		border-width: 3px;
+	}
+
+	.timelineContent {
+		padding-left: 60px;
+	}
+}
+
+@media (max-width: 480px) {
+	.projectsHero {
+		min-height: 40vh;
+		padding: 40px 16px;
+	}
+
+	.projectsContent h1 {
+		font-size: 1.5rem;
+	}
+
+	.projectsContent p {
+		font-size: 0.9rem;
+	}
+
+	.projectTitle {
+		font-size: 1.1rem;
+	}
+
+	.projectDetail {
+		font-size: 0.85rem;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.projectDetailLabel {
+		min-width: unset;
+	}
+
+	.projectDescription,
+	.projectResults {
+		font-size: 0.85rem;
+	}
+
+	.sectionTitle,
+	.timelineTitle {
+		font-size: 1.4rem;
+	}
+
+	.timelineYear {
+		font-size: 0.8rem;
+	}
+
+	.timelineEventTitle {
+		font-size: 0.9rem;
+	}
+}
