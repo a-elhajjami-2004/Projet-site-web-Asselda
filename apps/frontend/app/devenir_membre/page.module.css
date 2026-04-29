@@ -1,0 +1,232 @@
+/* page.module.css */
+
+.pageWrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Vous pouvez remplacer l'URL par l'image de fond de vos montagnes */
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('https://images.unsplash.com/photo-1542361345-89e58247f2d5?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.formCard {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.columnsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+/* --- COLONNE GAUCHE (Inputs) --- */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.labelContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #2c3e1e;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.icon {
+  color: #6a8c47; /* Vert pour les icônes des labels */
+}
+
+.asterisk {
+  color: #d9534f;
+  margin-left: 2px;
+}
+
+.inputField {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #d4e2c6;
+  background-color: #eaf1e1; /* Le vert clair de l'image */
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  color: #333;
+  transition: border-color 0.2s;
+}
+
+.inputField:focus {
+  border-color: #7ba54d;
+}
+
+.inputField::placeholder {
+  color: #8fa677;
+}
+
+.helperText {
+  font-size: 0.75rem;
+  color: #7ba54d;
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* --- COLONNE DROITE (Sections) --- */
+.section {
+  margin-bottom: 30px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.sectionIcon {
+  color: #7ba54d;
+}
+
+.sectionTitle {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #2c3e1e;
+}
+
+.sectionSubtitle {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.gridInterest {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.fullWidth {
+  grid-column: span 2;
+}
+
+.engagementList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Boutons de sélection */
+.selectBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #eaf1e1; /* Fond inactif vert très clair */
+  border: 1px solid #d4e2c6;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #2c3e1e;
+  transition: all 0.2s ease;
+}
+
+.btnContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.uncheck {
+  color: #a4b88f; /* Couleur de la case vide */
+}
+
+/* État Actif (Sélectionné) */
+.activeBtn {
+  background-color: #9cb974; /* Vert plus foncé quand sélectionné */
+  color: #ffffff;
+  border-color: #7ba54d;
+  font-weight: 500;
+}
+
+.activeBtn .btnContent, .activeBtn svg {
+  color: #ffffff;
+}
+
+/* --- FOOTER --- */
+.footer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.consentBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #eaf1e1;
+  padding: 12px 20px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.consentIcon {
+  color: #6a8c47;
+  flex-shrink: 0;
+}
+
+.consentBox p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #2c3e1e;
+}
+
+.submitBtn {
+  background-color: #7ba54d; /* Vert foncé de votre bouton */
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 30px; /* Bords très arrondis */
+  font-weight: bold;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 4px 10px rgba(123, 165, 77, 0.3);
+}
+
+.submitBtn:hover {
+  background-color: #618739;
+}
+
+.submitBtn:active {
+  transform: scale(0.98);
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+  .columnsContainer {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
