@@ -1,0 +1,253 @@
+/* ─── Reset & Base ─────────────────────────────────────────────────────────── */
+.main {
+  font-family: "Segoe UI", sans-serif;
+  color: #1a1a1a;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Hero Header ───────────────────────────────────────────────────────────── */
+.hero {
+  background-color: #a8c96a;
+  text-align: center;
+  padding: 48px 24px 32px;
+}
+
+.heroTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+}
+
+.heroDesc {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  max-width: 680px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+}
+
+.heroCat {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+/* ─── Sections Wrapper ──────────────────────────────────────────────────────── */
+.sectionsWrapper {
+  border: 2px solid #a855f7;
+  border-radius: 16px;
+  margin: 24px auto;
+  max-width: 1060px;
+  overflow: hidden;
+}
+
+.section {
+  padding: 32px 40px 40px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+/* ─── Category Badge ────────────────────────────────────────────────────────── */
+.categoryBadgeWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.categoryBadge {
+  background-color: #7dc455;
+  color: #1a1a1a;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 10px 36px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+/* ─── Partner Grid ──────────────────────────────────────────────────────────── */
+.partnerGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 48px;
+  align-items: stretch;
+}
+
+@media (max-width: 640px) {
+  .partnerGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.partnerCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+}
+
+/* ─── Logos ─────────────────────────────────────────────────────────────────── */
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+}
+
+.logoSquare {
+  max-width: 200px;
+  max-height: 120px;
+  object-fit: contain;
+}
+
+.logoCircle {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #e5e7eb;
+}
+
+/* ─── Info Cards ────────────────────────────────────────────────────────────── */
+.infoCard {
+  border-radius: 20px;
+  padding: 18px 22px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-grow: 1; /* Force l'élément à s'étirer pour remplir tout l'espace vertical */
+  height: 100%; /* Force la hauteur à 100% de son parent */
+  width: 100%;
+}
+
+.infoTag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.infoTagSub {
+  font-weight: 400;
+  font-style: normal;
+}
+
+.infoTitle {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: #1a1a1a;
+}
+
+.infoDesc {
+  font-size: 0.88rem;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ─── Card Background Colors ────────────────────────────────────────────────── */
+.cardBlue {
+  background-color: #cff0f5;
+}
+
+.cardOrange {
+  background-color: #fde8d0;
+}
+
+.cardGreen {
+  background-color: #dcf0cc;
+}
+
+.cardYellow {
+  background-color: #f5f5c0;
+}
+
+.cardPink {
+  background-color: #fbd5d5;
+}
+
+.cardGreenLight {
+  background-color: #e0f0d5;
+}
+
+/* ─── Tag Colors ────────────────────────────────────────────────────────────── */
+.tagBlue {
+  background-color: #b2e0ea;
+  color: #0d5c72;
+}
+
+.tagOrange {
+  background-color: #f8c89a;
+  color: #7a3b00;
+}
+
+.tagGray {
+  background-color: #d4d4d4;
+  color: #2d4a22 ;
+}
+
+.tagYellow {
+  background-color: #e8e88a;
+  color: #5a5a00;
+}
+
+.tagPink {
+  background-color: #f5a8a8;
+  color: #6b0000;
+}
+
+.tagGrayGreen {
+  background-color: #c5ddb8;
+  color: #2d4a22;
+}
+
+/* ─── CTA Section ───────────────────────────────────────────────────────────── */
+.cta {
+  background-color: #c8e08a;
+  text-align: center;
+  padding: 40px 24px;
+  margin: 0;
+}
+
+.ctaTitle {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin: 0 0 12px;
+  color: #1a1a1a;
+}
+
+.ctaDesc {
+  font-size: 1rem;
+  color: #1a1a1a;
+  line-height: 1.7;
+  margin: 0 0 24px;
+}
+
+.ctaBtn {
+  display: inline-block;
+  background-color: #7dc455;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 12px 32px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.ctaBtn:hover {
+  background-color: #5faa3a;
+}
+
+/* ─── Footer ────────────────────────────────────────────────────────────────── */
