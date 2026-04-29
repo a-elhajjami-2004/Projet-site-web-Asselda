@@ -110,8 +110,8 @@ export default function Projects() {
 					{/* Cartes de projets */}
 					<div className={styles.projectsGrid}>
 						{filteredProjects.length > 0 ? (
-							filteredProjects.map((project) => (
-								<article key={project.id} className={styles.projectCard}>
+							filteredProjects.map((project, key) => (
+								<article key={key} className={styles.projectCard}>
 									<img src={project.image} alt={project.title} className={styles.projectImage} />
 									<main className={styles.projectBody}>
 										<section className={styles.projectMeta}>
@@ -129,28 +129,12 @@ export default function Projects() {
 
 										<h3 className={styles.projectTitle}>{project.title}</h3>
 
-										{project.budget && (
-											<div className={styles.projectDetail}>
-												<span className={styles.projectDetailLabel}>Budget total :</span>
-												<span>{project.budget}</span>
-											</div>
-										)}
-
-										{project.partner && (
-											<div className={styles.projectDetail}>
-												<span className={styles.projectDetailLabel}>
-													Partenaire principal :
-												</span>
-												<span>{project.partner}</span>
-											</div>
-										)}
-
-										{project.beneficiary && (
-											<div className={styles.projectDetail}>
-												<span className={styles.projectDetailLabel}>Bénéficiaire :</span>
-												<span>{project.beneficiary}</span>
-											</div>
-										)}
+										{Object.entries(project.details).map(([key, value]) => (
+											<p className={styles.projectDetail}>
+												<strong className={styles.projectDetailLabel}>{key}</strong>
+												<span>{value}</span>
+											</p>
+										))}
 
 										{project.description && (
 											<p className={styles.projectDescription}>{project.description}</p>
@@ -180,8 +164,8 @@ export default function Projects() {
 					<div className={styles.timelineLine}></div>
 
 					<div className={styles.timelineContent}>
-						{timelineEvents.map((event) => (
-							<div key={event.id} className={styles.timelineItem}>
+						{timelineEvents.map((event, key) => (
+							<div key={key} className={styles.timelineItem}>
 								<div className={styles.timelineYear}>{event.year}</div>
 								<div className={styles.timelineEventBody}>
 									<h3 className={styles.timelineEventTitle}>{event.title}</h3>

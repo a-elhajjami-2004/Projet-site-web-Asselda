@@ -82,8 +82,8 @@ export default function Gallery() {
 					<h2 className={styles.sectionTitle}>Album Photos</h2>
 					<div className={styles.gallery}>
 						{filteredAlbums.length > 0 ? (
-							filteredAlbums.map((album) => (
-								<div key={album.id} className={styles.galleryCard}>
+							filteredAlbums.map((album, key) => (
+								<div key={key} className={styles.galleryCard}>
 									<img src={(album as Album).image} alt={album.title} className={styles.cardImage} />
 									<div className={styles.cardOverlay}></div>
 									<div className={styles.cardTitle}>{album.title}</div>
@@ -98,8 +98,8 @@ export default function Gallery() {
 					<h2 className={styles.subsectionTitle}>Vidéos</h2>
 					<div className={styles.gallery}>
 						{filteredVideos.length > 0 ? (
-							filteredVideos.map((video) => (
-								<div key={video.id} className={styles.galleryCard}>
+							filteredVideos.map((video, key) => (
+								<div key={key} className={styles.galleryCard}>
 									<img
 										src={(video as Video).thumbnail}
 										alt={video.title}

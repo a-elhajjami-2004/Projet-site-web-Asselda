@@ -2,13 +2,12 @@
 
 import { useState } from "react";
 import styles from "@/styles/activities.module.css";
-import { projects, domains, getDomainColor, type Domain } from "@/lib/activities";
+import { projects, domains, getDomainColor, filterActivities, type Domain } from "@/lib/activities";
 
 export default function Activities() {
 	const [selectedDomain, setSelectedDomain] = useState<Domain>("Tous");
 
-	const filteredProjects =
-		selectedDomain === "Tous" ? projects : projects.filter((project) => project.domain === selectedDomain);
+	const filteredProjects = filterActivities(projects, selectedDomain);
 
 	return (
 		<main>
@@ -47,8 +46,8 @@ export default function Activities() {
 					{/* Grille de cartes */}
 					<div className={styles.projectsGrid}>
 						{filteredProjects.length > 0 ? (
-							filteredProjects.map((project) => (
-								<div key={project.id} className={styles.projectCard}>
+							filteredProjects.map((project, key) => (
+								<div key={key} className={styles.projectCard}>
 									<img src={project.image} alt={project.title} className={styles.projectImage} />
 									<div className={styles.projectContent}>
 										<div
