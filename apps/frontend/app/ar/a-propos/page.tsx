@@ -6,7 +6,6 @@ export default function Home() {
   return (
 
 <main>
-  <Header />
   <section className={styles.section_definition}>
     <h1>من نحن – جمعية أسلدة</h1>
 

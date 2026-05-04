@@ -1,162 +1,143 @@
 "use client";
 
-import { useEffect, useState } from "react";import { useRouter, usePathname } from "next/navigation";import styles from "@/styles/Header.module.css";
-
-// Liste des liens du menu principal
-const navItems = [
-  { label: "Accueil", href: "/" },
-  { label: "Àpropos", href: "/a-propos" },
-  { label: "Activités", href: "/activites" },
-  { label: "Projets", href: "/projets" },
-  { label: "Actualités", href: "/actualites" },
-  { label: "Galerie", href: "/galerie" },
-  { label: "Partenaires", href: "/partenaires" },
-  { label: "Contact", href: "/contact" },
-];
+import { useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { getTranslation, Language } from "@/lib/translations";
+import { useCurrentLanguage, buildLocalizedLink, getPath } from "@/lib/useLanguage";
+import styles from "@/styles/Header.module.css";
 
 export default function Header() {
-  // État du menu mobile (ouvert / fermé)
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // État du scroll pour ajouter une ombre au header quand on descend
-  const [isScrolled, setIsScrolled] = useState(false);
+	// État du menu mobile (ouvert / fermé)
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	// État du scroll pour ajouter une ombre au header quand on descend
+	const [isScrolled, setIsScrolled] = useState(false);
 
-  const router = useRouter();
-  const pathname = usePathname();
+	const router = useRouter();
 
-  // Détermine la langue active basée sur le chemin actuel
-  const selectedLanguage = pathname.startsWith('/ar') ? 'AR' : 'FR';
+	const currentLang = useCurrentLanguage();
+	const pathname = usePathname();
+	const t = (key: string) => getTranslation(currentLang, key);
+	const link = (path: string) => buildLocalizedLink(path, currentLang);
+	const pushedPath = (lang: Language) => buildLocalizedLink(getPath(pathname), lang);
 
-  // Supprime le suffixe de langue /fr ou /ar pour reconstruire la route locale
-  const currentPathWithoutLocale = pathname.replace(/\/(fr|ar)$/, '') || '/';
+	// Liste des liens du menu principal
+	const navItems = [
+		{ label: t("header.home"), href: link("/") },
+		{ label: t("header.about"), href: link("/a-propos") },
+		{ label: t("header.activities"), href: link("/activites") },
+		{ label: t("header.projects"), href: link("/projets") },
+		{ label: t("header.news"), href: link("/actualites") },
+		{ label: t("header.gallery"), href: link("/galerie") },
+		{ label: t("header.partners"), href: link("/partenaires") },
+		{ label: t("header.contact"), href: link("/contact") },
+	];
 
-  const buildLocalePath = (locale: 'FR' | 'AR', path = currentPathWithoutLocale) => {
-    const suffix = locale === 'FR' ? 'fr' : 'ar';
-    const normalizedPath = path.replace(/\/$/, '') || '/';
-    return normalizedPath === '/' ? `/${suffix}` : `${normalizedPath}/${suffix}`;
-  };
+	useEffect(() => {
+		const handleScroll = () => setIsScrolled(window.scrollY > 20);
 
-  const buildLocalizedNavPath = (path: string) => {
-    return buildLocalePath(selectedLanguage, path);
-  };
+		// Vérifie immédiatement l'état du scroll et ajoute l'écouteur
+		handleScroll();
+		window.addEventListener("scroll", handleScroll);
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+		// Nettoyage lorsque le composant est démonté
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
-    // Vérifie immédiatement l'état du scroll et ajoute l'écouteur
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
+	return (
+		<header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
+			{/* Conteneur principal du header */}
+			<div className={styles.inner}>
+				{/* Logo + nom de l'association */}
+				<a href="#accueil" className={styles.brand}>
+					<span className={styles.logo}>
+						<img src="/images/logo.png" alt="logo de l'association Asselda" />
+					</span>
+					<span className={styles.brandText}>
+						<span className={styles.brandName}>{t("header.name")}</span>
+						<span className={styles.brandSubtitle}></span>
+					</span>
+				</a>
 
-    // Nettoyage lorsque le composant est démonté
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+				{/* Bouton hamburger mobile */}
+				<button
+					type="button"
+					className={styles.mobileToggle}
+					onClick={() => setIsMenuOpen((prev) => !prev)}
+					aria-expanded={isMenuOpen}
+					aria-label="Ouvrir le menu mobile">
+					<span className={styles.hamburger}>
+						<span />
+						<span />
+						<span />
+					</span>
+				</button>
 
-  return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
-      {/* Conteneur principal du header */}
-      <div className={styles.inner}>
-        {/* Logo + nom de l'association */}
-        <a href="#accueil" className={styles.brand}>
-          <span className={styles.logo}> 
-     <img 
-          src="/images/logo.png"
-          alt="logo de l'association Asselda"
-        />
-     </span>
-          <span className={styles.brandText}>
-            <span className={styles.brandName}>Association Asselda</span>
-            <span className={styles.brandSubtitle}></span>
-          </span>
-        </a>
+				{/* Navigation principale */}
+				<nav className={`${styles.nav} ${isMenuOpen ? styles.open : ""}`}>
+					<ul className={styles.navList}>
+						{navItems.map((item) => (
+							<li key={item.label} className={styles.navItem}>
+								<a href={item.href} className={styles.navLink} onClick={() => setIsMenuOpen(false)}>
+									{item.label}
+								</a>
+							</li>
+						))}
 
-        {/* Bouton hamburger mobile */}
-        <button
-          type="button"
-          className={styles.mobileToggle}
-          onClick={() => setIsMenuOpen((prev) => !prev)}
-          aria-expanded={isMenuOpen}
-          aria-label="Ouvrir le menu mobile"
-        >
-          <span className={styles.hamburger}>
-            <span />
-            <span />
-            <span />
-          </span>
-        </button>
+						{/* Sélecteur node langue affiché dans le menu mobile */}
+						<li className={`${styles.navItem} ${styles.mobileOnly}`}>
+							<div className={styles.languageSelector}>
+								<button
+									type="button"
+									className={`${styles.languageButton} ${currentLang === "fr" ? styles.active : ""}`}
+									onClick={() => {
+										router.push(pushedPath("fr"));
+										setIsMenuOpen(false);
+									}}>
+									FR
+								</button>
+								<button
+									type="button"
+									className={`${styles.languageButton} ${currentLang === "ar" ? styles.active : ""}`}
+									onClick={() => {
+										router.push(pushedPath("ar"));
+										setIsMenuOpen(false);
+									}}>
+									AR
+								</button>
+							</div>
+						</li>
 
-        {/* Navigation principale */}
-        <nav className={`${styles.nav} ${isMenuOpen ? styles.open : ""}`}>
-          <ul className={styles.navList}>
-            {navItems.map((item) => (
-              <li key={item.label} className={styles.navItem}>
-                <a
-                  href={buildLocalizedNavPath(item.href)}
-                  className={styles.navLink}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+						{/* Bouton CTA dans le menu mobile */}
+						<li className={`${styles.navItem} ${styles.mobileOnly}`}>
+							<a href={link("/rejoindre")} className={styles.ctaBtn} onClick={() => setIsMenuOpen(false)}>
+								{t("header.join")}
+							</a>
+						</li>
+					</ul>
+				</nav>
 
-            {/* Sélecteur node langue affiché dans le menu mobile */}
-            <li className={`${styles.navItem} ${styles.mobileOnly}`}>
-              <div className={styles.languageSelector}>
-                <button
-                  type="button"
-                  className={`${styles.languageButton} ${selectedLanguage === 'FR' ? styles.active : ''}`}
-                  onClick={() => {
-                    router.push(buildLocalePath('FR'));
-                    setIsMenuOpen(false);
-                  }}
-                >
-                  FR
-                </button>
-                <button
-                  type="button"
-                  className={`${styles.languageButton} ${selectedLanguage === 'AR' ? styles.active : ''}`}
-                  onClick={() => {
-                    router.push(buildLocalePath('AR'));
-                    setIsMenuOpen(false);
-                  }}
-                >
-                  AR
-                </button>
-              </div>
-            </li>
+				{/* Actions visibles sur desktop */}
+				<div className={styles.actions}>
+					<div className={styles.languageDesktop}>
+						<button
+							type="button"
+							className={`${styles.languageButton} ${currentLang === "fr" ? styles.active : ""}`}
+							onClick={() => router.push(pushedPath("fr"))}>
+							FR
+						</button>
+						<button
+							type="button"
+							className={`${styles.languageButton} ${currentLang === "ar" ? styles.active : ""}`}
+							onClick={() => router.push(pushedPath("ar"))}>
+							AR
+						</button>
+					</div>
 
-            {/* Bouton CTA dans le menu mobile */}
-            <li className={`${styles.navItem} ${styles.mobileOnly}`}>
-              <a href={buildLocalizedNavPath('/nous-rejoindre')} className={styles.ctaBtn} onClick={() => setIsMenuOpen(false)}>
-                Nous rejoindre
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-        {/* Actions visibles sur desktop */}
-        <div className={styles.actions}>
-          <div className={styles.languageDesktop}>
-            <button
-              type="button"
-              className={`${styles.languageButton} ${selectedLanguage === 'FR' ? styles.active : ''}`}
-              onClick={() => router.push(buildLocalePath('FR'))}
-            >
-              FR
-            </button>
-            <button
-              type="button"
-              className={`${styles.languageButton} ${selectedLanguage === 'AR' ? styles.active : ''}`}
-              onClick={() => router.push(buildLocalePath('AR'))}
-            >
-              AR
-            </button>
-          </div>
-
-          <a href="/nous-rejoindre" className={styles.ctaBtn}>
-            Nous rejoindre
-          </a>
-        </div>
-      </div>
-    </header>
-  );
+					<a href={link("/rejoindre")} className={styles.ctaBtn}>
+						{t("header.join")}
+					</a>
+				</div>
+			</div>
+		</header>
+	);
 }

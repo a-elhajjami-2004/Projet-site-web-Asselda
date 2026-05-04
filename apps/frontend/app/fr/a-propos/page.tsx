@@ -1,13 +1,11 @@
 "use client";
 import Header from "@/components/Header";
 import styles from "@/styles/about.module.css";
-import logo from "@/public/images/logo.png";
 export default function Home() {
 
-  return (
+  return <>
 
 <main>
-  <Header />
   <section className={styles.section_definition}>
     <h1>À propos de l’association Asselda</h1>
 
@@ -22,7 +20,7 @@ export default function Home() {
 
       <div className={styles.image}>
         <img
-          src={logo.src}
+          src="/images/logo.png"
           alt="logo de l'association Asselda"
         />
       </div>
@@ -220,7 +218,7 @@ export default function Home() {
             <td>Hassan ait elmokef (حسن أيت موكف)</td>
             <td>Conseiller</td>
           </tr>
-          <tr>
+ <tr>
             <td>09</td>
             <td>Lahcen ouarbane (لحسن واعربان)</td>
             <td>Conseiller</td>
@@ -331,6 +329,10 @@ export default function Home() {
 
 
 
-</main>
 
-  )}
+
+</main>
+</>
+ 
+
+}

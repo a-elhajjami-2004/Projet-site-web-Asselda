@@ -7,7 +7,6 @@ import styles from "@/styles/page.module.css";
 export default function Home() {
   const LOGO_SRC = "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/0000/0502/brand.gif?itok=ywZxw0rj";
   return <>
-  <Header></Header>
    <main>
     <section className={styles.heroBanner}>
       <div className={styles.overlay}></div>
