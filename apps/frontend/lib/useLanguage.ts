@@ -26,3 +26,8 @@ export function buildLocalizedLink(path: string, language: Language): string {
 	}
 	return path;
 }
+
+export function getPath(localizedPath:string) {
+// /fr/,,,,
+	return localizedPath.substring(3);
+}
