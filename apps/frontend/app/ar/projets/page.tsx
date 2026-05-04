@@ -136,9 +136,7 @@ export default function Projects() {
 											</p>
 										))}
 
-										{project.description && (
-											<p className={styles.projectDescription}>{project.description}</p>
-										)}
+										<div className={styles.projectDescription}>{project.description}</div>
 
 										{project.results && (
 											<p className={styles.projectResults}>
