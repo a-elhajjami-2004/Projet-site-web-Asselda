@@ -64,17 +64,15 @@ export const translations = {
 		},
 		header: {
 			name: "Association Asselda",
-			navigation: {
-				home: "Accueil",
-				about: "À Propos",
-				activities: "Activités",
-				projects: "Projets",
-				news: "Actualités",
-				gallery: "Galerie",
-				partners: "Partenaires",
-				join: "Nous Rejoindre",
-				contact: "Contact",
-			}
+			home: "Accueil",
+			about: "À Propos",
+			activities: "Activités",
+			projects: "Projets",
+			news: "Actualités",
+			gallery: "Galerie",
+			partners: "Partenaires",
+			join: "Nous Rejoindre",
+			contact: "Contact",
 		}
 	},
 	ar: {
