@@ -1,6 +1,6 @@
 "use client";
 import Header from "@/components/Header";
-import ProjetsSection from "@/lib/Caroussel";
+import ProjetsSectionAr from "@/lib/caroussel_ar";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import styles from "@/styles/page.module.css";
 
@@ -14,26 +14,24 @@ export default function Home() {
 
       <div className={styles.content}>
         <h1 className={styles.title}>
-          Ensemble, construisons un avenir durable pour nos villages
+          معًا نبني مستقبلًا مستدامًا لقرانا
         </h1>
 
-        <p className={styles.arabicTitle} lang="ar">
-          معًا نبني مستقبلًا مستدامًا لقرانا
+        <p className={styles.arabicTitle} lang="fr">
+          Ensemble, construisons un avenir durable pour nos villages
         </p>
 
         <p className={styles.subtitle}>
-          L'Association Asselda œuvre depuis 1996 pour l'environnement, le
-          développement rural et le bien-être des familles de la région d'Asni,
-          Al Haouz.
+          جمعية أسيلدا تعمل منذ عام 1996 على البيئة والتنمية الريفية ورعاية الأسر في منطقة أسني والحوز.
         </p>
 
         <div className={styles.buttons}>
           <a href="/projets" className={styles.primaryBtn}>
-            Découvrir nos projets
+            اكتشف مشاريعنا
           </a>
 
           <a href="/rejoindre" className={styles.secondaryBtn}>
-            Nous soutenir
+            ادعمنا
           </a>
         </div>
       </div>
@@ -41,100 +39,91 @@ export default function Home() {
 
 <section className={styles.stats_section}>
 <div className={styles.stats_container}>
-    <AnimatedCounter endValue={250} label="Projets réalisés" />
-    <AnimatedCounter endValue={10000} label="Bénéficiaires" />
-    <AnimatedCounter endValue={15} label="Années d'existence" />
-    <AnimatedCounter endValue={45} label="Partenaires" />
+    <AnimatedCounter endValue={250} label="مشاريع منجزة" />
+    <AnimatedCounter endValue={10000} label="مستفيدين" />
+    <AnimatedCounter endValue={15} label="سنوات من الوجود" />
+    <AnimatedCounter endValue={45} label="شركاء" />
   </div></section>
  
     <section className={styles.domainsSection}>
       <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>Nos domaines d'intervention</h2>
+        <h2 className={styles.sectionTitle}>مجالات تدخلنا</h2>
         <h3 className={styles.sectionSubtitle}>
-          Trois axes majeurs pour un impact durable
+          ثلاثة محاور رئيسية لتأثير مستدام
         </h3>
 
         <div className={styles.cards}>
           <div className={styles.card}>
             <div className={styles.cardEmoji}>🌿</div>
-            <h4 className={styles.cardTitle}>Environnement</h4>
+            <h4 className={styles.cardTitle}>البيئة</h4>
             <p className={styles.cardText}>
-              Protection de la biodiversité et sensibilisation aux enjeux
-              écologiques pour un avenir durable.
+              حماية التنوع البيولوجي وتوعية بالقضايا البيئية لمستقبل مستدام.
             </p>
           </div>
 
           <div className={styles.card}>
             <div className={styles.cardEmoji}>💡</div>
-            <h4 className={styles.cardTitle}>Développement</h4>
+            <h4 className={styles.cardTitle}>التنمية</h4>
             <p className={styles.cardText}>
-              Accès à l'eau potable, infrastructures et soutien aux
-              communautés pour un développement équitable.
+              الوصول إلى المياه الصالحة للشرب والبنية التحتية ودعم المجتمعات لتنمية عادلة.
             </p>
           </div>
 
           <div className={styles.card}>
             <div className={styles.cardEmoji}>👨‍👩‍👧</div>
-            <h4 className={styles.cardTitle}>Famille</h4>
+            <h4 className={styles.cardTitle}>العائلة</h4>
             <p className={styles.cardText}>
-              Accompagnement des familles, éducation des enfants et
-              renforcement des liens intergénérationnels.
+              مرافقة العائلات وتعليم الأطفال وتعزيز الروابط بين الأجيال.
             </p>
           </div>
         </div>
       </div>
     </section>
- {ProjetsSection()}
+ {ProjetsSectionAr()}
 <section className={styles.news_section}>
   <div className={styles.news_container}>
-    <h2 className={styles.news_title}>Actualités & Événements</h2>
+    <h2 className={styles.news_title}>الأخبار والأحداث</h2>
 
     <div className={styles.news_grid}>
       <article className={styles.news_card}>
         <h3 className={styles.news_card_title}>
-          Renouvellement du bureau de l'association – Assemblée Générale du 3 février 2025
+          تجديد مكتب الجمعية - الجمعية العامة في 3 فبراير 2025
         </h3>
         <p className={styles.news_card_text}>
-          Lors de l'AG extraordinaire du 3 février 2025, les membres ont élu le
-          nouveau bureau exécutif pour un mandat de 5 ans, sous la présidence
-          de M. Samir Ahram.
+          خلال الجمعية العامة الاستثنائية في 3 فبراير 2025، انتخب الأعضاء المكتب التنفيذي الجديد لمدة 5 سنوات برئاسة السيد سمير أهرام.
         </p>
       </article>
 
       <article className={styles.news_card}>
         <h3 className={styles.news_card_title}>
-          Un an après le séisme : bilan de la solidarité et perspectives de reconstruction
+          بعد عام من الزلزال: تقييم التضامن وآفاق إعادة الإعمار
         </h3>
         <p className={styles.news_card_text}>
-          Retour sur les actions menées par l'association depuis le séisme
-          dévastateur du 8 septembre 2023 : distribution d'aide, montage de
-          tentes, soutien psychologique et suivi de la reconstruction.
+          نظرة على الإجراءات التي قامت بها الجمعية منذ الزلزال المدمر في 8 سبتمبر 2023: توزيع المساعدات، نصب الخيام، الدعم النفسي ومتابعة إعادة الإعمار.
         </p>
       </article>
 
       <article className={styles.news_card}>
         <h3 className={styles.news_card_title}>
-          Résultats du programme Awrach 2022 : les ruelles de Douar Asselda rénovées
+          نتائج برنامج أوراش 2022: شوارع دوار أسيلدا المجددة
         </h3>
         <p className={styles.news_card_text}>
-          Le programme national Awrach 2022 a permis le pavage complet des
-          ruelles et places publiques des trois douars, améliorant
-          significativement le cadre de vie des habitants.
+          سمح برنامج أوراش الوطني 2022 بتعبيد كامل الشوارع والساحات العامة في الثلاث دوارات، مما حسّن بشكل كبير إطار حياة السكان.
         </p>
       </article>
     </div>
 
     <div className={styles.news_footer}>
-      <a href="/actualites" className={styles.news_btn}>Toutes les actualités →</a>
+      <a href="/actualites" className={styles.news_btn}>جميع الأخبار ←</a>
     </div>
   </div>
 </section>
 <section className={styles.partners_section}>
   <div className={styles.partners_container}>
-    <h2 className={styles.partners_title}>Nos Partenaires</h2>
+    <h2 className={styles.partners_title}>شركاؤنا</h2>
 
     <p className={styles.partners_subtitle}>
-      L'association agit en collaboration avec des institutions nationales et internationales
+      تعمل الجمعية بالتعاون مع المؤسسات الوطنية والدولية
     </p>
 
     <div className={styles.partners_slider}>
@@ -143,16 +132,16 @@ export default function Home() {
           <img src={LOGO_SRC} alt="AMSED" className={styles.partner_logo} />
         </div>
         <div className={styles.partner_item}>
-          <img src="/images/asni.png" alt="Commune d'Asni" className={styles.partner_logo} />
+          <img src="/images/asni.png" alt="جماعة أسني" className={styles.partner_logo} />
         </div>
         <div className={styles.partner_item}>
-          <img src={LOGO_SRC} alt="Province d'Al Haouz" className={styles.partner_logo} />
+          <img src={LOGO_SRC} alt="إقليم الحوز" className={styles.partner_logo} />
         </div>
         <div className={styles.partner_item}>
-          <img src={LOGO_SRC} alt="Wilaya de Marrakech" className={styles.partner_logo} />
+          <img src={LOGO_SRC} alt="ولاية مراكش" className={styles.partner_logo} />
         </div>
         <div className={styles.partner_item}>
-          <img src={LOGO_SRC} alt="Ministère de l'Intérieur" className={styles.partner_logo} />
+          <img src={LOGO_SRC} alt="وزارة الداخلية" className={styles.partner_logo} />
         </div>
         <div className={styles.partner_item}>
           <img src={LOGO_SRC}  alt="FMPS" className={styles.partner_logo} />
@@ -163,16 +152,16 @@ export default function Home() {
           <img src={LOGO_SRC}  alt="AMSED" className={styles.partner_logo} />
         </div>
         <div className={styles.partner_item}>
-          <img src={LOGO_SRC}  alt="Commune d'Asni" className={styles.partner_logo} />
+          <img src={LOGO_SRC}  alt="جماعة أسني" className={styles.partner_logo} />
         </div>
         <div className={styles.partner_item}>
-          <img src={LOGO_SRC} alt="Province d'Al Haouz" className={styles.partner_logo} />
+          <img src={LOGO_SRC} alt="إقليم الحوز" className={styles.partner_logo} />
         </div>
         <div className={styles.partner_item}>
-          <img src={LOGO_SRC}  alt="Wilaya de Marrakech" className={styles.partner_logo} />
+          <img src={LOGO_SRC}  alt="ولاية مراكش" className={styles.partner_logo} />
         </div>
         <div className={styles.partner_item}>
-          <img src={LOGO_SRC}  alt="Ministère de l'Intérieur" className={styles.partner_logo} />
+          <img src={LOGO_SRC}  alt="وزارة الداخلية" className={styles.partner_logo} />
         </div>
         <div className={styles.partner_item}>
           <img src={LOGO_SRC}  alt="FMPS" className={styles.partner_logo} />
@@ -184,36 +173,32 @@ export default function Home() {
 <section className={styles.cta_section}>
   <div className={styles.cta_container}>
     <h2 className={styles.cta_title}>
-      Rejoignez le mouvement pour un développement durable
+      انضم إلى الحركة من أجل تنمية مستدامة
     </h2>
 
     <p className={styles.cta_subtitle}>
-      Devenez membre, bénévole, ou soutenez nos projets par un don. Chaque
-      geste compte.
+      كن عضوًا أو متطوعًا أو ادعم مشاريعنا بتبرع. كل إيماءة مهمة.
     </p>
 
     <div className={styles.cta_banner}>
       <img
         src="https://picsum.photos/1600/900"
-        alt="Jeune pousse symbole de développement durable"
+        alt="شجرة صغيرة رمز التنمية المستدامة"
         className={styles.cta_image}
       />
 
       <div className={styles.cta_overlay}>
         <a href="/Nous rejoindre" className={styles.cta_button}>
-          Devenir membre →
+          كن عضوًا ←
         </a>
 
         <a href="/don" className={styles.cta_button}>
-          Faire un don →
+          تبرع ←
         </a>
       </div>
     </div>
   </div>
 </section>
-
-
-
 
 
 </main>

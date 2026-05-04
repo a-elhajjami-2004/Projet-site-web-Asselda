@@ -13,17 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Accueil_association_Asselda",
-  description: "Page d'accueil de l'association Asselda contenant toutes les informations sur celle-ci et tous ces projets réalisés",
-keywords:["Asselda","Association","Accueil"], 
- openGraph: {
-    title: "Accueil_Association_Asselda_Al-Haouz",
-    description: "Page d'accueil de l'association Asselda contenant toutes les informations sur celle-ci et tous ces projets réalisés",
-    images: ["/images/asselda.jpg"],/*L'image qui va s'afficher lorsqu'on va partager le lien*/
-  },
-  alternates: {
-    canonical: "",/*lien du site sur google*/
-  },};
+  title: "À propos - Association Asselda",
+  description: "Page À propos de l'association Asselda en français.",
+  keywords: ["Asselda", "Association", "À propos"],
+};
 
 export default function RootLayout({
   children,
