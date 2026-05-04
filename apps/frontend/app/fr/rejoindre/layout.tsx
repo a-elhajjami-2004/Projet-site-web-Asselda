@@ -1,20 +1,10 @@
 // app/layout.tsx
-import React from 'react';
+import React from "react";
 
 export const metadata = {
-  title: 'Association Asselda - Inscription',
+	title: "Association Asselda - Inscription",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="fr">
-      <body style={{ margin: 0, padding: 0 }}>
-        {children}
-      </body>
-    </html>
-  );
+export default function Layout({ children }: { children: React.ReactNode }) {
+	return children;
 }
