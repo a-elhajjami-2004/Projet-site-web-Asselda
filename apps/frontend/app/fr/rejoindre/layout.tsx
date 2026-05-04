@@ -1,8 +1,13 @@
-// app/layout.tsx
+import { Metadata } from "next";
+import { getPageMetadata } from "@/lib/translations";
 import React from "react";
 
-export const metadata = {
-	title: "Association Asselda - Inscription",
+const pageMetadata = getPageMetadata("fr", "join");
+
+export const metadata: Metadata = {
+	title: pageMetadata.title,
+	description: pageMetadata.description,
+	keywords: pageMetadata.keywords,
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

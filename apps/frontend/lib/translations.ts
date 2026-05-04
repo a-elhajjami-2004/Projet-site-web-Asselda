@@ -1,3 +1,5 @@
+import { join } from "path";
+
 // Translations for the website
 export type Language = "fr" | "ar";
 
@@ -35,6 +37,18 @@ export const translations = {
 				description:
 					"Découvrez les photos et vidéos des actions et événements de l'Association Asselda, mettant en lumière la vie quotidienne, les projets et les initiatives des habitants de Douar Asselda.",
 				keywords: ["Association Asselda", "Galerie", "Photos", "Vidéos", "Projets", "Événements", "Douar Asselda"],
+			},
+			contact: {
+				title: "Contact - Association Asselda",
+				description:
+					"Contactez l'Association Asselda pour plus d'informations sur nos projets et initiatives.",
+				keywords: ["Association Asselda", "Contact", "Projets", "Initiatives", "Douar Asselda"],
+			},
+			join: {
+				title: "Nous Rejoindre - Association Asselda",
+				description:
+					"Rejoignez l'Association Asselda pour contribuer à nos projets et initiatives en faveur de l'environnement, du développement rural, du social et de l'éducation à Douar Asselda.",
+				keywords: ["Association Asselda", "Nous Rejoindre", "Projets", "Initiatives", "Douar Asselda"],
 			},
 		},
 		footer: {
@@ -99,6 +113,18 @@ export const translations = {
 					"اكتشف الصور ومقاطع الفيديو الخاصة بأنشطة وفعاليات جمعية أسلدة، مما يسلط الضوء على الحياة اليومية والمشاريع والمبادرات لسكان دوار أسلدة.",
 				keywords: ["جمعية أسلدة", "معرض", "صور", "فيديوهات", "مشاريع", "فعاليات", "دوار أسلدة"],
 			},
+			contact: {
+				title: "اتصل بنا - جمعية أسلدة",
+				description:
+					"اتصل بجمعية أسلدة للحصول على معلومات إضافية حول مشاريعنا ومبادراتنا.",
+				keywords: ["جمعية أسلدة", "اتصل بنا", "مشاريع", "مبادرات", "دوار أسلدة"],
+			},
+			join: {
+				title: "انضم إلينا - جمعية أسلدة",
+				description:
+					"انضم إلينا لمساهمة في مشاريعنا ومبادراتنا لخدمة البيئة والتنمية والمجتمع في دوار أسلدة.",
+				keywords: ["جمعية أسلدة", "انضم إلينا", "مشاريع", "مبادرات", "دوار أسلدة"],
+			},
 		},
 		footer: {
 			tagline: "« من أجل البيئة والتنمية والعائلة - منذ 1996 »",
@@ -158,11 +184,11 @@ export const getTranslation = (lang: Language | string, key: string): string => 
 /**
  * Get page metadata (title, description, keywords) from translations
  * @param lang - Language code (fr, ar)
- * @param page - Page key (home, projects, activities, gallery)
+ * @param page - Page key (home, projects, activities, gallery, contact, join)
  */
 export function getPageMetadata(
 	lang: Language | string,
-	page: "home" | "projects" | "activities" | "gallery"
+	page: "home" | "projects" | "activities" | "gallery" | "contact" | "join"
 ) {
 	const safeLang = (languages.includes(lang as Language) ? lang : "fr") as Language;
 	const pageTranslations = translations[safeLang].pages[page];
