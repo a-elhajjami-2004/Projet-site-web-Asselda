@@ -1,20 +1,15 @@
-// app/layout.tsx
-import React from 'react';
+import { Metadata } from "next";
+import { getPageMetadata } from "@/lib/translations";
+import React from "react";
 
-export const metadata = {
-  title: 'Association Asselda - Inscription',
+const pageMetadata = getPageMetadata("fr", "join");
+
+export const metadata: Metadata = {
+	title: pageMetadata.title,
+	description: pageMetadata.description,
+	keywords: pageMetadata.keywords,
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="fr">
-      <body style={{ margin: 0, padding: 0 }}>
-        {children}
-      </body>
-    </html>
-  );
+export default function Layout({ children }: { children: React.ReactNode }) {
+	return children;
 }

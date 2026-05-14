@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { getPageMetadata } from "@/lib/translations";
 
-const pageMetadata = getPageMetadata("fr", "contact");
+const pageMetadata = getPageMetadata("ar", "gallery");
 
 export const metadata: Metadata = {
 	title: pageMetadata.title,
@@ -9,6 +9,10 @@ export const metadata: Metadata = {
 	keywords: pageMetadata.keywords,
 };
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({
+	children,
+}: Readonly<{
+	children: React.ReactNode;
+}>) {
 	return children;
 }

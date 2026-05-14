@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { getPageMetadata } from "@/lib/translations";
 
-const pageMetadata = getPageMetadata("fr", "contact");
+const pageMetadata = getPageMetadata("ar", "contact");
 
 export const metadata: Metadata = {
 	title: pageMetadata.title,
