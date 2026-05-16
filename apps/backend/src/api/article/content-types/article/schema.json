@@ -1,0 +1,75 @@
+{
+	"kind": "collectionType",
+	"collectionName": "articles",
+	"info": {
+		"singularName": "article",
+		"pluralName": "articles",
+		"displayName": "Article",
+		"description": "Articles et actualités du site"
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": true
+	},
+	"pluginOptions": {},
+	"attributes": {
+		"titleFr": {
+			"type": "string",
+			"required": true,
+			"unique": false,
+			"pluginOptions": {}
+		},
+		"titleAr": {
+			"type": "string",
+			"required": true,
+			"unique": false,
+			"pluginOptions": {}
+		},
+		"contentFr": {
+			"type": "richtext",
+			"required": true,
+			"pluginOptions": {}
+		},
+		"contentAr": {
+			"type": "richtext",
+			"required": true,
+			"pluginOptions": {}
+		},
+		"descriptionFr": {
+			"type": "text",
+			"required": false,
+			"pluginOptions": {}
+		},
+		"descriptionAr": {
+			"type": "text",
+			"required": false,
+			"pluginOptions": {}
+		},
+		"imageCover": {
+			"type": "media",
+			"multiple": false,
+			"required": false,
+			"allowedTypes": ["images"],
+			"pluginOptions": {}
+		},
+		"author": {
+			"type": "relation",
+			"relation": "manyToOne",
+			"target": "plugin::users-permissions.user",
+			"pluginOptions": {}
+		},
+		"category": {
+			"type": "enumeration",
+			"enum": ["news", "event", "project", "other"],
+			"default": "news",
+			"pluginOptions": {}
+		},
+		"slug": {
+			"type": "uid",
+			"targetField": "titleFr",
+			"required": false,
+			"pluginOptions": {}
+		}
+	}
+}

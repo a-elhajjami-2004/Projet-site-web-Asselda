@@ -1,0 +1,32 @@
+{
+	"name": "backend",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Strapi Backend - API CMS pour Asselda",
+	"strapi": {
+		"uuid": "a1b2c3d4-e5f6-4g7h-8i9j-0k1l2m3n4o5p"
+	},
+	"engines": {
+		"node": ">=18.0.0 <=20.x.x",
+		"npm": ">=9.0.0"
+	},
+	"scripts": {
+		"develop": "strapi develop",
+		"start": "strapi start",
+		"build": "strapi build",
+		"strapi": "strapi"
+	},
+	"dependencies": {
+		"@strapi/strapi": "^4.26.1",
+		"@strapi/plugin-users-permissions": "^4.26.1",
+		"@strapi/plugin-i18n": "^4.26.1",
+		"better-sqlite3": "^11.7.0",
+		"pg": "^8.12.0",
+		"pg-connection-string": "^2.7.0",
+		"nodemailer": "^6.9.13",
+		"axios": "^1.7.7"
+	},
+	"devDependencies": {
+		"dotenv": "^16.4.5"
+	}
+}

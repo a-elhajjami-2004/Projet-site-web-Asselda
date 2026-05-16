@@ -1,0 +1,66 @@
+{
+	"kind": "collectionType",
+	"collectionName": "memberships",
+	"info": {
+		"singularName": "membership",
+		"pluralName": "memberships",
+		"displayName": "Adhésion",
+		"description": "Demandes d'adhésion à l'association"
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": false
+	},
+	"pluginOptions": {},
+	"attributes": {
+		"firstName": {
+			"type": "string",
+			"required": true,
+			"pluginOptions": {}
+		},
+		"lastName": {
+			"type": "string",
+			"required": true,
+			"pluginOptions": {}
+		},
+		"email": {
+			"type": "email",
+			"required": true,
+			"unique": true,
+			"pluginOptions": {}
+		},
+		"phone": {
+			"type": "string",
+			"required": false,
+			"pluginOptions": {}
+		},
+		"message": {
+			"type": "text",
+			"required": false,
+			"pluginOptions": {}
+		},
+		"status": {
+			"type": "enumeration",
+			"enum": ["En attente", "Validé", "Refusé"],
+			"default": "En attente",
+			"pluginOptions": {}
+		},
+		"rejectionReason": {
+			"type": "text",
+			"required": false,
+			"pluginOptions": {}
+		},
+		"approvedAt": {
+			"type": "datetime",
+			"required": false,
+			"pluginOptions": {}
+		},
+		"approvedBy": {
+			"type": "relation",
+			"relation": "manyToOne",
+			"target": "plugin::users-permissions.user",
+			"pluginOptions": {}
+		}
+	}
+}

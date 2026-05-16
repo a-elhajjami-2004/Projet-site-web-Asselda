@@ -1,0 +1,58 @@
+{
+	"kind": "collectionType",
+	"collectionName": "partners",
+	"info": {
+		"singularName": "partner",
+		"pluralName": "partners",
+		"displayName": "Partenaire",
+		"description": "Partenaires de l'association"
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": true
+	},
+	"pluginOptions": {},
+	"attributes": {
+		"name": {
+			"type": "string",
+			"required": true,
+			"unique": true,
+			"pluginOptions": {}
+		},
+		"descriptionFr": {
+			"type": "text",
+			"required": false,
+			"pluginOptions": {}
+		},
+		"descriptionAr": {
+			"type": "text",
+			"required": false,
+			"pluginOptions": {}
+		},
+		"logo": {
+			"type": "media",
+			"multiple": false,
+			"required": true,
+			"allowedTypes": ["images"],
+			"pluginOptions": {}
+		},
+		"website": {
+			"type": "string",
+			"required": false,
+			"pluginOptions": {}
+		},
+		"email": {
+			"type": "email",
+			"required": false,
+			"pluginOptions": {}
+		},
+		"projects": {
+			"type": "relation",
+			"relation": "manyToMany",
+			"target": "api::project.project",
+			"mappedBy": "partners",
+			"pluginOptions": {}
+		}
+	}
+}

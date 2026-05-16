@@ -1,0 +1,53 @@
+{
+	"kind": "collectionType",
+	"collectionName": "contact_submissions",
+	"info": {
+		"singularName": "contact_submission",
+		"pluralName": "contact_submissions",
+		"displayName": "Contact",
+		"description": "Soumissions du formulaire de contact"
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": false
+	},
+	"pluginOptions": {},
+	"attributes": {
+		"firstName": {
+			"type": "string",
+			"required": true,
+			"pluginOptions": {}
+		},
+		"lastName": {
+			"type": "string",
+			"required": true,
+			"pluginOptions": {}
+		},
+		"email": {
+			"type": "email",
+			"required": true,
+			"pluginOptions": {}
+		},
+		"phone": {
+			"type": "string",
+			"required": false,
+			"pluginOptions": {}
+		},
+		"subject": {
+			"type": "string",
+			"required": true,
+			"pluginOptions": {}
+		},
+		"message": {
+			"type": "richtext",
+			"required": true,
+			"pluginOptions": {}
+		},
+		"read": {
+			"type": "boolean",
+			"default": false,
+			"pluginOptions": {}
+		}
+	}
+}
