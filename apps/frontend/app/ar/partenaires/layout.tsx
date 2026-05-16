@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { getPageMetadata } from "@/lib/translations";
-import "@/styles/globals.css";
 
-const pageMetadata = getPageMetadata("fr", "partners");
+const pageMetadata = getPageMetadata("ar", "partners");
 
 export const metadata: Metadata = {
 	title: pageMetadata.title,

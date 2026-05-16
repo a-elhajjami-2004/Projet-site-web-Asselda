@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { getPageMetadata } from "@/lib/translations";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/globals.css";
@@ -14,15 +15,15 @@ const geistMono = Geist_Mono({
 	subsets: ["latin"],
 });
 
+const pageMetadata = getPageMetadata("fr", "home");
+
 export const metadata: Metadata = {
-	title: "Accueil_association_Asselda",
-	description:
-		"Page d'accueil de l'association Asselda contenant toutes les informations sur celle-ci et tous ces projets réalisés",
-	keywords: ["Asselda", "Association", "Accueil"],
+	title: pageMetadata.title,
+	description: pageMetadata.description,
+	keywords: pageMetadata.keywords,
 	openGraph: {
-		title: "Accueil_Association_Asselda_Al-Haouz",
-		description:
-			"Page d'accueil de l'association Asselda contenant toutes les informations sur celle-ci et tous ces projets réalisés",
+		title: pageMetadata.title,
+		description: pageMetadata.description,
 		images: ["/images/asselda.jpg"] /*L'image qui va s'afficher lorsqu'on va partager le lien*/,
 	},
 	alternates: {

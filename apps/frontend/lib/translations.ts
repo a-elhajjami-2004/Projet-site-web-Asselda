@@ -3,6 +3,17 @@ import { join } from "path";
 // Translations for the website
 export type Language = "fr" | "ar";
 
+export type PageKey =
+	| "home"
+	| "about"
+	| "news"
+	| "projects"
+	| "activities"
+	| "gallery"
+	| "partners"
+	| "contact"
+	| "join";
+
 export const languages: Language[] = ["fr", "ar"];
 
 export const translations = {
@@ -12,11 +23,31 @@ export const translations = {
 				title: "Association Asselda",
 				description: "Pour l'environnement, le développement et la famille – depuis 1996",
 			},
+			about: {
+				title: "À Propos - Association Asselda",
+				description:
+					"Page à-propos donnant plus d'informations sur l'association Asselda contenant toutes les informations sur celle-ci et tous ces projets réalisés",
+				keywords: ["Asselda", "Association", "a-propos", "developpement", "rural", "al-houz"],
+			},
+			news: {
+				title: "Actualités - Association Asselda",
+				description:
+					"Restez informé des dernières nouvelles de l'Association Asselda, y compris les projets, événements, communiqués et initiatives de solidarité.",
+				keywords: ["actualités", "événements", "projets", "communiqués", "solidarité"],
+			},
 			projects: {
 				title: "Projets - Association Asselda",
 				description:
 					"Découvrez les projets réalisés et en cours de l'Association Asselda, visant à améliorer les conditions de vie des habitants de Douar Asselda à travers des initiatives durables dans les domaines de l'environnement, du rural, du social et de l'éducation.",
-				keywords: ["projets", "association asselda", "douar asselda", "environnement", "rural", "social", "éducation"],
+				keywords: [
+					"projets",
+					"association asselda",
+					"douar asselda",
+					"environnement",
+					"rural",
+					"social",
+					"éducation",
+				],
 			},
 			activities: {
 				title: "Activités - Association Asselda",
@@ -36,12 +67,24 @@ export const translations = {
 				title: "Galerie - Association Asselda",
 				description:
 					"Découvrez les photos et vidéos des actions et événements de l'Association Asselda, mettant en lumière la vie quotidienne, les projets et les initiatives des habitants de Douar Asselda.",
-				keywords: ["Association Asselda", "Galerie", "Photos", "Vidéos", "Projets", "Événements", "Douar Asselda"],
+				keywords: [
+					"Association Asselda",
+					"Galerie",
+					"Photos",
+					"Vidéos",
+					"Projets",
+					"Événements",
+					"Douar Asselda",
+				],
+			},
+			partners: {
+				title: "Partenaires - Association Asselda",
+				description: "Découvrez nos partenaires et collaborateurs dans la mission de l'Association Asselda.",
+				keywords: ["partenaires", "collaborateurs", "association", "solidarité"],
 			},
 			contact: {
 				title: "Contact - Association Asselda",
-				description:
-					"Contactez l'Association Asselda pour plus d'informations sur nos projets et initiatives.",
+				description: "Contactez l'Association Asselda pour plus d'informations sur nos projets et initiatives.",
 				keywords: ["Association Asselda", "Contact", "Projets", "Initiatives", "Douar Asselda"],
 			},
 			join: {
@@ -87,13 +130,25 @@ export const translations = {
 			partners: "Partenaires",
 			join: "Nous Rejoindre",
 			contact: "Contact",
-		}
+		},
 	},
 	ar: {
 		pages: {
 			home: {
 				title: "جمعية أسلدة",
 				description: "من أجل البيئة والتنمية والعائلة – منذ 1996",
+			},
+			about: {
+				title: "من نحن - جمعية أسلدة",
+				description:
+					"صفحة من نحن التي تقدم المزيد من المعلومات حول جمعية أسلدة تحتوي على جميع المعلومات حولها وجميع مشاريعها المنجزة",
+				keywords: ["أسلدة", "جمعية", "من نحن", "تطوير", "ريفية", "الحوز"],
+			},
+			news: {
+				title: "الأخبار - جمعية أسلدة",
+				description:
+					"ابق على اطلاع بأحدث أخبار جمعية أسلدة، بما في ذلك المشاريع، الأحداث، البيانات الصحفية والمبادرات التضامنية.",
+				keywords: ["أخبار", "أحداث", "مشاريع", "بيانات صحفية", "تضامن"],
 			},
 			projects: {
 				title: "المشاريع - جمعية أسلدة",
@@ -113,16 +168,19 @@ export const translations = {
 					"اكتشف الصور ومقاطع الفيديو الخاصة بأنشطة وفعاليات جمعية أسلدة، مما يسلط الضوء على الحياة اليومية والمشاريع والمبادرات لسكان دوار أسلدة.",
 				keywords: ["جمعية أسلدة", "معرض", "صور", "فيديوهات", "مشاريع", "فعاليات", "دوار أسلدة"],
 			},
+			partners: {
+				title: "الشركاء - جمعية أسلدة",
+				description: "اكتشف شركاءنا والمتعاونين معنا في مهمة جمعية أسلدة.",
+				keywords: ["شركاء", "متعاونين", "جمعية", "تضامن"],
+			},
 			contact: {
 				title: "اتصل بنا - جمعية أسلدة",
-				description:
-					"اتصل بجمعية أسلدة للحصول على معلومات إضافية حول مشاريعنا ومبادراتنا.",
+				description: "اتصل بجمعية أسلدة للحصول على معلومات إضافية حول مشاريعنا ومبادراتنا.",
 				keywords: ["جمعية أسلدة", "اتصل بنا", "مشاريع", "مبادرات", "دوار أسلدة"],
 			},
 			join: {
 				title: "انضم إلينا - جمعية أسلدة",
-				description:
-					"انضم إلينا لمساهمة في مشاريعنا ومبادراتنا لخدمة البيئة والتنمية والمجتمع في دوار أسلدة.",
+				description: "انضم إلينا لمساهمة في مشاريعنا ومبادراتنا لخدمة البيئة والتنمية والمجتمع في دوار أسلدة.",
 				keywords: ["جمعية أسلدة", "انضم إلينا", "مشاريع", "مبادرات", "دوار أسلدة"],
 			},
 		},
@@ -186,10 +244,7 @@ export const getTranslation = (lang: Language | string, key: string): string => 
  * @param lang - Language code (fr, ar)
  * @param page - Page key (home, projects, activities, gallery, contact, join)
  */
-export function getPageMetadata(
-	lang: Language | string,
-	page: "home" | "projects" | "activities" | "gallery" | "contact" | "join"
-) {
+export function getPageMetadata(lang: Language | string, page: PageKey) {
 	const safeLang = (languages.includes(lang as Language) ? lang : "fr") as Language;
 	const pageTranslations = translations[safeLang].pages[page];
 
