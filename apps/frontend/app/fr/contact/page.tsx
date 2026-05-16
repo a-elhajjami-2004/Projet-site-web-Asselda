@@ -87,18 +87,26 @@ export default function UnifiedPage() {
             <h3 className={styles.formTitle}>Formulaire de contact</h3>
             <form>
               <label>Nom complet<span style={{color:'red'}}>*</span></label>
-              <input type="text" className={styles.inputField} placeholder="Entrez votre nom complet" />
+              <input type="text" className={styles.inputField} placeholder="Entrez votre nom complet" required />
               
               <label>Email <span style={{color:'red'}}>*</span></label>
-              <input type="email" className={styles.inputField} placeholder="ab_ikram@email.com" />
+              <input type="email" className={styles.inputField} placeholder="ab_ikram@email.com" required />
               
               <div className={styles.formRow}>
-                <div style={{flex:1}}><label>Téléphone <span style={{color:'red'}}>*</span></label><input type="text" className={styles.inputField} placeholder="Ex : 06 12 34 56 78" /></div>
+                <div style={{flex:1}}><label>Téléphone <span style={{color:'red'}}>*</span></label><input type="text" className={styles.inputField} placeholder="Ex : 06 12 34 56 78" required /></div>
                 <div style={{flex:1}}><label>Objet de message</label><input type="text" className={styles.inputField} /></div>
               </div>
               
-              <label>Message:</label>
-              <textarea className={styles.inputField} rows={4}></textarea>
+              {/* Étoile rouge ajoutée ici à côté de Message */}
+              <label>Message <span style={{color:'red'}}>*</span></label>
+              <textarea 
+                className={styles.inputField} 
+                rows={4} 
+                required 
+                minLength={20} 
+                maxLength={1000}
+                placeholder="Écrivez votre message ici (20 caractères minimum)..."
+              ></textarea>
               <p className={styles.charLimit}>minlength="20", maxlength="1000"</p>
 
               <div className={styles.formFooter}>
