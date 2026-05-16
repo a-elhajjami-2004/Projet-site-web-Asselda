@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
+import { getPageMetadata } from "@/lib/translations";
 import "@/styles/globals.css";
 
+const pageMetadata = getPageMetadata("fr", "partners");
+
 export const metadata: Metadata = {
-	title: "Partenaires - Association Asselda",
-	description: "Découvrez nos partenaires et collaborateurs dans la mission de l'Association Asselda.",
-	keywords: ["partenaires", "collaborateurs", "association", "solidarité"],
+	title: pageMetadata.title,
+	description: pageMetadata.description,
+	keywords: pageMetadata.keywords,
 };
 
 export default function Layout({
-  children,
+	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-  return children;
+	return children;
 }
