@@ -6,9 +6,11 @@ build
 
 # Environment variables
 .env
+!.env.example
 .env.local
 .env.*.local
 .env.production
+.env.*.production
 
 # Logs
 npm-debug.log*
