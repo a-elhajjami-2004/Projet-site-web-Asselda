@@ -1,9 +1,9 @@
 {
 	"kind": "collectionType",
-	"collectionName": "contact_submissions",
+	"collectionName": "contact-submissions",
 	"info": {
-		"singularName": "contact_submission",
-		"pluralName": "contact_submissions",
+		"singularName": "contact-submission",
+		"pluralName": "contact-submissions",
 		"displayName": "Contact",
 		"description": "Soumissions du formulaire de contact"
 	},
