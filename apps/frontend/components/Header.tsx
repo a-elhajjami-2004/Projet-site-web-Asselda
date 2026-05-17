@@ -27,7 +27,7 @@ export default function Header() {
 		{ label: t("header.activities"), href: link("/activites") },
 		{ label: t("header.projects"), href: link("/projets") },
 		{ label: t("header.news"), href: link("/actualites") },
-		{ label: t("header.gallery"), href: link("/galerie") },
+		{ label: t("header.gallery"), href: link("/gallerie") },
 		{ label: t("header.partners"), href: link("/partenaires") },
 		{ label: t("header.contact"), href: link("/contact") },
 	];
