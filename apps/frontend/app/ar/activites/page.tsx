@@ -13,21 +13,20 @@ export default function Activities() {
 		<main>
 			{/* Section Héro */}
 			<section className={styles.activitiesHero}>
-				<h1>Nos Activités</h1>
+				<h1>أنشطتنا</h1>
 				<p>
-					De l'eau potable aux espaces réhabilitées, en passant par la formation et le soutien social,
-					découvrez comment l'association transforme le quotidien des habitants de Douar Asselda.
+					من الماء الشروب إلى الفضاءات المؤهَّلة، مروراً بالتكوين والدعم الاجتماعي، اكتشف كيف تحوّل الجمعية حياة سكان دوار أسلدة يوماً بعد يوم.
 				</p>
 			</section>
 
 			{/* Section Projets */}
 			<section className={styles.projectsSection}>
 				<div className={styles.projectsContainer}>
-					<h2 className={styles.sectionTitle}>Projets Actuels</h2>
+					<h2 className={styles.sectionTitle}>المشاريع الحالية</h2>
 
 					{/* Filtre */}
 					<div className={styles.filterContainer}>
-						<span className={styles.filterLabel}>Filtrer par domaine :</span>
+						<span className={styles.filterLabel}>اختيار حسب المجال :</span>
 						<button
 							className={`${styles.filterButton} ${selectedDomain === "Tous" ? styles.active : ""}`}
 							onClick={() => setSelectedDomain("Tous")}>
@@ -64,7 +63,7 @@ export default function Activities() {
 								</div>
 							))
 						) : (
-							<div className={styles.emptyState}>Aucun projet trouvé pour cette catégorie.</div>
+							<div className={styles.emptyState}>لم يتم العثور على أي مشاريع لهذه الفئة.</div>
 						)}
 					</div>
 				</div>

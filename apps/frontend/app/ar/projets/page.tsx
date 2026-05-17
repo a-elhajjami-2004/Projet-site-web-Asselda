@@ -52,11 +52,9 @@ export default function Projects() {
 			<section className={styles.projectsHero}>
 				<div className={styles.projectsOverlay}></div>
 				<hgroup className={styles.projectsContent}>
-					<h1>Nos Projets</h1>
+					<h1>مشاريعنا</h1>
 					<p>
-						Depuis 1996, l'Association Asselda a conçu et réalisé des projets structurants pour la
-						communauté de Douar Asselda. Chaque projet répond à un besoin réel, identifié avec et pour ses
-						habitants.
+						منذ عام 1996، صممت جمعية أسلدة ونفّذت مشاريع هيكلية تخدم مجتمع دوار أسلدة. كل مشروع يستجيب لحاجة حقيقية، حُدِّدت مع السكان ومن أجلهم.
 					</p>
 				</hgroup>
 			</section>
@@ -64,12 +62,12 @@ export default function Projects() {
 			{/* Section Projets */}
 			<section className={styles.projectsSection}>
 				<div className={styles.projectsContainer}>
-					<h2 className={styles.sectionTitle}>Projets Actuels</h2>
+					<h2 className={styles.sectionTitle}>المشاريع الحالية</h2>
 
 					{/* Filtres */}
 					<div className={styles.filtersWrapper}>
 						<div className={styles.filterSection}>
-							<label className={styles.filterLabel}>Filtrer par statut :</label>
+							<label className={styles.filterLabel}>الاختيار حسب الحالة:</label>
 							<div className={styles.filterButtonsGroup}>
 								<button
 									className={`${styles.filterButton} ${selectedStatus === "Tous" ? styles.active : ""}`}
@@ -88,7 +86,7 @@ export default function Projects() {
 						</div>
 
 						<div className={styles.filterSection}>
-							<label className={styles.filterLabel}>Filtrer par domaine :</label>
+							<label className={styles.filterLabel}>الاختيار حسب المجال:</label>
 							<div className={styles.filterButtonsGroup}>
 								<button
 									className={`${styles.filterButton} ${selectedDomain === "Tous" ? styles.active : ""}`}
@@ -147,7 +145,7 @@ export default function Projects() {
 								</article>
 							))
 						) : (
-							<div className={styles.emptyState}>Aucun projet ne correspond à cette sélection.</div>
+							<div className={styles.emptyState}>لا توجد مشاريع مطابقة لهذا الاختيار.</div>
 						)}
 					</div>
 				</div>
@@ -155,7 +153,7 @@ export default function Projects() {
 
 			{/* Section Timeline */}
 			<section className={styles.timelineSection}>
-				<h2 className={styles.timelineTitle}>Timeline des Projets</h2>
+				<h2 className={styles.timelineTitle}>الجدول الزمني للمشاريع</h2>
 				<div
 					ref={timelineRef}
 					className={`${styles.timelineContainer} ${timelineVisible ? styles.visible : ""}`}>

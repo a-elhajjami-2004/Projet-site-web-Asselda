@@ -34,10 +34,9 @@ export default function Gallery() {
 			<section className={styles.galleryHero}>
 				<div className={styles.galleryOverlay}></div>
 				<div className={styles.galleryContent}>
-					<h1>Galerie Photos & Vidéos</h1>
+					<h1>معرض الصور والفيديوهات</h1>
 					<p>
-						Une image vaut mille mots. Découvrez en images les projets, les actions et la vie de
-						l'Association Asselda et de Douar Asselda.
+						الصورة تُغني عن ألف كلمة. اكتشف في صور مشاريع جمعية أسلدة وأنشطتها وحياة دوار أسلدة.
 					</p>
 				</div>
 			</section>
@@ -48,7 +47,7 @@ export default function Gallery() {
 					{/* Filtres */}
 					<div className={styles.filterContainer}>
 						<div className={styles.filterGroup}>
-							<label className={styles.filterLabel}>Filtrer par album :</label>
+							<label className={styles.filterLabel}>الاختيار حسب الألبوم:</label>
 							<select
 								className={styles.filterSelect}
 								value={selectedYear}
@@ -63,7 +62,7 @@ export default function Gallery() {
 						</div>
 
 						<div className={styles.filterGroup}>
-							<label className={styles.filterLabel}>Filtrer par année :</label>
+							<label className={styles.filterLabel}>الاختيار حسب السنة:</label>
 							<select
 								className={styles.filterSelect}
 								value={selectedYear}
@@ -79,7 +78,7 @@ export default function Gallery() {
 					</div>
 
 					{/* Album Photos */}
-					<h2 className={styles.sectionTitle}>Album Photos</h2>
+					<h2 className={styles.sectionTitle}>الألبومات</h2>
 					<div className={styles.gallery}>
 						{filteredAlbums.length > 0 ? (
 							filteredAlbums.map((album, key) => (
@@ -90,12 +89,12 @@ export default function Gallery() {
 								</div>
 							))
 						) : (
-							<div className={styles.emptyState}>Aucune photo trouvée pour cette sélection.</div>
+							<div className={styles.emptyState}>لم يتم العثور على صور لهذا الاختيار.</div>
 						)}
 					</div>
 
 					{/* Vidéos */}
-					<h2 className={styles.subsectionTitle}>Vidéos</h2>
+					<h2 className={styles.subsectionTitle}>الفيديوهات</h2>
 					<div className={styles.gallery}>
 						{filteredVideos.length > 0 ? (
 							filteredVideos.map((video, key) => (
@@ -111,7 +110,7 @@ export default function Gallery() {
 								</div>
 							))
 						) : (
-							<div className={styles.emptyState}>Aucune vidéo trouvée pour cette sélection.</div>
+							<div className={styles.emptyState}>لم يتم العثور على أي مقاطع فيديو لهذا الاختيار.</div>
 						)}
 					</div>
 				</div>
