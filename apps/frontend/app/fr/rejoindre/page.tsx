@@ -12,6 +12,24 @@ export default function RejoindrePage() {
   const [engagement, setEngagement] = useState<string | null>(null);
   const [accepted, setAccepted] = useState(false);
 
+  // Fonction pour gérer la sélection et la désélection du domaine d'intérêt
+  const handleInteretClick = (value: string) => {
+    if (interet === value) {
+      setInteret(null); // Si on reclique sur le bouton actif, on annule la coloration
+    } else {
+      setInteret(value);
+    }
+  };
+
+  // Fonction pour gérer la sélection et la désélection du type d'engagement
+  const handleEngagementClick = (value: string) => {
+    if (engagement === value) {
+      setEngagement(null); // Si on reclique sur le bouton actif, on annule la coloration
+    } else {
+      setEngagement(value);
+    }
+  };
+
   return (
     <div className={styles.pageWrapper}>
       
@@ -89,7 +107,12 @@ export default function RejoindrePage() {
               
               <div className={styles.gridInterest}>
                 {['Environnement', 'Infrastructure', 'Social', 'Education'].map((item) => (
-                  <button key={item} type="button" className={`${styles.selectBtn} ${interet === item ? styles.activeBtn : ''}`} onClick={() => setInteret(item)}>
+                  <button 
+                    key={item} 
+                    type="button" 
+                    className={`${styles.selectBtn} ${interet === item ? styles.activeBtn : ''}`} 
+                    onClick={() => handleInteretClick(item)}
+                  >
                     <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                       {item === 'Environnement' && <Leaf size={16} />}
                       {item === 'Infrastructure' && <Building size={16} />}
@@ -100,7 +123,12 @@ export default function RejoindrePage() {
                     <Square size={16} className={styles.uncheck} />
                   </button>
                 ))}
-                <button type="button" className={`${styles.selectBtn} ${styles.fullWidth}`} onClick={() => setInteret('Tous')}>
+                
+                <button 
+                  type="button" 
+                  className={`${styles.selectBtn} ${styles.fullWidth} ${interet === 'Tous' ? styles.activeBtn : ''}`} 
+                  onClick={() => handleInteretClick('Tous')}
+                >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><LayoutGrid size={16} /> Tous</span>
                   <Square size={16} className={styles.uncheck} />
                 </button>
@@ -115,7 +143,12 @@ export default function RejoindrePage() {
 
               <div className={styles.engagementList}>
                 {['Membre actif', 'Membre soutien', 'Bénévole occasionnel'].map((type) => (
-                  <button key={type} type="button" className={`${styles.selectBtn} ${engagement === type ? styles.activeBtn : ''}`} onClick={() => setEngagement(type)}>
+                  <button 
+                    key={type} 
+                    type="button" 
+                    className={`${styles.selectBtn} ${engagement === type ? styles.activeBtn : ''}`} 
+                    onClick={() => handleEngagementClick(type)}
+                  >
                     <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                       {type.includes('actif') ? <Users size={16} /> : <Handshake size={16} />}
                       {type}
@@ -142,7 +175,7 @@ export default function RejoindrePage() {
       {/* SECTION 3 : DEVENIR BÉNÉVOLE (OPPORTUNITÉS) */}
       <section id="benevolat" className={styles.oppSection}>
         <div className={styles.oppIntroBox}>
-          <p>L'association offre de nombreuses opportunités de bénévolat. Votre temps est une ressource précieuse.</p>
+          <p>L'association offers de nombreuses opportunités de bénévolat. Votre temps est une ressource précieuse.</p>
         </div>
         
         <div className={styles.oppGrid}>
