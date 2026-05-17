@@ -35,7 +35,8 @@ Authorization: Bearer <jwt_token>
 Content-Type: application/json
 ```
 
----
+<details>
+<summary>Ces fonctionnalitées ne sont pas encore finalisées et n'ont étées testées que via le panel admin</summary>
 
 ## Articles
 
@@ -228,7 +229,7 @@ Content-Type: application/json
 GET /contact-submissions?filters[read][$eq]=false
 ```
 
----
+</details>
 
 ## Query Parameters
 

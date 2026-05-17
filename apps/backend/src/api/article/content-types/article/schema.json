@@ -1,75 +1,87 @@
 {
-	"kind": "collectionType",
-	"collectionName": "articles",
-	"info": {
-		"singularName": "article",
-		"pluralName": "articles",
-		"displayName": "Article",
-		"description": "Articles et actualités du site"
-	},
-	"options": {
-		"increments": true,
-		"timestamps": true,
-		"draftAndPublish": true
-	},
-	"pluginOptions": {},
-	"attributes": {
-		"titleFr": {
-			"type": "string",
-			"required": true,
-			"unique": false,
-			"pluginOptions": {}
-		},
-		"titleAr": {
-			"type": "string",
-			"required": true,
-			"unique": false,
-			"pluginOptions": {}
-		},
-		"contentFr": {
-			"type": "richtext",
-			"required": true,
-			"pluginOptions": {}
-		},
-		"contentAr": {
-			"type": "richtext",
-			"required": true,
-			"pluginOptions": {}
-		},
-		"descriptionFr": {
-			"type": "text",
-			"required": false,
-			"pluginOptions": {}
-		},
-		"descriptionAr": {
-			"type": "text",
-			"required": false,
-			"pluginOptions": {}
-		},
-		"imageCover": {
-			"type": "media",
-			"multiple": false,
-			"required": false,
-			"allowedTypes": ["images"],
-			"pluginOptions": {}
-		},
-		"author": {
-			"type": "relation",
-			"relation": "manyToOne",
-			"target": "plugin::users-permissions.user",
-			"pluginOptions": {}
-		},
-		"category": {
-			"type": "enumeration",
-			"enum": ["news", "event", "project", "other"],
-			"default": "news",
-			"pluginOptions": {}
-		},
-		"slug": {
-			"type": "uid",
-			"targetField": "titleFr",
-			"required": false,
-			"pluginOptions": {}
-		}
-	}
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article",
+    "description": "Articles et actualités du site"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": false
+    },
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "unique": false
+    },
+    "summary": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": false
+    },
+    "content": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "imageCover": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "category": {
+      "type": "enumeration",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "default": "news",
+      "enum": [
+        "news",
+        "event",
+        "project",
+        "solidarity"
+      ]
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
 }

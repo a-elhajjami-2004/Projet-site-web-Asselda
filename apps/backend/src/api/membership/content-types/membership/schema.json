@@ -1,66 +1,70 @@
 {
-	"kind": "collectionType",
-	"collectionName": "memberships",
-	"info": {
-		"singularName": "membership",
-		"pluralName": "memberships",
-		"displayName": "Adhésion",
-		"description": "Demandes d'adhésion à l'association"
-	},
-	"options": {
-		"increments": true,
-		"timestamps": true,
-		"draftAndPublish": false
-	},
-	"pluginOptions": {},
-	"attributes": {
-		"firstName": {
-			"type": "string",
-			"required": true,
-			"pluginOptions": {}
-		},
-		"lastName": {
-			"type": "string",
-			"required": true,
-			"pluginOptions": {}
-		},
-		"email": {
-			"type": "email",
-			"required": true,
-			"unique": true,
-			"pluginOptions": {}
-		},
-		"phone": {
-			"type": "string",
-			"required": false,
-			"pluginOptions": {}
-		},
-		"message": {
-			"type": "text",
-			"required": false,
-			"pluginOptions": {}
-		},
-		"status": {
-			"type": "enumeration",
-			"enum": ["En attente", "Validé", "Refusé"],
-			"default": "En attente",
-			"pluginOptions": {}
-		},
-		"rejectionReason": {
-			"type": "text",
-			"required": false,
-			"pluginOptions": {}
-		},
-		"approvedAt": {
-			"type": "datetime",
-			"required": false,
-			"pluginOptions": {}
-		},
-		"approvedBy": {
-			"type": "relation",
-			"relation": "manyToOne",
-			"target": "plugin::users-permissions.user",
-			"pluginOptions": {}
-		}
-	}
+  "kind": "collectionType",
+  "collectionName": "memberships",
+  "info": {
+    "singularName": "membership",
+    "pluralName": "memberships",
+    "displayName": "Adhésion",
+    "description": "Demandes d'adhésion à l'association"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullName": {
+      "type": "string",
+      "minLength": 3,
+      "required": true
+    },
+    "cin": {
+      "type": "string",
+      "minLength": 7,
+      "maxLength": 8,
+      "required": true,
+      "regex": "[A-Z]{1,2}\\d{6}"
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 10,
+      "required": true,
+      "regex": "0[67]\\d{8}"
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": false
+    },
+    "address": {
+      "type": "string"
+    },
+    "domains": {
+      "type": "json"
+    },
+    "engagementType": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "active",
+        "support",
+        "occasional"
+      ]
+    },
+    "message": {
+      "type": "text",
+      "maxLength": 300,
+      "required": false
+    },
+    "statusType": {
+      "type": "enumeration",
+      "private": true,
+      "default": "pending",
+      "enum": [
+        "pending",
+        "appected",
+        "refused"
+      ]
+    }
+  }
 }
