@@ -76,6 +76,8 @@ export const translations = {
 					"Événements",
 					"Douar Asselda",
 				],
+				allAlbums: "Tous les albums",
+				noAlbums: "Aucun album trouvé",
 			},
 			partners: {
 				title: "Partenaires - Association Asselda",
@@ -167,6 +169,8 @@ export const translations = {
 				description:
 					"اكتشف الصور ومقاطع الفيديو الخاصة بأنشطة وفعاليات جمعية أسلدة، مما يسلط الضوء على الحياة اليومية والمشاريع والمبادرات لسكان دوار أسلدة.",
 				keywords: ["جمعية أسلدة", "معرض", "صور", "فيديوهات", "مشاريع", "فعاليات", "دوار أسلدة"],
+				allAlbums: "جميع الألبومات",
+				noAlbums: "لم يتم العثور على ألبومات",
 			},
 			partners: {
 				title: "الشركاء - جمعية أسلدة",
