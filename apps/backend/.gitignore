@@ -4,7 +4,7 @@
 node_modules
 dist
 build
-types/generated
+# types/generated
 
 # Environment variables
 .env
