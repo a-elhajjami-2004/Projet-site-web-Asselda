@@ -1,74 +1,61 @@
 "use client";
 
-import { useState } from "react";
-import styles from "@/styles/activities.module.css";
-import { projects, domains, getDomainColor, filterActivities, type Domain } from "@/lib/activities";
+import { useEffect, useState, Suspense } from "react";
+import { domains, type Domain } from "@/lib/activities";
+import ActivitiesGrid from "@/components/ActivitiesGrid";
+import { getActivities } from "@/lib/api";
 
 export default function Activities() {
 	const [selectedDomain, setSelectedDomain] = useState<Domain>("Tous");
 
-	const filteredProjects = filterActivities(projects, selectedDomain);
+	// const [activities, setActivities] = useState<any>({});
+	// useEffect(() => {
+	// 	(async () => {
+	// 		setActivities(await getActivities("fr"));
+	// 	})();
+	// }, []);
 
 	return (
 		<main>
 			{/* Section Héro */}
-			<section className={styles.activitiesHero}>
-				<h1>Nos Activités</h1>
-				<p>
-					De l'eau potable aux espaces réhabilitées, en passant par la formation et le soutien social,
-					découvrez comment l'association transforme le quotidien des habitants de Douar Asselda.
-				</p>
+			<section className="bg-[#7cb645] min-h-96 flex items-center justify-center text-center px-6 py-20">
+				<div className="max-w-3xl">
+					<h1 className="text-5xl font-bold text-white mb-5">Nos Activités</h1>
+					<p className="text-white/95 text-lg">
+						De l'eau potable aux espaces réhabilitées, en passant par la formation et le soutien social,
+						découvrez comment l'association transforme le quotidien des habitants de Douar Asselda.
+					</p>
+				</div>
 			</section>
 
 			{/* Section Projets */}
-			<section className={styles.projectsSection}>
-				<div className={styles.projectsContainer}>
-					<h2 className={styles.sectionTitle}>Projets Actuels</h2>
-
-					{/* Filtre */}
-					<div className={styles.filterContainer}>
-						<span className={styles.filterLabel}>Filtrer par domaine :</span>
-						<button
-							className={`${styles.filterButton} ${selectedDomain === "Tous" ? styles.active : ""}`}
-							onClick={() => setSelectedDomain("Tous")}>
-							Tous
-						</button>
-						{domains.map((domain) => (
+			<section className="bg-white py-12 px-6">
+				<div className="max-w-7xl mx-auto flex justify-center">
+					<div className="flex flex-col items-center gap-4">
+						<label className="font-semibold text-gray-900 text-xl">Filtrer par domaine :</label>
+						<div className="font-bold max-w-6xl flex flex-row justify-center gap-4">
 							<button
-								key={domain}
-								className={`${styles.filterButton} ${selectedDomain === domain ? styles.active : ""}`}
-								onClick={() => setSelectedDomain(domain)}>
-								{domain}
+								className="min-w-max bg-[#7cb645] text-white rounded-full px-4 py-2 cursor-pointer"
+								onClick={() => setSelectedDomain("Tous")}>
+								Tous
 							</button>
-						))}
-					</div>
-
-					{/* Grille de cartes */}
-					<div className={styles.projectsGrid}>
-						{filteredProjects.length > 0 ? (
-							filteredProjects.map((project, key) => (
-								<div key={key} className={styles.projectCard}>
-									<img src={project.image} alt={project.title} className={styles.projectImage} />
-									<div className={styles.projectContent}>
-										<div
-											className={styles.projectDomain}
-											style={{ backgroundColor: getDomainColor(project.domain) }}>
-											{project.domain}
-										</div>
-										<h3 className={styles.projectTitle}>{project.title}</h3>
-										{project.description && (
-											<p className={styles.projectDescription}>{project.description}</p>
-										)}
-										{project.impact && <p className={styles.projectImpact}>{project.impact}</p>}
-									</div>
-								</div>
-							))
-						) : (
-							<div className={styles.emptyState}>Aucun projet trouvé pour cette catégorie.</div>
-						)}
+							{domains.map((domain) => (
+								<button
+									key={domain}
+									className="min-w-max border-2 border-[#7cb645] bg-white text-forground rounded-full px-4 py-2 cursor-pointer"
+									onClick={() => setSelectedDomain(domain)}>
+									{domain}
+								</button>
+							))}
+						</div>
 					</div>
 				</div>
 			</section>
+
+			{/* Grille de cartes */}
+			<Suspense fallback={<div>Chargement des activités...</div>}>
+				<ActivitiesGrid albums={getActivities("fr")} lang="fr" />
+			</Suspense>
 		</main>
 	);
 }

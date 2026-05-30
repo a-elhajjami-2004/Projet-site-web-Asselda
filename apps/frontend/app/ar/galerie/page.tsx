@@ -1,117 +1,77 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import styles from "@/styles/gallery.module.css";
-import {
-	albums,
-	videos,
-	albumCategories,
-	getAlbumsByCategory,
-	getItemsByYear,
-	type AlbumCategory,
-	type Year,
-	Album,
-	Video,
-	itemYears,
-} from "@/lib/gallery";
+import { albums, albumCategories, getAlbumsByCategory, type AlbumCategory, Album } from "@/lib/gallery";
 
 export default function Gallery() {
 	const [selectedCategory, setSelectedCategory] = useState<AlbumCategory>("Tous");
-	const [selectedYear, setSelectedYear] = useState<Year>(0);
 
 	const filteredAlbums = useMemo(() => {
-		let filtered = getAlbumsByCategory(selectedCategory);
-		return getItemsByYear(filtered, selectedYear);
-	}, [selectedCategory, selectedYear]);
-
-	const filteredVideos = useMemo(() => {
-		return getItemsByYear(videos, selectedYear);
-	}, [selectedYear]);
+		return getAlbumsByCategory(selectedCategory);
+	}, [selectedCategory]);
 
 	return (
 		<main>
 			{/* Section Héro */}
-			<section className={styles.galleryHero}>
-				<div className={styles.galleryOverlay}></div>
-				<div className={styles.galleryContent}>
-					<h1>Galerie Photos & Vidéos</h1>
-					<p>
+			<section
+				className="relative min-h-[60vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center px-6 py-20"
+				style={{ backgroundImage: 'url("https://picsum.photos/1600/900?random=20")' }}>
+				<div className="absolute inset-0 bg-black/50"></div>
+				<div className="relative z-10 max-w-3xl">
+					<h1 className="text-5xl font-bold text-white mb-5">Galerie Photos & Vidéos</h1>
+					<p className="text-lg text-white/95 leading-relaxed">
 						Une image vaut mille mots. Découvrez en images les projets, les actions et la vie de
 						l'Association Asselda et de Douar Asselda.
 					</p>
 				</div>
 			</section>
 
-			{/* Section Galerie */}
-			<section className={styles.gallerySection}>
-				<div className={styles.galleryContainer}>
-					{/* Filtres */}
-					<div className={styles.filterContainer}>
-						<div className={styles.filterGroup}>
-							<label className={styles.filterLabel}>Filtrer par album :</label>
-							<select
-								className={styles.filterSelect}
-								value={selectedYear}
-								onChange={(e) => setSelectedCategory(e.target.value as AlbumCategory)}>
-								<option value="Tous">Tous les albums</option>
-								{albumCategories.map((category) => (
-									<option key={category} value={category}>
-										{category}
-									</option>
-								))}
-							</select>
-						</div>
-
-						<div className={styles.filterGroup}>
-							<label className={styles.filterLabel}>Filtrer par année :</label>
-							<select
-								className={styles.filterSelect}
-								value={selectedYear}
-								onChange={(e) => setSelectedYear(parseInt(e.target.value) as Year)}>
-								<option value="0">Tous les albums</option>
-								{itemYears.map((year) => (
-									<option key={year} value={year}>
-										{year}
-									</option>
-								))}
-							</select>
-						</div>
+			{/* Section Filtres avec fond vert */}
+			<section className="bg-[#4a7c3d] py-12 px-6">
+				<div className="max-w-7xl mx-auto flex justify-center">
+					<div className="flex flex-col items-center gap-4">
+						<label className="font-semibold text-white text-sm">Filtrer par album :</label>
+						<select
+							className="px-4 py-2 border-2 border-white rounded text-base bg-white text-gray-900 cursor-pointer font-medium"
+							value={selectedCategory}
+							onChange={(e) => setSelectedCategory(e.target.value as AlbumCategory)}>
+							<option value="Tous">Tous les albums</option>
+							{albumCategories.map((category) => (
+								<option key={category} value={category}>
+									{category}
+								</option>
+							))}
+						</select>
 					</div>
+				</div>
+			</section>
 
+			{/* Section Galerie */}
+			<section className="bg-white py-16 px-6">
+				<div className="max-w-7xl mx-auto">
 					{/* Album Photos */}
-					<h2 className={styles.sectionTitle}>Album Photos</h2>
-					<div className={styles.gallery}>
+					<h2 className="text-3xl font-bold mb-8 text-gray-900">Album Photos</h2>
+					<div className="grid grid-cols-4 gap-6">
 						{filteredAlbums.length > 0 ? (
 							filteredAlbums.map((album, key) => (
-								<div key={key} className={styles.galleryCard}>
-									<img src={(album as Album).image} alt={album.title} className={styles.cardImage} />
-									<div className={styles.cardOverlay}></div>
-									<div className={styles.cardTitle}>{album.title}</div>
-								</div>
-							))
-						) : (
-							<div className={styles.emptyState}>Aucune photo trouvée pour cette sélection.</div>
-						)}
-					</div>
-
-					{/* Vidéos */}
-					<h2 className={styles.subsectionTitle}>Vidéos</h2>
-					<div className={styles.gallery}>
-						{filteredVideos.length > 0 ? (
-							filteredVideos.map((video, key) => (
-								<div key={key} className={styles.galleryCard}>
+								<div
+									key={key}
+									className="relative overflow-hidden rounded-xl cursor-pointer transition duration-300">
 									<img
-										src={(video as Video).thumbnail}
-										alt={video.title}
-										className={styles.cardImage}
+										src={(album as Album).image}
+										alt={album.title}
+										className="w-full h-64 object-cover"
 									/>
-									<div className={styles.cardOverlay}></div>
-									<div className={styles.playButton}>▶</div>
-									<div className={styles.cardTitle}>{video.title}</div>
+									<div className="absolute inset-0 bg-black/40"></div>
+									<div className="absolute inset-0 flex items-center justify-center">
+										<p className="text-white font-semibold text-center px-4">{album.title}</p>
+									</div>
 								</div>
 							))
 						) : (
-							<div className={styles.emptyState}>Aucune vidéo trouvée pour cette sélection.</div>
+							<div className="col-span-4 text-center text-gray-500 py-8">
+								Aucune photo trouvée pour cette sélection.
+							</div>
 						)}
 					</div>
 				</div>

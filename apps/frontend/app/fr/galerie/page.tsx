@@ -1,119 +1,61 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import styles from "@/styles/gallery.module.css";
-import {
-	albums,
-	videos,
-	albumCategories,
-	getAlbumsByCategory,
-	getItemsByYear,
-	type AlbumCategory,
-	type Year,
-	Album,
-	Video,
-	itemYears,
-} from "@/lib/gallery";
+import { useState, useEffect, Suspense } from "react";
+import Albums from "@/components/Albums";
+import { getAlbumTitles, getAlbumPhotos } from "@/lib/api";
 
 export default function Gallery() {
-	const [selectedCategory, setSelectedCategory] = useState<AlbumCategory>("Tous");
-	const [selectedYear, setSelectedYear] = useState<Year>(0);
-
-	const filteredAlbums = useMemo(() => {
-		let filtered = getAlbumsByCategory(selectedCategory);
-		return getItemsByYear(filtered, selectedYear);
-	}, [selectedCategory, selectedYear]);
-
-	const filteredVideos = useMemo(() => {
-		return getItemsByYear(videos, selectedYear);
-	}, [selectedYear]);
+	const [albumId, setAlbumId] = useState<string>("*");
+	const [albumTitles, setAlbumTiltes] = useState<{ data: { id: number; documentId: string; title: string }[] }>({
+		data: [],
+	});
+	useEffect(() => {
+		(async () => {
+			setAlbumTiltes(await getAlbumTitles("fr"));
+		})();
+	}, []);
 
 	return (
 		<main>
 			{/* Section Héro */}
-			<section className={styles.galleryHero}>
-				<div className={styles.galleryOverlay}></div>
-				<div className={styles.galleryContent}>
-					<h1>Galerie Photos & Vidéos</h1>
-					<p>
+			<section className="bg-[#7cb645] min-h-96 relative bg-cover bg-center bg-no-repeat flex items-center justify-center text-center px-6 py-20">
+				<div className="relative z-10 max-w-3xl">
+					<h1 className="text-5xl font-bold text-white mb-5">Galerie Photos & Vidéos</h1>
+					<p className="text-lg text-white/95 leading-relaxed">
 						Une image vaut mille mots. Découvrez en images les projets, les actions et la vie de
 						l'Association Asselda et de Douar Asselda.
 					</p>
 				</div>
 			</section>
 
+			{/* Section Filtres avec fond vert */}
+			<section className="bg-white py-12 px-6">
+				<div className="max-w-7xl mx-auto flex justify-center">
+					<div className="flex flex-col items-center gap-4">
+						<label className="font-semibold text-gray-900 text-xl">Filtrer par album :</label>
+						<select
+							className="px-4 py-2 border-2 border-[#7cb645] rounded text-base bg-white text-gray-900 cursor-pointer font-medium"
+							value={albumId}
+							onChange={(e) => setAlbumId(e.target.value)}>
+							<option value="*">Tous les albums</option>
+							{albumTitles.data.map(({ documentId, title }) => (
+								<option key={documentId} value={documentId}>
+									{title}
+								</option>
+							))}
+						</select>
+					</div>
+				</div>
+			</section>
+
 			{/* Section Galerie */}
-			<section className={styles.gallerySection}>
-				<div className={styles.galleryContainer}>
-					{/* Filtres */}
-					<div className={styles.filterContainer}>
-						<div className={styles.filterGroup}>
-							<label className={styles.filterLabel}>Filtrer par album :</label>
-							<select
-								className={styles.filterSelect}
-								value={selectedYear}
-								onChange={(e) => setSelectedCategory(e.target.value as AlbumCategory)}>
-								<option value="Tous">Tous les albums</option>
-								{albumCategories.map((category) => (
-									<option key={category} value={category}>
-										{category}
-									</option>
-								))}
-							</select>
-						</div>
-
-						<div className={styles.filterGroup}>
-							<label className={styles.filterLabel}>Filtrer par année :</label>
-							<select
-								className={styles.filterSelect}
-								value={selectedYear}
-								onChange={(e) => setSelectedYear(parseInt(e.target.value) as Year)}>
-								<option value="0">Tous les albums</option>
-								{itemYears.map((year) => (
-									<option key={year} value={year}>
-										{year}
-									</option>
-								))}
-							</select>
-						</div>
-					</div>
-
+			<section className="bg-white py-12 px-6">
+				<div className="max-w-7xl mx-auto">
 					{/* Album Photos */}
-					<h2 className={styles.sectionTitle}>Album Photos</h2>
-					<div className={styles.gallery}>
-						{filteredAlbums.length > 0 ? (
-							filteredAlbums.map((album, key) => (
-								<div key={key} className={styles.galleryCard}>
-									<img src={(album as Album).image} alt={album.title} className={styles.cardImage} />
-									<div className={styles.cardOverlay}></div>
-									<div className={styles.cardTitle}>{album.title}</div>
-								</div>
-							))
-						) : (
-							<div className={styles.emptyState}>Aucune photo trouvée pour cette sélection.</div>
-						)}
-					</div>
-
-					{/* Vidéos */}
-					<h2 className={styles.subsectionTitle}>Vidéos</h2>
-					<div className={styles.gallery}>
-						{filteredVideos.length > 0 ? (
-							filteredVideos.map((video, key) => (
-								<div key={key} className={styles.galleryCard}>
-									<img
-										src={(video as Video).thumbnail}
-										alt={video.title}
-										className={styles.cardImage}
-									/>
-									<div className={styles.cardOverlay}></div>
-									<div className={styles.playButton}>▶</div>
-									<div className={styles.cardTitle}>{video.title}</div>
-								</div>
-							))
-						) : (
-							<div className={styles.emptyState}>Aucune vidéo trouvée pour cette sélection.</div>
-						)}
-					</div>
+					<h2 className="text-3xl font-bold mb-8 text-gray-900 text-center">Album Photos</h2>
+					<Suspense fallback={<div>Chargement des photos...</div>}>
+						<Albums albums={getAlbumPhotos(albumId, "fr")} lang="fr" />
+					</Suspense>
 				</div>
 			</section>
 		</main>

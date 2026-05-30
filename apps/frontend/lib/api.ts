@@ -1,5 +1,7 @@
 import { Language } from "./translations";
 
+export const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 type PopulateFields = "*" | string[] | { [key: string]: PopulateFields };
 
 const apiQueryUrl = ({
@@ -15,7 +17,7 @@ const apiQueryUrl = ({
 	fields?: string[];
 	populate?: PopulateFields;
 }) => {
-	const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/api/${endpoint}`);
+	const url = new URL(`${API_URL}/api/${endpoint}`);
 	if (locale) {
 		url.searchParams.append("locale", locale);
 	}
@@ -34,7 +36,7 @@ const apiQueryUrl = ({
 			throw new Error("Unsupported populate format");
 		}
 	}
-	console.log(`apiQueryUrl: ${url.toString()}`);
+	// console.log(`apiQueryUrl: ${url.toString()}`);
 	return url.toString();
 };
 
@@ -55,8 +57,8 @@ export const getAlbumTitles = async (locale?: Language) => {
 	return albumtitles;
 };
 
-export const getAlbums = async (locale?: Language) => {
-	const response = await fetch(apiQueryUrl({ endpoint: "albums", locale, populate: "*" }));
+export const getAlbumPhotos = async (albumId: string, locale?: Language) => {
+	const response = await fetch(apiQueryUrl({ endpoint: `albums/${albumId}`, locale, populate: "*" }));
 	const albums = await response.json();
 	return albums;
 };

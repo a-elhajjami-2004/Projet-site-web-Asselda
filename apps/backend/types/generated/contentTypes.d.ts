@@ -384,6 +384,75 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 	};
 }
 
+export interface ApiActivityActivity extends Struct.CollectionTypeSchema {
+	collectionName: "activities";
+	info: {
+		displayName: "Activit\u00E9";
+		pluralName: "activities";
+		singularName: "activity";
+	};
+	options: {
+		draftAndPublish: true;
+	};
+	pluginOptions: {
+		i18n: {
+			localized: true;
+		};
+	};
+	attributes: {
+		createdAt: Schema.Attribute.DateTime;
+		createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+		description: Schema.Attribute.RichText &
+			Schema.Attribute.Required &
+			Schema.Attribute.SetPluginOptions<{
+				i18n: {
+					localized: true;
+				};
+			}>;
+		domain: Schema.Attribute.Enumeration<["environment", "infrastructure", "social", "formation"]> &
+			Schema.Attribute.Required &
+			Schema.Attribute.SetPluginOptions<{
+				i18n: {
+					localized: false;
+				};
+			}>;
+		imageCover: Schema.Attribute.Media<"images"> &
+			Schema.Attribute.Required &
+			Schema.Attribute.SetPluginOptions<{
+				i18n: {
+					localized: false;
+				};
+			}>;
+		impact: Schema.Attribute.RichText &
+			Schema.Attribute.Required &
+			Schema.Attribute.SetPluginOptions<{
+				i18n: {
+					localized: true;
+				};
+			}>;
+		locale: Schema.Attribute.String;
+		localizations: Schema.Attribute.Relation<"oneToMany", "api::activity.activity">;
+		publishedAt: Schema.Attribute.DateTime;
+		slug: Schema.Attribute.UID<"title"> &
+			Schema.Attribute.Required &
+			Schema.Attribute.SetPluginOptions<{
+				i18n: {
+					localized: true;
+				};
+			}>;
+		title: Schema.Attribute.String &
+			Schema.Attribute.Required &
+			Schema.Attribute.Unique &
+			Schema.Attribute.SetPluginOptions<{
+				i18n: {
+					localized: true;
+				};
+			}>;
+		updatedAt: Schema.Attribute.DateTime;
+		updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+	};
+}
+
 export interface ApiAlbumAlbum extends Struct.CollectionTypeSchema {
 	collectionName: "albums";
 	info: {
@@ -1293,6 +1362,7 @@ declare module "@strapi/strapi" {
 			"admin::transfer-token": AdminTransferToken;
 			"admin::transfer-token-permission": AdminTransferTokenPermission;
 			"admin::user": AdminUser;
+			"api::activity.activity": ApiActivityActivity;
 			"api::album.album": ApiAlbumAlbum;
 			"api::article.article": ApiArticleArticle;
 			"api::contact-submission.contact-submission": ApiContactSubmissionContactSubmission;
