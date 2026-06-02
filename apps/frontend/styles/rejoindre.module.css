@@ -1,72 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 .pageWrapper {
-  background-color: #f9fbf7;
+  background-color: #ffffff;
   min-height: 100vh;
-  font-family: 'Inter', sans-serif;
-  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif; /* Harmonisé sur Poppins */
+  color: #1d3a1a;
+  max-width: 900px; /* Aligné sur la largeur de 900px demandée précédemment */
+  margin: 0 auto;
+  padding: 20px;
 }
 
 /* --- HERO SECTION --- */
 .heroSection { 
   text-align: center; 
-  padding: 80px 20px;
+  padding: 20px 0 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .heroBanner {
-  background-color: #a1c654;
+  background-color: #7abf4a; /* Vert exact de la Page 1 */
   border-radius: 15px; 
-  padding: 60px 40px; 
-  margin-bottom: 40px; 
-  max-width: 1000px;
+  padding: 50px 30px; 
+  margin-bottom: 30px; 
   width: 100%;
+  color: #ffffff; /* Texte en blanc comme la bannière contact */
 }
 
-.heroBanner h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; }
-.heroBanner p { font-size: 1.1rem; line-height: 1.6; max-width: 800px; margin: 0 auto; }
+.heroBanner h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 15px; color: #ffffff; }
+.heroBanner p { font-size: 1rem; line-height: 1.6; max-width: 800px; margin: 0 auto; color: #ffffff; }
 
-.heroNavButtons { display: flex; justify-content: center; gap: 30px; }
+.heroNavButtons { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
 
 .navBtnLarge {
-  background-color: #b2d380; 
-  color: #1a1a1a; 
+  background-color: #7abf4a; /* Même vert que les badges */
+  color: #ffffff; 
   text-decoration: none;
-  padding: 15px 40px; 
-  border-radius: 50px; 
+  padding: 12px 35px; 
+  border-radius: 40px; 
   display: flex; 
   align-items: center; 
-  gap: 12px;
+  gap: 10px;
   font-weight: 600; 
-  transition: transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.iconBtn { color: #5b7a3a; }
-
 /* --- FORM SECTION --- */
-.formSection { display: flex; justify-content: center; padding: 60px 20px; }
+.formSection { display: flex; justify-content: center; padding: 20px 0; }
 
 .formCard {
   background: #ffffff; 
   border-radius: 20px; 
-  padding: 35px; 
+  padding: 30px; 
   width: 100%; 
-  max-width: 950px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.05); 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+  border: 1px solid #eee;
 }
 
 .columnsContainer { 
   display: grid; 
   grid-template-columns: 1fr 1fr; 
-  gap: 0; 
+  gap: 40px; 
   align-items: start; 
 }
 
-.leftColumn { border-right: 2px solid #eef2ea; padding-right: 40px; }
-.rightColumn { padding-left: 40px; }
-
-.icon { color: #5b7a3a !important; }
-.inputGroup { margin-bottom: 22px; }
+.leftColumn { border-right: 2px solid #e9f5db; padding-right: 20px; }
 
 .labelContainer { 
   display: flex; 
@@ -74,88 +73,125 @@
   gap: 8px; 
   font-weight: 600; 
   margin-bottom: 8px; 
-  font-size: 1rem;
+  font-size: 0.95rem;
+  color: #1d3a1a;
 }
 
 .inputField {
-  width: 100%; padding: 14px; border: none; border-radius: 10px; background-color: #e3ebd8; font-size: 0.9rem; outline: none;
+  width: 100%; 
+  padding: 12px; 
+  border: 1px solid #d4e4c3; 
+  border-radius: 10px; 
+  background-color: #e9f5db; /* Même vert clair que le bloc projet */
+  font-size: 0.9rem; 
+  outline: none;
+  font-family: 'Poppins', sans-serif;
 }
 
-.helperText, .sectionSubtitle { 
+.helperText { 
   font-size: 0.75rem; 
-  color: #88a661; 
+  color: #7abf4a; 
   margin-top: 4px;
 }
-
-.sectionHeader { margin-bottom: 12px; }
 
 .gridInterest { 
   display: grid; 
   grid-template-columns: 1fr 1fr; 
   gap: 12px; 
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
-.fullWidth { grid-column: span 2; }
 
 .selectBtn {
   display: flex; 
   justify-content: space-between; 
   align-items: center;
-  padding: 13px 15px; 
-  background-color: #e3ebd8; 
-  border: none; 
+  padding: 12px 15px; 
+  background-color: #e9f5db; 
+  border: 1px solid #d4e4c3;
   border-radius: 10px;
   cursor: pointer; 
-  font-size: 0.9rem; 
+  font-size: 0.85rem; 
   width: 100%;
+  font-family: 'Poppins', sans-serif;
 }
 
-.activeBtn { background-color: #b2d380 !important; font-weight: 600; }
-.uncheck { color: #5b7a3a !important; opacity: 0.3; }
+.activeBtn { background-color: #7abf4a !important; color: white !important; font-weight: 600; }
 
-.engagementList { display: flex; flex-direction: column; gap: 12px; width: 100%; }
-
-.formFooter { margin-top: 30px; border-top: 1px solid #eee; padding-top: 25px; text-align: center; }
-.consentBox { display: flex; align-items: center; justify-content: center; gap: 10px; background: #e3ebd8; padding: 12px; border-radius: 10px; cursor: pointer; margin-bottom: 20px; font-size: 0.9rem; }
+.formFooter { margin-top: 30px; border-top: 1px solid #e9f5db; padding-top: 25px; text-align: center; }
+.consentBox { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 10px; 
+  background: #e9f5db; 
+  padding: 12px; 
+  border-radius: 10px; 
+  margin-bottom: 20px; 
+  font-size: 0.85rem; 
+}
 
 .submitBtn {
-  background-color: #a1c654; border: none; padding: 15px 45px; border-radius: 50px;
-  font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; margin: 0 auto;
+  background-color: #7abf4a; 
+  color: white;
+  border: none; 
+  padding: 12px 45px; 
+  border-radius: 30px;
+  font-weight: 700; 
+  cursor: pointer; 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 /* --- SECTION BÉNÉVOLAT (OPPORTUNITÉS) --- */
-.oppSection { max-width: 950px; margin: 60px auto; padding-bottom: 100px; padding-left: 20px; padding-right: 20px; }
-.oppIntroBox { background-color: #ffffff; padding: 25px; border-radius: 15px; text-align: center; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.oppSection { margin: 40px 0; padding-bottom: 60px; }
+.oppIntroBox { 
+  background-color: #e9f5db; 
+  padding: 20px; 
+  border-radius: 15px; 
+  text-align: center; 
+  margin-bottom: 30px; 
+}
 
 .oppGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.oppCard { display: flex; align-items: center; gap: 20px; padding: 20px; border-radius: 15px; font-size: 0.95rem; line-height: 1.4; font-weight: 500; }
-.oppIcon { color: #5b7a3a !important; flex-shrink: 0; }
+.oppCard { 
+  display: flex; 
+  align-items: center; 
+  gap: 15px; 
+  padding: 20px; 
+  border-radius: 15px; 
+  font-size: 0.9rem; 
+  font-weight: 500;
+  background-color: #e9f5db; /* Uniformisé en vert clair */
+  border: 1px solid #d4e4c3;
+}
 
-.bgGreen { background-color: #e8f3d6; }
-.bgBlue { background-color: #e0f2f8; }
-.bgYellow { background-color: #fdf5d3; }
-.bgOrange { background-color: #fcecd4; }
+.availabilityCard { 
+  background-color: #7abf4a; 
+  color: white;
+  padding: 25px; 
+  border-radius: 15px; 
+  text-align: center; 
+  margin: 30px 0; 
+}
 
-.availabilityCard { background-color: #e3ebd8; padding: 25px; border-radius: 15px; text-align: center; margin: 40px 0; }
-
-.finalCtaWrapper { display: flex; justify-content: center; }
 .benevoleFinalBtn { 
-  background-color: #a1c654; 
-  color: #000; 
+  background-color: #7abf4a; 
+  color: #ffffff; 
   text-decoration: none; 
   padding: 15px 45px; 
-  border-radius: 50px; 
+  border-radius: 40px; 
   display: flex; 
   flex-direction: column; 
   align-items: center; 
   gap: 2px;
-  transition: transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-.ctaMainText { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
-.ctaSubText { font-size: 0.8rem; opacity: 0.7; }
+.ctaMainText { font-weight: 700; font-size: 1.1rem; }
 
 @media (max-width: 800px) {
   .columnsContainer, .heroNavButtons, .oppGrid { grid-template-columns: 1fr; }
   .leftColumn { border-right: none; padding-right: 0; margin-bottom: 30px; }
-  .rightColumn { padding-left: 0; }
 }
