@@ -17,22 +17,23 @@ npm install
 ```sql
 CREATE USER asselda WITH PASSWORD 'password123';
 CREATE DATABASE asselda_db OWNER asselda;
+GRANT ALL PRIVILEGES ON DATABASE asselda_db TO asselda;
 ```
 
-3. Copier et éditer `.env.local` :
+3. Copier et éditer `.env` :
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env
 ```
 
 ### Option B : PostgreSQL distant (Railway, Render, etc.)
 
-Obtenir la connection string et la mettre dans `DATABASE_URL` dans `.env.local`
+Obtenir la connection string et la mettre dans `DATABASE_URL` dans `.env`
 
 ## Étape 3 : Démarrer Strapi
 
 ```bash
-npm run develop
+npm run dev
 ```
 
 Strapi créera les tables automatiquement.
@@ -110,21 +111,21 @@ module.exports = ({ env }) => ({
 
 ### Erreur de connexion PostgreSQL
 
-- Vérifier que PostgreSQL est en cours d'exécution
-- Vérifier les credentials dans `.env.local`
-- Vérifier le port (par défaut 5432)
+-   Vérifier que PostgreSQL est en cours d'exécution
+-   Vérifier les credentials dans `.env`
+-   Vérifier le port (par défaut 5432)
 
 ### Collections vides
 
-- Strapi crée les tables automatiquement au démarrage
-- Vérifier les logs pour les erreurs
-- Consulter `config/database.js`
+-   Strapi crée les tables automatiquement au démarrage
+-   Vérifier les logs pour les erreurs
+-   Consulter `config/database.js`
 
 ### Admin panel non accessible
 
-- Vérifier que Strapi est en cours d'exécution
-- Vérifier le port (par défaut 1337)
-- Nettoyer le cache du navigateur
+-   Vérifier que Strapi est en cours d'exécution
+-   Vérifier le port (par défaut 1337)
+-   Nettoyer le cache du navigateur
 
 ## Prochaines étapes
 
@@ -135,6 +136,6 @@ module.exports = ({ env }) => ({
 
 ## Documentation supplémentaire
 
-- [Strapi v4 Docs](https://docs.strapi.io)
-- [API Endpoints](./API_ENDPOINTS.md)
-- [Backend README](./README.md)
+-   [Strapi v4 Docs](https://docs.strapi.io)
+-   [API Endpoints](./API_ENDPOINTS.md)
+-   [Backend README](./README.md)

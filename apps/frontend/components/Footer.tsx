@@ -66,7 +66,7 @@ export default function Footer() {
 								</a>
 							</li>
 							<li>
-								<a href={link("/gallerie")} className={styles.columnLink}>
+								<a href={link("/galerie")} className={styles.columnLink}>
 									{t("footer.gallery")}
 								</a>
 							</li>

@@ -1,98 +1,125 @@
 {
-	"kind": "collectionType",
-	"collectionName": "projects",
-	"info": {
-		"singularName": "project",
-		"pluralName": "projects",
-		"displayName": "Projet",
-		"description": "Projets réalisés et en cours"
-	},
-	"options": {
-		"increments": true,
-		"timestamps": true,
-		"draftAndPublish": true
-	},
-	"pluginOptions": {},
-	"attributes": {
-		"titleFr": {
-			"type": "string",
-			"required": true,
-			"unique": false,
-			"pluginOptions": {}
-		},
-		"titleAr": {
-			"type": "string",
-			"required": true,
-			"unique": false,
-			"pluginOptions": {}
-		},
-		"descriptionFr": {
-			"type": "richtext",
-			"required": true,
-			"pluginOptions": {}
-		},
-		"descriptionAr": {
-			"type": "richtext",
-			"required": true,
-			"pluginOptions": {}
-		},
-		"resultsFr": {
-			"type": "richtext",
-			"required": false,
-			"pluginOptions": {}
-		},
-		"resultsAr": {
-			"type": "richtext",
-			"required": false,
-			"pluginOptions": {}
-		},
-		"status": {
-			"type": "enumeration",
-			"enum": ["En cours", "Terminé", "Programmé"],
-			"default": "Programmé",
-			"pluginOptions": {}
-		},
-		"budget": {
-			"type": "decimal",
-			"required": false,
-			"pluginOptions": {}
-		},
-		"startDate": {
-			"type": "date",
-			"required": false,
-			"pluginOptions": {}
-		},
-		"endDate": {
-			"type": "date",
-			"required": false,
-			"pluginOptions": {}
-		},
-		"imageCover": {
-			"type": "media",
-			"multiple": false,
-			"required": false,
-			"allowedTypes": ["images"],
-			"pluginOptions": {}
-		},
-		"gallery": {
-			"type": "relation",
-			"relation": "oneToMany",
-			"target": "api::gallery.gallery",
-			"mappedBy": "project",
-			"pluginOptions": {}
-		},
-		"partners": {
-			"type": "relation",
-			"relation": "manyToMany",
-			"target": "api::partner.partner",
-			"inversedBy": "projects",
-			"pluginOptions": {}
-		},
-		"slug": {
-			"type": "uid",
-			"targetField": "titleFr",
-			"required": false,
-			"pluginOptions": {}
-		}
-	}
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Projet",
+    "description": "Projets réalisés et en cours"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": false
+    },
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "unique": false
+    },
+    "statusType": {
+      "type": "enumeration",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "enum": [
+        "inProgress",
+        "done",
+        "operational",
+        "planned"
+      ]
+    },
+    "domain": {
+      "type": "enumeration",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "enum": [
+        "environment",
+        "sanitation",
+        "infrastructure",
+        "social"
+      ]
+    },
+    "flagship": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "default": false
+    },
+    "budget": {
+      "type": "biginteger",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": false
+    },
+    "partners": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::partner.partner",
+      "inversedBy": "projects"
+    },
+    "album": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::album.album"
+    },
+    "imageCover": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "results": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": false
+    }
+  }
 }

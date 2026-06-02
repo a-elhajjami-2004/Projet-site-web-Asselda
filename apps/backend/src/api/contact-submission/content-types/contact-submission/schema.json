@@ -1,53 +1,45 @@
 {
-	"kind": "collectionType",
-	"collectionName": "contact-submissions",
-	"info": {
-		"singularName": "contact-submission",
-		"pluralName": "contact-submissions",
-		"displayName": "Contact",
-		"description": "Soumissions du formulaire de contact"
-	},
-	"options": {
-		"increments": true,
-		"timestamps": true,
-		"draftAndPublish": false
-	},
-	"pluginOptions": {},
-	"attributes": {
-		"firstName": {
-			"type": "string",
-			"required": true,
-			"pluginOptions": {}
-		},
-		"lastName": {
-			"type": "string",
-			"required": true,
-			"pluginOptions": {}
-		},
-		"email": {
-			"type": "email",
-			"required": true,
-			"pluginOptions": {}
-		},
-		"phone": {
-			"type": "string",
-			"required": false,
-			"pluginOptions": {}
-		},
-		"subject": {
-			"type": "string",
-			"required": true,
-			"pluginOptions": {}
-		},
-		"message": {
-			"type": "richtext",
-			"required": true,
-			"pluginOptions": {}
-		},
-		"read": {
-			"type": "boolean",
-			"default": false,
-			"pluginOptions": {}
-		}
-	}
+  "kind": "collectionType",
+  "collectionName": "contact-submissions",
+  "info": {
+    "singularName": "contact-submission",
+    "pluralName": "contact-submissions",
+    "displayName": "Contact",
+    "description": "Soumissions du formulaire de contact"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullName": {
+      "type": "string",
+      "maxLength": 3,
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 10,
+      "required": true,
+      "regex": "0[67]\\d{8}"
+    },
+    "subject": {
+      "type": "string",
+      "required": true
+    },
+    "message": {
+      "type": "richtext",
+      "required": true
+    },
+    "read": {
+      "type": "boolean",
+      "private": true,
+      "default": false
+    }
+  }
 }

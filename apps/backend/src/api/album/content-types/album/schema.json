@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "events",
+  "collectionName": "albums",
   "info": {
-    "singularName": "event",
-    "pluralName": "events",
-    "displayName": "Événement",
-    "description": "Événements et activités"
+    "singularName": "album",
+    "pluralName": "albums",
+    "displayName": "Album"
   },
   "options": {
     "draftAndPublish": true
@@ -18,8 +17,13 @@
   "attributes": {
     "slug": {
       "type": "uid",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "targetField": "title",
-      "required": false
+      "required": true
     },
     "title": {
       "type": "string",
@@ -28,45 +32,44 @@
           "localized": true
         }
       },
-      "required": true,
-      "unique": false
+      "required": true
     },
-    "description": {
-      "type": "richtext",
+    "category": {
+      "type": "enumeration",
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
-      "required": true
+      "required": true,
+      "enum": [
+        "environment",
+        "sanitation",
+        "roads",
+        "earthquake",
+        "formation",
+        "events",
+        "volunteers"
+      ]
     },
     "date": {
       "type": "date",
       "pluginOptions": {
         "i18n": {
-          "localized": true
-        }
-      },
-      "required": false
-    },
-    "location": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "required": true
     },
-    "image": {
+    "images": {
       "type": "media",
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
