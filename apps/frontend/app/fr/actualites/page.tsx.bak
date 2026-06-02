@@ -1,0 +1,278 @@
+import Image from "next/image";
+
+export default function News() {
+	return (
+		<main className="min-h-screen bg-slate-50 text-slate-900">
+			<section className="bg-gradient-to-br from-emerald-600 via-sky-600 to-cyan-500 px-6 py-16 text-white">
+				<div className="mx-auto max-w-6xl">
+					<div className="mb-10 max-w-3xl">
+						<p className="mb-4 text-sm uppercase tracking-[0.3em] text-slate-200/90">
+							Actualités / Événements
+						</p>
+						<h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Actualités & événements</h1>
+						<p className="mt-6 text-lg leading-8 text-slate-100/90">
+							Restez informé des dernières nouvelles, projets, événements et communiqués de l'Association
+							Asselda.
+						</p>
+					</div>
+
+					<div className="mb-10 grid gap-4 lg:grid-cols-[1.5fr_1fr] lg:items-center">
+						<div className="rounded-3xl border border-white/15 bg-white/10 p-5 shadow-lg shadow-slate-900/10 backdrop-blur-sm">
+							<span className="block text-sm font-semibold uppercase tracking-[0.2em] text-slate-100">
+								Catégories
+							</span>
+							<nav className="mt-4 flex flex-wrap gap-2 text-sm text-slate-100/85">
+								<a className="hover:text-white" href="#">
+									Toutes
+								</a>
+								<span aria-hidden="true">•</span>
+								<a className="hover:text-white" href="#">
+									Projets
+								</a>
+								<span aria-hidden="true">•</span>
+								<a className="hover:text-white" href="#">
+									Événements
+								</a>
+								<span aria-hidden="true">•</span>
+								<a className="hover:text-white" href="#">
+									Communiqués
+								</a>
+								<span aria-hidden="true">•</span>
+								<a className="hover:text-white" href="#">
+									Solidarité
+								</a>
+							</nav>
+						</div>
+
+						<div className="rounded-3xl border border-white/15 bg-white/10 p-5 shadow-lg shadow-slate-900/10 backdrop-blur-sm">
+							<label className="sr-only" htmlFor="news-search">
+								Rechercher une actualité
+							</label>
+							<div className="flex items-center gap-3 rounded-full border border-white/20 bg-white/15 px-4 py-3 text-slate-100">
+								<input
+									id="news-search"
+									type="text"
+									placeholder="Rechercher une actualité..."
+									className="w-full bg-transparent text-base text-white placeholder-slate-200 focus:outline-none"
+								/>
+								<span className="text-xl">→</span>
+							</div>
+						</div>
+					</div>
+
+					<div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-white/20 shadow-2xl shadow-slate-950/20">
+						<Image
+							src="/images/image-actu.png"
+							alt="Bénévoles"
+							width={1200}
+							height={500}
+							className="h-auto w-full object-cover"
+						/>
+					</div>
+
+					<div className="mt-10">
+						<a
+							href="#actualites"
+							className="inline-flex rounded-full bg-white px-8 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100">
+							Blog d&apos;actualités →
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<section id="actualites" className="mx-auto max-w-6xl space-y-10 px-6 py-16">
+				<article className="grid gap-8 rounded-[2rem] bg-white p-8 shadow-xl shadow-slate-900/5 lg:grid-cols-[1.2fr_1fr]">
+					<div className="grid gap-4 rounded-[1.75rem] bg-slate-100 p-4 sm:grid-cols-2">
+						<Image
+							src="/images/ag1.jpg"
+							alt="Assemblée Générale"
+							width={580}
+							height={280}
+							className="rounded-2xl object-cover"
+						/>
+						<Image
+							src="/images/ag2.jpg"
+							alt="Nouveau bureau"
+							width={580}
+							height={280}
+							className="rounded-2xl object-cover"
+						/>
+					</div>
+					<div className="flex flex-col justify-center gap-6">
+						<p className="text-xl font-semibold text-slate-900">
+							Renouvellement du bureau de l&apos;association – Assemblée Générale du 3 février 2025
+						</p>
+						<p className="text-slate-600">
+							Lors de l&apos;AG extraordinaire du 3 février 2025, les membres ont élu le nouveau bureau
+							exécutif pour un mandat de 5 ans, sous la présidence de M. Samir Ahram.
+						</p>
+					</div>
+				</article>
+
+				<article className="rounded-[2rem] bg-white p-8 shadow-xl shadow-slate-900/5">
+					<div className="overflow-hidden rounded-[1.75rem]">
+						<Image
+							src="/images/seisme.jpg"
+							alt="Solidarité après séisme"
+							width={10000}
+							height={240}
+							className="h-64 w-full object-cover"
+						/>
+					</div>
+					<p className="mt-6 text-xl font-semibold text-slate-900">
+						Un an après le séisme : bilan de la solidarité et perspectives de reconstruction
+					</p>
+				</article>
+
+				<article className="grid gap-8 rounded-[2rem] bg-white p-8 shadow-xl shadow-slate-900/5 lg:grid-cols-[1.2fr_1fr]">
+					<div className="grid gap-4 rounded-[1.75rem] bg-slate-100 p-4 sm:grid-cols-2">
+						<Image
+							src="/images/recons1.jpg"
+							alt="Distribution d'aide"
+							width={580}
+							height={280}
+							className="rounded-2xl object-cover"
+						/>
+						<Image
+							src="/images/recons2.jpg"
+							alt="Camp de reconstruction"
+							width={580}
+							height={280}
+							className="rounded-2xl object-cover"
+						/>
+					</div>
+					<div className="flex flex-col justify-center gap-6">
+						<p className="text-xl font-semibold text-slate-900">
+							Retour sur les actions menées par l&apos;association depuis le séisme dévastateur du 8
+							septembre 2023
+						</p>
+						<p className="text-slate-600">
+							Distribution d&apos;aide, montage de tentes, soutien psychologique et suivi de la
+							reconstruction.
+						</p>
+					</div>
+				</article>
+
+				<article className="grid gap-8 rounded-[2rem] bg-white p-8 shadow-xl shadow-slate-900/5 lg:grid-cols-[1.2fr_1fr]">
+					<div className="grid gap-4 rounded-[1.75rem] bg-slate-100 p-4 sm:grid-cols-2">
+						<Image
+							src="/images/awrach1.jpg"
+							alt="Ruelle rénovée"
+							width={580}
+							height={280}
+							className="rounded-2xl object-cover"
+						/>
+						<Image
+							src="/images/awrach2.jpg"
+							alt="Place publique rénovée"
+							width={580}
+							height={280}
+							className="rounded-2xl object-cover"
+						/>
+					</div>
+					<div className="flex flex-col justify-between gap-6">
+						<div>
+							<p className="text-xl font-semibold text-slate-900">
+								Résultats du programme Awrach 2022 : les ruelles de Douar Asselda rénovées
+							</p>
+							<p className="mt-4 text-slate-600">
+								Le programme national Awrach 2022 a permis le pavage complet des ruelles et places
+								publiques des trois douars, améliorant significativement le cadre de vie des habitants.
+							</p>
+						</div>
+						<div>
+							<a
+								className="inline-flex rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500"
+								href="#">
+								Toutes les actualités →
+							</a>
+						</div>
+					</div>
+				</article>
+			</section>
+
+			<section className="bg-slate-950 px-6 py-16 text-slate-100">
+				<div className="mx-auto max-w-6xl">
+					<div className="mb-10 text-center">
+						<h2 className="text-3xl font-semibold">Événements à venir</h2>
+						<p className="mt-3 text-slate-400">
+							Retrouvez le calendrier des actions et rencontres à venir pour l&apos;association.
+						</p>
+					</div>
+
+					<div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+						{[
+							{
+								src: "/images/Ev1.png",
+								alt: "Assemblée Générale",
+								title: "Assemblée Générale Annuelle 2025",
+								description: "Date à définir – Salle communautaire Asni",
+							},
+							{
+								src: "/images/Ev2.png",
+								alt: "Caravane médicale",
+								title: "Caravane médicale",
+								description: "Date à planifier – Douar Asselda",
+							},
+							{
+								src: "/images/Ev3.png",
+								alt: "Nettoyage",
+								title: "Journée de nettoyage et sensibilisation",
+								description: "Date à définir – Douar Asselda",
+							},
+							{
+								src: "/images/Ev4.png",
+								alt: "Atelier de formation",
+								title: "Atelier de formation jeunes",
+								description: "Informatique et entrepreneuriat – Date à définir",
+							},
+						].map((event) => (
+							<div
+								key={event.title}
+								className="overflow-hidden rounded-[1.75rem] bg-slate-900 p-5 shadow-2xl shadow-slate-950/30">
+								<div className="overflow-hidden rounded-3xl">
+									<Image
+										src={event.src}
+										alt={event.alt}
+										width={300}
+										height={180}
+										className="h-44 w-full object-cover"
+									/>
+								</div>
+								<div className="mt-4">
+									<p className="text-lg font-semibold text-white">{event.title}</p>
+									<p className="mt-2 text-sm text-slate-400">{event.description}</p>
+								</div>
+							</div>
+						))}
+					</div>
+
+					<div className="mt-12 rounded-[2rem] bg-slate-900/80 p-8 text-center shadow-2xl shadow-slate-950/20">
+						<p className="mb-6 text-xl font-semibold text-white">
+							Participez aux prochaines activités de l&apos;association.
+						</p>
+						<div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+							<a
+								className="rounded-full border border-emerald-500 bg-transparent px-8 py-3 text-sm font-semibold text-emerald-400 transition hover:bg-emerald-500/10"
+								href="#">
+								S&apos;inscrire →
+							</a>
+							<a
+								className="rounded-full bg-emerald-500 px-8 py-3 text-sm font-semibold text-white transition hover:bg-emerald-400"
+								href="#">
+								Nous contacter →
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<footer className="border-t border-slate-200/5 bg-slate-950 px-6 py-10 text-slate-400">
+				<div className="mx-auto flex max-w-6xl flex-col gap-2 text-center sm:flex-row sm:justify-between sm:text-left">
+					<p>Association Asselda – Depuis 1996</p>
+					<p>contact : associationasselda@gmail.com</p>
+				</div>
+			</footer>
+		</main>
+	);
+}

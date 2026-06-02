@@ -18,10 +18,10 @@ export default function Gallery() {
 	return (
 		<main>
 			{/* Section Héro */}
-			<section className="bg-[#7cb645] min-h-96 relative bg-cover bg-center bg-no-repeat flex items-center justify-center text-center px-6 py-20">
+			<section className="hero-section">
 				<div className="relative z-10 max-w-3xl">
-					<h1 className="text-5xl font-bold text-white mb-5">Galerie Photos & Vidéos</h1>
-					<p className="text-lg text-white/95 leading-relaxed">
+					<h1 className="hero-title">Galerie Photos & Vidéos</h1>
+					<p className="hero-copy">
 						Une image vaut mille mots. Découvrez en images les projets, les actions et la vie de
 						l'Association Asselda et de Douar Asselda.
 					</p>

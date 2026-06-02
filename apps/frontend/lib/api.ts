@@ -71,6 +71,12 @@ export const getArticles = async (locale?: Language, category?: "news" | "event"
 	return articles;
 };
 
+export const getArticleBySlug = async (slug: string, locale?: Language) => {
+	const response = await fetch(apiQueryUrl({ endpoint: "articles", locale, filters: { slug }, populate: "*" }));
+	const article = await response.json();
+	return article;
+};
+
 export const getEvents = async (locale?: Language) => {
 	const response = await fetch(apiQueryUrl({ endpoint: "events", locale, populate: "*" }));
 	const events = await response.json();

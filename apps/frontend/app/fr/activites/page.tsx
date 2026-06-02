@@ -18,10 +18,10 @@ export default function Activities() {
 	return (
 		<main>
 			{/* Section Héro */}
-			<section className="bg-[#7cb645] min-h-96 flex items-center justify-center text-center px-6 py-20">
+			<section className="hero-section">
 				<div className="max-w-3xl">
-					<h1 className="text-5xl font-bold text-white mb-5">Nos Activités</h1>
-					<p className="text-white/95 text-lg">
+					<h1 className="hero-title">Nos Activités</h1>
+					<p className="hero-copy">
 						De l'eau potable aux espaces réhabilitées, en passant par la formation et le soutien social,
 						découvrez comment l'association transforme le quotidien des habitants de Douar Asselda.
 					</p>

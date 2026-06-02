@@ -34,6 +34,13 @@ export const translations = {
 				description:
 					"Restez informé des dernières nouvelles de l'Association Asselda, y compris les projets, événements, communiqués et initiatives de solidarité.",
 				keywords: ["actualités", "événements", "projets", "communiqués", "solidarité"],
+				readMore: "Lire la suite →",
+				categories: {
+					news: "Actualités",
+					event: "Événements",
+					project: "Projets",
+					solidarity: "Solidarité",
+				},
 			},
 			projects: {
 				title: "Projets - Association Asselda",
@@ -157,6 +164,13 @@ export const translations = {
 				description:
 					"Restez informé des dernières nouvelles de l'Association Asselda, y compris les projets, événements, communiqués et initiatives de solidarité.",
 				keywords: ["actualités", "événements", "projets", "communiqués", "solidarité"],
+				readMore: "Read more →",
+				categories: {
+					news: "News",
+					event: "Events",
+					project: "Projects",
+					solidarity: "Solidarity",
+				},
 			},
 			projects: {
 				title: "Projets - Association Asselda",
@@ -274,6 +288,13 @@ export const translations = {
 				description:
 					"ابق على اطلاع بأحدث أخبار جمعية أسلدة، بما في ذلك المشاريع، الأحداث، البيانات الصحفية والمبادرات التضامنية.",
 				keywords: ["أخبار", "أحداث", "مشاريع", "بيانات صحفية", "تضامن"],
+				readMore: "اقرأ المزيد →",
+				categories: {
+					news: "أخبار",
+					event: "فعاليات",
+					project: "مشاريع",
+					solidarity: "تضامن",
+				},
 			},
 			projects: {
 				title: "المشاريع - جمعية أسلدة",

@@ -7,10 +7,10 @@ export default function About() {
 		<>
 			<main>
 				{/* Hero Section */}
-				<section className="bg-[#7cb645] min-h-96 flex items-center justify-center text-center px-6 py-20">
+				<section className="hero-section">
 					<div className="max-w-3xl">
-						<h1 className="text-5xl font-bold text-white mb-5">À propos</h1>
-						{/* <p className="text-white/95 text-lg">HOME – ABOUT US</p> */}
+						<h1 className="hero-title">À propos</h1>
+						{/* <p className="hero-copy">HOME – ABOUT US</p> */}
 					</div>
 				</section>
 
