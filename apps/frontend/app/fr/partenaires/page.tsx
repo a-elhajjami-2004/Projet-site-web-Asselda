@@ -1,198 +1,217 @@
+"use client";
+import { useState } from "react";
 import React from "react";
 import styles from "@/styles/partenaires.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-// ─── Types ───────────────────────────────────────────────────────────────────
+type Category = "all" | "intl" | "inst" | "nat";
+
 interface Partner {
   id: string;
-  logo: string;
-  logoShape?: "circle" | "square";
-  tag: string;
-  tagColor: string;
+  cat: Category;
+  initials: string;
+  logoClass: string;
+  logoUrl?: string; 
+  name: string;
   title: string;
-  subtitle: string;
+  tagLabel: string;
+  tagClass: string;
   description: string;
-  cardColor: string;
+  statIcon: string;
+  statLabel: string;
 }
 
-// ─── Data ────────────────────────────────────────────────────────────────────
-const internationales: Partner[] = [
+const PARTNERS: Partner[] = [
   {
     id: "amsed",
-    logo: "/images/partners/amsed.png",
-    logoShape: "square",
-    tag: "AMSED",
-    tagColor: styles.tagBlue,
-    title: "partenariat financier & technique",
-    subtitle: "Association Maroco-Suisse pour le Développement",
+    cat: "intl",
+    initials: "AM",
+    logoClass: "logo-green",
+    logoUrl: "/Images/partners/amsed.png", 
+    name: "AMSED",
+    title: "Partenariat financier & technique",
+    tagLabel: "Association Maroco-Suisse pour le Développement",
+    tagClass: "tag-green",
     description:
       "Partenaire principal dans le projet d'assainissement liquide de 12 000 000 DH — une collaboration exemplaire entre ONG internationale et association locale.",
-    cardColor: styles.cardBlue,
+    statIcon: "ti-coin",
+    statLabel: "12 000 000 DH",
   },
   {
     id: "fmps",
-    logo: "/images/partners/fmps.png",
-    logoShape: "square",
-    tag: "FMPS",
-    tagColor: styles.tagOrange,
+    cat: "intl",
+    initials: "FM",
+    logoClass: "logo-amber",
+    logoUrl: "/Images/partners/fmps.png",
+    name: "FMPS",
     title: "Organisation à but non lucratif",
-    subtitle: "",
+    tagLabel: "Fondation Marocaine du PréScolaire",
+    tagClass: "tag-amber",
     description:
       "Partenaire dans les domaines de l'éducation préscolaire et du soutien à la petite enfance dans la commune d'Asni.",
-    cardColor: styles.cardOrange,
+    statIcon: "ti-school",
+    statLabel: "Éducation préscolaire",
   },
-];
-
-const institutionnelles: Partner[] = [
   {
-    id: "commune",
-    logo: "/images/partners/commune-asni.png",
-    logoShape: "circle",
-    tag: "Commune d'Asni",
-    tagColor: styles.tagGray,
+    id: "commune-asni",
+    cat: "inst",
+    initials: "CA",
+    logoClass: "logo-blue",
+    logoUrl: "/Images/partners/commune-asni.png",
+    name: "Commune d'Asni",
     title: "Collectivité territoriale",
-    subtitle: "",
+    tagLabel: "Partenaire local",
+    tagClass: "tag-blue",
     description:
       "Partenaire institutionnel local assurant la coordination administrative et le soutien aux projets d'infrastructure communautaire.",
-    cardColor: styles.cardGreen,
+    statIcon: "ti-building",
+    statLabel: "Niveau communal",
   },
   {
-    id: "province",
-    logo: "/images/partners/province-alhaouz.png",
-    logoShape: "square",
-    tag: "Province d'Al Haouz",
-    tagColor: styles.tagYellow,
+    id: "al-haouz",
+    cat: "inst",
+    initials: "AH",
+    logoClass: "logo-pink",
+    logoUrl: "/Images/partners/province-alhaouz.png",
+    name: "Province d'Al Haouz",
     title: "Tutelle administrative",
-    subtitle: "",
+    tagLabel: "Niveau provincial",
+    tagClass: "tag-pink",
     description:
       "Tutelle provinciale qui soutient les initiatives de développement rural et facilite l'accès aux programmes nationaux.",
-    cardColor: styles.cardYellow,
+    statIcon: "ti-map",
+    statLabel: "Province Al Haouz",
   },
-];
-
-const nationales: Partner[] = [
   {
     id: "wilaya",
-    logo: "/images/partners/region-marrakech.png",
-    logoShape: "square",
-    tag: "Wilaya de Marrakech",
-    tagColor: styles.tagPink,
+    cat: "nat",
+    initials: "WM",
+    logoClass: "logo-coral",
+    logoUrl: "/Images/partners/region-marrakech.png",
+    name: "Wilaya de Marrakech",
     title: "Autorité régionale",
-    subtitle: "",
+    tagLabel: "Région Marrakech-Safi",
+    tagClass: "tag-teal",
     description:
       "Autorité régionale coordonnant les actions de développement au niveau de la région Marrakech-Safi.",
-    cardColor: styles.cardPink,
+    statIcon: "ti-hierarchy",
+    statLabel: "Niveau régional",
   },
   {
     id: "ministere",
-    logo: "/images/partners/ministere-interieur.png",
-    logoShape: "square",
-    tag: "Ministère de l'Intérieur",
-    tagColor: styles.tagGrayGreen,
+    cat: "nat",
+    initials: "MI",
+    logoClass: "logo-blue",
+    logoUrl: "/Images/partners/ministere-interieur.png",
+    name: "Ministère de l'Intérieur",
     title: "Cadre légal & institutionnel",
-    subtitle: "",
+    tagLabel: "Direction des Affaires Rurales",
+    tagClass: "tag-purple",
     description:
       "Partenaire étatique via la Direction des Affaires Rurales, soutenant notamment le programme national Awrach 2022.",
-    cardColor: styles.cardGreenLight,
+    statIcon: "ti-file-certificate",
+    statLabel: "Programme Awrach 2022",
   },
 ];
 
-// ─── Sub-components ──────────────────────────────────────────────────────────
-function CategoryBadge({ label }: { label: string }) {
-  return (
-    <div className={styles.categoryBadgeWrapper}>
-      <span className={styles.categoryBadge}>{label}</span>
-    </div>
-  );
-}
+const SECTIONS: { cat: Exclude<Category, "all">; label: string; badgeClass: string; icon: string }[] = [
+  { cat: "intl", label: "internationales", badgeClass: "badge-intl", icon: "ti-world" },
+  { cat: "inst", label: "institutionnelles", badgeClass: "badge-inst", icon: "ti-building-community" },
+  { cat: "nat",  label: "nationales",        badgeClass: "badge-nat",  icon: "ti-flag" },
+];
 
 function PartnerCard({ partner }: { partner: Partner }) {
   return (
-    <div className={styles.partnerCol}>
-      {/* Logo */}
-      <div className={styles.logoWrapper}>
-        <img
-          src={partner.logo}
-          alt={partner.tag}
-          className={
-            partner.logoShape === "circle"
-              ? styles.logoCircle
-              : styles.logoSquare
-          }
-        />
-      </div>
+    <div className={styles['partner-card']}>
+      <div className={styles['card-header']}>
+        
+        {/* MODIFICATION ICI : On retire la div conteneur .card-logo */}
+        {partner.logoUrl ? (
+          <Image 
+            src={partner.logoUrl} 
+            alt={`Logo ${partner.name}`}
+            width={70} 
+            height={60} 
+            className={styles['partner-logo-free']} 
+            priority
+          />
+        ) : (
+          <div className={styles['partner-initials-free']}>
+            {partner.initials}
+          </div>
+        )}
 
-      {/* Info card */}
-      <div className={`${styles.infoCard} ${partner.cardColor}`}>
-        <span className={`${styles.infoTag} ${partner.tagColor}`}>
-          {partner.tag}
-          {partner.subtitle && (
-            <span className={styles.infoTagSub}> {partner.subtitle}</span>
-          )}
+        <div className={styles['card-info']}>
+          <div className={styles['card-name']}>{partner.name}</div>
+          <div className={styles['card-title']}>{partner.title}</div>
+        </div>
+      </div>
+      <span className={`${styles['card-tag']} ${styles[partner.tagClass]}`}>{partner.tagLabel}</span>
+      <p className={styles['card-desc']}>{partner.description}</p>
+      <div className={styles['stats-bar']}>
+        <span className={styles.stat}>
+          <i className={`ti ${partner.statIcon}`} aria-hidden="true" />
+          {partner.statLabel}
         </span>
-        <h3 className={styles.infoTitle}>{partner.title}</h3>
-        <p className={styles.infoDesc}>{partner.description}</p>
       </div>
     </div>
   );
 }
 
-function PartnerSection({
-  category,
-  partners,
-}: {
-  category: string;
-  partners: Partner[];
-}) {
+export default function PartenairesPage() {
+  const [active, setActive] = useState<Category>("all");
+
+  const filters: { value: Category; label: string }[] = [
+    { value: "all",  label: "Tous" },
+    { value: "intl", label: "Internationales" },
+    { value: "inst", label: "Institutionnelles" },
+    { value: "nat",  label: "Nationales" },
+  ];
+
   return (
-    <section className={styles.section}>
-      <CategoryBadge label={category} />
-      <div className={styles.partnerGrid}>
-        {partners.map((p) => (
-          <PartnerCard key={p.id} partner={p} />
+    <div className={styles.page}>
+      {/* Hero resserré */}
+      <div className={styles.hero}>
+        <h1>Nos partenaires</h1>
+        <p>
+          L'Association Asselda agit en collaboration étroite avec des institutions
+          publiques, des organisations nationales et internationales pour maximiser
+          l'impact de ses actions.
+        </p>
+        <div className={styles['filter-bar']}>
+          {filters.map((f) => (
+            <button
+              key={f.value}
+              className={`${styles['filter-btn']} ${active === f.value ? styles.active : ""}`}
+              onClick={() => setActive(f.value)}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Contenu principal resserré */}
+      <div className={styles.content}>
+        {SECTIONS.filter((s) => active === "all" || active === s.cat).map((section) => (
+          <div key={section.cat} className={styles.section}>
+            <div className={styles['section-header']}>
+              <div className={styles['section-line']} />
+              <span className={`${styles['section-badge']} ${styles[section.badgeClass]}`}>
+                <i className={`ti ${section.icon}`} aria-hidden="true" />
+                {section.label}
+              </span>
+              <div className={styles['section-line']} />
+            </div>
+            <div className={styles['cards-grid']}>
+              {PARTNERS.filter((p) => p.cat === section.cat).map((partner) => (
+                <PartnerCard key={partner.id} partner={partner} />
+              ))}
+            </div>
+          </div>
         ))}
       </div>
-    </section>
-  );
-}
-
-// ─── Page ────────────────────────────────────────────────────────────────────
-export default function PartenairesPage() {
-  return (
-    <main className={styles.main}>
-      {/* ── Hero Header ── */}
-      <header className={styles.hero}>
-        <h1 className={styles.heroTitle}>Nos Partenaires</h1>
-        <p className={styles.heroDesc}>
-          L'Association Asselda agit en collaboration étroite avec des
-          institutions publiques, des organisations nationales et
-          internationales pour maximiser l'impact de ses actions.
-        </p>
-        <p className={styles.heroCat}>catégories</p>
-      </header>
-
-      {/* ── Partner Sections ── */}
-      <div className={styles.sectionsWrapper}>
-        <PartnerSection category="internationales" partners={internationales} />
-        <PartnerSection category="institutionnelles" partners={institutionnelles} />
-        <PartnerSection category="nationales" partners={nationales} />
-      </div>
-
-      {/* ── CTA ── */}
-      <section className={styles.cta}>
-        <h2 className={styles.ctaTitle}>Devenir Partenaire</h2>
-        <p className={styles.ctaDesc}>
-          Vous souhaitez soutenir le développement durable de la région d'Asni ?
-          <br />
-          Contactez-nous pour explorer les opportunités de partenariat.
-        </p>
-        <Link href="/contact" className={styles.ctaBtn}>
-          Nous contacter
-        </Link>
-      </section>
-
-     
-    </main>
+    </div>
   );
 }
