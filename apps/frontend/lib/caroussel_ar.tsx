@@ -5,7 +5,7 @@ export default function ProjectsSectionAr() {
   const projects = [
     {
       id: 1,
-      image: "https://picsum.photos/800/500?random=11",
+      image: "Images/eau.jpeg",
       alt: "مشهد جوي لمحطة الصرف الصحي",
       title: "الصرف الصحي السائل ومعالجة مياه الصرف",
       summary:

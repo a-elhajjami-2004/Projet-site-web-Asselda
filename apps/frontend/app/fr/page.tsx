@@ -1,4 +1,7 @@
 "use client";
+import { MdFamilyRestroom } from "react-icons/md";
+import { MdLightbulbCircle } from "react-icons/md";
+import { FaLeaf } from "react-icons/fa";
 import Header from "@/components/Header";
 import ProjetsSection from "@/lib/Caroussel";
 import AnimatedCounter from "@/components/AnimatedCounter";
@@ -55,7 +58,7 @@ export default function Home() {
 
 						<div className={styles.cards}>
 							<div className={styles.card}>
-								<div className={styles.cardEmoji}>🌿</div>
+								<div className={styles.cardEmoji}><FaLeaf /></div>
 								<h4 className={styles.cardTitle}>Environnement</h4>
 								<p className={styles.cardText}>
 									Protection de la biodiversité et sensibilisation aux enjeux écologiques pour un
@@ -64,7 +67,7 @@ export default function Home() {
 							</div>
 
 							<div className={styles.card}>
-								<div className={styles.cardEmoji}>💡</div>
+								<div className={styles.cardEmoji}><MdLightbulbCircle /></div>
 								<h4 className={styles.cardTitle}>Développement</h4>
 								<p className={styles.cardText}>
 									Accès à l'eau potable, infrastructures et soutien aux communautés pour un
@@ -73,7 +76,9 @@ export default function Home() {
 							</div>
 
 							<div className={styles.card}>
-								<div className={styles.cardEmoji}>👨‍👩‍👧</div>
+								<div className={styles.cardEmoji}>
+									<MdFamilyRestroom />
+								</div>
 								<h4 className={styles.cardTitle}>Famille</h4>
 								<p className={styles.cardText}>
 									Accompagnement des familles, éducation des enfants et renforcement des liens
