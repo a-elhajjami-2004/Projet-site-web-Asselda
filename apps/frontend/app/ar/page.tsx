@@ -8,7 +8,7 @@ export default function Home() {
   const LOGO_SRC = "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/0000/0502/brand.gif?itok=ywZxw0rj";
   return <>
    <main>
-    <section className={styles.heroBanner}>
+    <section className={styles.heroBanner} style={{ backgroundImage: 'url("http://localhost:1337/uploads/banner_79228a7d13.jpeg")' }}>
       <div className={styles.overlay}></div>
 
       <div className={styles.content}>

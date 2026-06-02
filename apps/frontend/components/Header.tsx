@@ -108,11 +108,11 @@ export default function Header() {
 						</li>
 
 						{/* Bouton CTA dans le menu mobile */}
-						<li className={`${styles.navItem} ${styles.mobileOnly}`}>
+						{/*<li className={`${styles.navItem} ${styles.mobileOnly}`}>
 							<a href={link("/rejoindre")} className={styles.ctaBtn} onClick={() => setIsMenuOpen(false)}>
 								{t("header.join")}
 							</a>
-						</li>
+						</li>*/}
 					</ul>
 				</nav>
 

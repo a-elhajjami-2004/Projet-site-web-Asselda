@@ -34,14 +34,21 @@
 
 .logo {
   display: inline-flex;
-  /*align-items: center;*/
   justify-content: center;
-  width: 5 rem;
-  height: 5 rem;
+  align-items: center;
+
+  width: 5rem;
+  height: 5rem;
+  min-width: 5rem;
+  min-height: 5rem;
+  max-width: 5rem;
+  max-height: 5rem;
+
+  flex-shrink: 0;
+
   border-radius: 0.75rem;
   color: #fff;
   font-size: 0.95rem;
-
 }
 
 .brandText {
@@ -77,12 +84,13 @@ color:white;
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
 }
 
 .navItem {
   display: block;
+  white-space: nowrap;
 }
 
 .navLink {
@@ -189,7 +197,7 @@ overlay: calc();
 
 .hamburger {
   display: inline-flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   gap: 4px;
   width: 1.4rem;
@@ -252,5 +260,47 @@ overlay: calc();
 
   .brandSubtitle {
     display: none;
+  }
+}
+/* Correction menu hamburger ouvert */
+@media (max-width: 899px) {
+  .header {
+    overflow-x: hidden;
+  }
+
+  .inner {
+    flex-wrap: wrap;
+  }
+
+  .nav.open {
+    display: block;
+    width: 100%;
+  }
+
+  .navList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .navLink {
+    white-space: nowrap;
+  }
+
+  .navFooter {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

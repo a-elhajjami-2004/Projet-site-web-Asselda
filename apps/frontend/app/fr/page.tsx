@@ -28,11 +28,11 @@ export default function Home() {
 						</p>
 
 						<div className={styles.buttons}>
-							<a href="/projets" className={styles.primaryBtn}>
+							<a href="/fr/projets" className={styles.primaryBtn}>
 								Découvrir nos projets
 							</a>
 
-							<a href="/rejoindre" className={styles.secondaryBtn}>
+							<a href="/fr/rejoindre" className={styles.secondaryBtn}>
 								Nous soutenir
 							</a>
 						</div>
@@ -48,7 +48,7 @@ export default function Home() {
 					</div>
 				</section>
 
-				<section className={styles.domainsSection}>
+				<section className={styles.domainsSection + " fg-hero"}>
 					<div className={styles.container}>
 						<h2 className={styles.sectionTitle}>Nos domaines d'intervention</h2>
 						<h3 className={styles.sectionSubtitle}>Trois axes majeurs pour un impact durable</h3>
@@ -123,7 +123,7 @@ export default function Home() {
 						</div>
 
 						<div className={styles.news_footer}>
-							<a href="/actualites" className={styles.news_btn}>
+							<a href="/fr/actualites" className={styles.news_btn}>
 								Toutes les actualités →
 							</a>
 						</div>
@@ -140,50 +140,74 @@ export default function Home() {
 						<div className={styles.partners_slider}>
 							<div className={styles.partners_track}>
 								<div className={styles.partner_item}>
-									<img src={LOGO_SRC} alt="AMSED" className={styles.partner_logo} />
-								</div>
-								<div className={styles.partner_item}>
-									<img src="/images/asni.png" alt="Commune d'Asni" className={styles.partner_logo} />
-								</div>
-								<div className={styles.partner_item}>
-									<img src={LOGO_SRC} alt="Province d'Al Haouz" className={styles.partner_logo} />
-								</div>
-								<div className={styles.partner_item}>
-									<img src={LOGO_SRC} alt="Wilaya de Marrakech" className={styles.partner_logo} />
+									<img src="/Images/partners/amsed.png" alt="AMSED" className={styles.partner_logo} />
 								</div>
 								<div className={styles.partner_item}>
 									<img
-										src={LOGO_SRC}
+										src="/Images/partners/commune-asni.png"
+										alt="Commune d'Asni"
+										className={styles.partner_logo}
+									/>
+								</div>
+								<div className={styles.partner_item}>
+									<img
+										src="Images/partners/province-alhaouz.png"
+										alt="Province d'Al Haouz"
+										className={styles.partner_logo}
+									/>
+								</div>
+								<div className={styles.partner_item}>
+									<img
+										src="Images/partners/region-marrakech.png"
+										alt="Wilaya de Marrakech"
+										className={styles.partner_logo}
+									/>
+								</div>
+								<div className={styles.partner_item}>
+									<img
+										src="Images/partners/ministere-interieur.png"
 										alt="Ministère de l'Intérieur"
 										className={styles.partner_logo}
 									/>
 								</div>
 								<div className={styles.partner_item}>
-									<img src={LOGO_SRC} alt="FMPS" className={styles.partner_logo} />
+									<img src="Images/partners/fmps.png" alt="FMPS" className={styles.partner_logo} />
 								</div>
 
 								{/* duplication pour boucle infinie */}
 								<div className={styles.partner_item}>
-									<img src={LOGO_SRC} alt="AMSED" className={styles.partner_logo} />
-								</div>
-								<div className={styles.partner_item}>
-									<img src={LOGO_SRC} alt="Commune d'Asni" className={styles.partner_logo} />
-								</div>
-								<div className={styles.partner_item}>
-									<img src={LOGO_SRC} alt="Province d'Al Haouz" className={styles.partner_logo} />
-								</div>
-								<div className={styles.partner_item}>
-									<img src={LOGO_SRC} alt="Wilaya de Marrakech" className={styles.partner_logo} />
+									<img src="/Images/partners/amsed.png" alt="AMSED" className={styles.partner_logo} />
 								</div>
 								<div className={styles.partner_item}>
 									<img
-										src={LOGO_SRC}
+										src="/Images/partners/commune-asni.png"
+										alt="Commune d'Asni"
+										className={styles.partner_logo}
+									/>
+								</div>
+								<div className={styles.partner_item}>
+									<img
+										src="Images/partners/province-alhaouz.png"
+										alt="Province d'Al Haouz"
+										className={styles.partner_logo}
+									/>
+								</div>
+								<div className={styles.partner_item}>
+									<img
+										src="Images/partners/region-marrakech.png"
+										alt="Wilaya de Marrakech"
+										className={styles.partner_logo}
+									/>
+								</div>
+								<div className={styles.partner_item}>
+									<img
+										src="Images/partners/ministere-interieur.png"
 										alt="Ministère de l'Intérieur"
 										className={styles.partner_logo}
 									/>
 								</div>
 								<div className={styles.partner_item}>
-									<img src={LOGO_SRC} alt="FMPS" className={styles.partner_logo} />
+									<img src="Images/partners/fmps.png" alt="FMPS" className={styles.partner_logo} />
 								</div>
 							</div>
 						</div>
@@ -198,14 +222,10 @@ export default function Home() {
 						</p>
 
 						<div className={styles.cta_banner}>
-							<img
-								src="https://picsum.photos/1600/900"
-								alt="Jeune pousse symbole de développement durable"
-								className={styles.cta_image}
-							/>
+							<img src="Images/banner.jpeg" alt="banner" className={styles.cta_image} />
 
 							<div className={styles.cta_overlay}>
-								<a href="/Nous rejoindre" className={styles.cta_button}>
+								<a href="/fr/Nous rejoindre" className={styles.cta_button}>
 									Devenir membre →
 								</a>
 
