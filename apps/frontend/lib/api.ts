@@ -42,7 +42,7 @@ const apiQueryUrl = ({
 
 export const getActivities = async (
 	locale?: Language,
-	domain?: "environment" | "infrastructure" | "social" | "education",
+	domain?: "environment" | "infrastructure" | "social" | "formation",
 ) => {
 	const response = await fetch(
 		apiQueryUrl({ endpoint: "activities", locale, filters: domain ? { domain } : undefined, populate: "*" }),
@@ -57,10 +57,16 @@ export const getAlbumTitles = async (locale?: Language) => {
 	return albumtitles;
 };
 
-export const getAlbumPhotos = async (albumId: string, locale?: Language) => {
-	const response = await fetch(apiQueryUrl({ endpoint: `albums/${albumId}`, locale, populate: "*" }));
+export const getAlbums = async (locale?: Language) => {
+	const response = await fetch(apiQueryUrl({ endpoint: `albums`, locale, populate: "*" }));
 	const albums = await response.json();
 	return albums;
+};
+
+export const getAlbumPhotos = async (albumId: string, locale?: Language) => {
+	const response = await fetch(apiQueryUrl({ endpoint: `albums/${albumId}`, locale, populate: "*" }));
+	const album = await response.json();
+	return album;
 };
 
 export const getArticles = async (locale?: Language, category?: "news" | "event" | "project" | "solidarity") => {
@@ -83,7 +89,7 @@ export const getEvents = async (locale?: Language) => {
 	return events;
 };
 
-export const getTimelineEvent = async (locale?: Language) => {
+export const getTimelineEvents = async (locale?: Language) => {
 	const response = await fetch(apiQueryUrl({ endpoint: "timeline-events", locale, populate: "*" }));
 	const timelineEvent = await response.json();
 	return timelineEvent;

@@ -1,5 +1,3 @@
-import { join } from "path";
-
 // Translations for the website
 export type Language = "fr" | "ar" | "en";
 
@@ -55,6 +53,22 @@ export const translations = {
 					"social",
 					"éducation",
 				],
+				statuses: {
+					inProgress: "En Cours",
+					done: "Terminé",
+					operational: "Opérationnel",
+					planned: "Planifié",
+				},
+				domains: {
+					environment: "Environnement",
+					sanitation: "Eau & Assainissement",
+					infrastructure: "Infrastructure & Rural",
+					social: "Social & Famille",
+				},
+				budgetLabel: "Budget",
+				partnerLabel: "Partenaire principal",
+				resultsLabel: "Résultats :",
+				noProjects: "Aucun projet ne correspond à cette sélection.",
 			},
 			activities: {
 				title: "Activités - Association Asselda",
@@ -75,6 +89,7 @@ export const translations = {
 					social: "Social & Famille",
 					formation: "Formation & Éducation",
 				},
+				noActivities: "Aucune activité trouvée",
 			},
 			gallery: {
 				title: "Galerie - Association Asselda",
@@ -96,11 +111,25 @@ export const translations = {
 				title: "Partenaires - Association Asselda",
 				description: "Découvrez nos partenaires et collaborateurs dans la mission de l'Association Asselda.",
 				keywords: ["partenaires", "collaborateurs", "association", "solidarité"],
+				catergories: {
+					international: "Internationaux",
+					institutional: "Institutionnels",
+					national: "Nationaux",
+				},
 			},
 			contact: {
 				title: "Contact - Association Asselda",
 				description: "Contactez l'Association Asselda pour plus d'informations sur nos projets et initiatives.",
 				keywords: ["Association Asselda", "Contact", "Projets", "Initiatives", "Douar Asselda"],
+				subjectOptions: {
+					general: "Information générale",
+					partnership: "Partenariat",
+					donation: "Don",
+					membership: "Adhésion",
+					volunteering: "Bénévolat",
+					press: "Presse",
+					other: "Autre",
+				},
 			},
 			join: {
 				title: "Nous Rejoindre - Association Asselda",
@@ -185,6 +214,22 @@ export const translations = {
 					"social",
 					"éducation",
 				],
+				statuses: {
+					inProgress: "Ongoing",
+					done: "Done",
+					operational: "Operational",
+					planned: "Planned",
+				},
+				domains: {
+					environment: "Environment",
+					sanitation: "Water & Sanitation",
+					infrastructure: "Infrastructure & Rural",
+					social: "Social & Family",
+				},
+				budgetLabel: "Budget",
+				partnerLabel: "Main Partner",
+				resultsLabel: "Results:",
+				noProjects: "No projects match this selection.",
 			},
 			activities: {
 				title: "Activités - Association Asselda",
@@ -199,6 +244,13 @@ export const translations = {
 					"Rural",
 					"Social",
 				],
+				domains: {
+					environment: "Environment",
+					infrastructure: "Infrastructure & Rural",
+					social: "Social & Family",
+					formation: "Training & Education",
+				},
+				noActivities: "No activities found",
 			},
 			gallery: {
 				title: "Galerie - Association Asselda",
@@ -220,11 +272,25 @@ export const translations = {
 				title: "Partenaires - Association Asselda",
 				description: "Découvrez nos partenaires et collaborateurs dans la mission de l'Association Asselda.",
 				keywords: ["partenaires", "collaborateurs", "association", "solidarité"],
+				catergories: {
+					international: "International",
+					institutional: "Institutional",
+					national: "National",
+				},
 			},
 			contact: {
 				title: "Contact - Association Asselda",
 				description: "Contactez l'Association Asselda pour plus d'informations sur nos projets et initiatives.",
 				keywords: ["Association Asselda", "Contact", "Projets", "Initiatives", "Douar Asselda"],
+				subjectOptions: {
+					general: "General Information",
+					partnership: "Partnership",
+					donation: "Donation",
+					membership: "Membership",
+					volunteering: "Volunteering",
+					press: "Press",
+					other: "Other",
+				},
 			},
 			join: {
 				title: "Nous Rejoindre - Association Asselda",
@@ -301,12 +367,35 @@ export const translations = {
 				description:
 					"اكتشف المشاريع المنجزة والجارية لجمعية أسلدة، التي تهدف إلى تحسين ظروف حياة سكان دوار أسلدة من خلال مبادرات مستدامة في مجالات البيئة والتنمية الريفية والشؤون الاجتماعية والتعليم.",
 				keywords: ["مشاريع", "جمعية أسلدة", "دوار أسلدة", "بيئة", "تنمية ريفية", "شؤون اجتماعية", "تعليم"],
+				statuses: {
+					inProgress: "جارٍ",
+					done: "منجز",
+					operational: "مشغّل",
+					planned: "مبرمج",
+				},
+				domains: {
+					environment: "بيئة",
+					sanitation: "الماء والصرف الصحي",
+					infrastructure: "البنية التحتية والتنمية الريفية",
+					social: "الشؤون الاجتماعية والعائلة",
+				},
+				budgetLabel: "الميزانية",
+				partnerLabel: "الشريك الرئيسي",
+				resultsLabel: "النتائج :",
+				noProjects: "لا يوجد مشاريع تطابق هذا الاختيار.",
 			},
 			activities: {
 				title: "الأنشطة - جمعية أسلدة",
 				description:
 					"اكتشف المشاريع والمبادرات التابعة لجمعية أسلدة من أجل التنمية المستدامة وسعادة سكان منطقة أسني بالحوز.",
 				keywords: ["جمعية أسلدة", "أنشطة", "مشاريع", "تنمية مستدامة", "بيئة", "تنمية ريفية", "شؤون اجتماعية"],
+				domains: {
+					environment: "البيئة",
+					infrastructure: "البنية التحتية والتنمية الريفية",
+					social: "الشؤون الاجتماعية والعائلة",
+					formation: "التكوين والتعليم",
+				},
+				noActivities: "لم يتم العثور على أنشطة",
 			},
 			gallery: {
 				title: "المعرض - جمعية أسلدة",
@@ -320,11 +409,25 @@ export const translations = {
 				title: "الشركاء - جمعية أسلدة",
 				description: "اكتشف شركاءنا والمتعاونين معنا في مهمة جمعية أسلدة.",
 				keywords: ["شركاء", "متعاونين", "جمعية", "تضامن"],
+				categories: {
+					international: "دولي",
+					institutional: "مؤسساتي",
+					national: "وطني",
+				},
 			},
 			contact: {
 				title: "اتصل بنا - جمعية أسلدة",
 				description: "اتصل بجمعية أسلدة للحصول على معلومات إضافية حول مشاريعنا ومبادراتنا.",
 				keywords: ["جمعية أسلدة", "اتصل بنا", "مشاريع", "مبادرات", "دوار أسلدة"],
+				subjectOptions: {
+					general: "معلومات عامة",
+					partnership: "شراكة",
+					donation: "تبرع",
+					membership: "انضمام",
+					volunteering: "تطوع",
+					press: "صحافة",
+					other: "أخرى",
+				},
 			},
 			join: {
 				title: "انضم إلينا - جمعية أسلدة",

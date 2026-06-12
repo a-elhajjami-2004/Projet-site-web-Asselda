@@ -28,21 +28,21 @@
       "type": "integer",
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "required": true,
-      "min": 2000
+      "min": 0
     },
     "endYear": {
       "type": "integer",
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "required": false,
-      "min": 2000
+      "min": 0
     }
   }
 }

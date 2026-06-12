@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import Albums from "@/components/Albums";
-import { getAlbumTitles, getAlbumPhotos } from "@/lib/api";
+import { getAlbumTitles, getAlbumPhotos, getAlbums } from "@/lib/api";
 
 export default function Gallery() {
 	const [albumId, setAlbumId] = useState<string>("*");
@@ -54,7 +54,11 @@ export default function Gallery() {
 					{/* Album Photos */}
 					<h2 className="text-3xl font-bold mb-8 text-gray-900 text-center">Album Photos</h2>
 					<Suspense fallback={<div>Chargement des photos...</div>}>
-						<Albums albums={getAlbumPhotos(albumId, "fr")} lang="fr" />
+						<Albums
+							albums={albumId == "*" ? getAlbums("fr") : getAlbumPhotos(albumId, "fr")}
+							all={albumId == "*"}
+							lang="fr"
+						/>
 					</Suspense>
 				</div>
 			</section>

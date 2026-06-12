@@ -1,209 +1,92 @@
+"use client";
 
-import Image from "next/image";
-import styles from "@/styles/actualites.module.css";
+import { Suspense, useState } from "react";
+import { getArticles, getEvents } from "@/lib/api";
+import { getTranslation } from "@/lib/translations";
+import ArticlesGrid from "@/components/ArticlesGrid";
+import EventsGrid from "@/components/EventsGrid";
 
-export default function News() {
+export default function NewsPage() {
+	const [search, setSearch] = useState("");
+	const [selectedCategory, setSelectedCategory] = useState<string>("الكل");
+	const lang = "ar";
 
-  return (
-    <main className={styles.main}>
+	const articlesPromise = getArticles("ar");
+	const eventsPromise = getEvents("ar");
 
-      {/* ===== HERO ===== */}
-      <section className={styles.heroActualites}>
-        <h1 className={styles.title}>الأخبار / الفعاليات</h1>
+	const categories = [
+		{ key: "all", label: "الكل" },
+		{ key: "news", label: getTranslation(lang, "pages.news.categories.news") },
+		{ key: "event", label: getTranslation(lang, "pages.news.categories.event") },
+		{ key: "project", label: getTranslation(lang, "pages.news.categories.project") },
+		{ key: "solidarity", label: getTranslation(lang, "pages.news.categories.solidarity") },
+	];
 
-        <p className={styles.heroSubtitle}>
-          ابق على اطلاع بآخر الأخبار والمشاريع والفعاليات والبيانات الصادرة عن جمعية أسلدا.
-        </p>
+	return (
+		<main className="min-h-screen bg-white text-gray-900">
+			{/* HERO */}
+			<section className="hero-section">
+				<div className="max-w-3xl z-10">
+					<h1 className="hero-title">الأخبار والفعاليات</h1>
+					<p className="hero-copy">
+						تابع آخر أخبار جمعية أسلدة : مشاريع، فعاليات، بلاغات رسمية وإجراءات تضامنية.
+					</p>
+				</div>
+			</section>
 
-        <div className={styles.categoriesBar}>
-          <span className={styles.catLabel}>الفئات</span>
-          <nav className={styles.catLinks}>
-            <a href="#">الكل</a> |
-            <a href="#">المشاريع</a> |
-            <a href="#">الفعاليات</a> |
-            <a href="#">البيانات</a> |
-            <a href="#">التضامن</a>
-          </nav>
-        </div>
+			<section className="bg-white py-12 px-6 flex flex-col gap-4">
+				<div className="max-w-7xl mx-auto flex justify-center">
+					<div className="flex flex-col items-center gap-4">
+						<label className="font-semibold text-gray-900 text-xl">ابحث عن خبر</label>
+						<input
+							aria-label="ابحث..."
+							value={search}
+							onChange={(e) => setSearch(e.target.value)}
+							placeholder="ابحث..."
+							className="rounded-md p-3 border-2 border-[#7cb645] text-black"
+						/>
+					</div>
+				</div>
+				<div className="max-w-7xl mx-auto flex justify-center">
+					<div className="flex flex-col items-center gap-4">
+						<label className="font-semibold text-gray-900 text-xl">فلتر حسب الفئة</label>
+						<div className="font-bold max-w-6xl flex flex-row justify-center gap-4">
+							{categories.map((category) => (
+								<button
+									key={category.key}
+									className={
+										category.key == selectedCategory
+											? "min-w-max border-2 border-[#7cb645] bg-[#7cb645] text-white rounded-full px-4 py-2 cursor-pointer"
+											: "min-w-max border-2 border-[#7cb645] bg-white text-forground rounded-full px-4 py-2 cursor-pointer"
+									}
+									onClick={() => setSelectedCategory(category.key)}>
+									{category.label}
+								</button>
+							))}
+						</div>
+					</div>
+				</div>
+			</section>
 
-        <div className={styles.searchBox}>
-          <input type="text" placeholder="ابحث عن خبر..." />
-          <span className={styles.searchArrow}>→</span>
-        </div>
+			{/* ARTICLES */}
+			<Suspense fallback={<div className="py-12 text-center">جارٍ تحميل الأخبار...</div>}>
+				<ArticlesGrid
+					articles={articlesPromise}
+					lang={lang}
+					search={search}
+					category={selectedCategory === "all" ? "" : selectedCategory}
+				/>
+			</Suspense>
 
-        <div className={styles.heroImage}>
-          <Image
-            src="/images/image-actu.png"
-            alt="متطوعون"
-            width={1200}
-            height={500}
-          />
-        </div>
-
-        <a href="#actualites" className={`${styles.btn} ${styles.btnOutlineDark}`}>
-          مدونة الأخبار →
-        </a>
-      </section>
-
-      {/* ===== خبر 1 ===== */}
-      <section className={styles.actuCard} id="actualites">
-
-        <div className={styles.cardImages}>
-          <Image src="/images/ag1.jpg" alt="" width={580} height={280} />
-          <Image src="/images/ag2.jpg" alt="" width={580} height={280} />
-        </div>
-
-        <div className={`${styles.cardTexts} ${styles.twoCol}`}>
-          <div className={styles.cardTitleBox}>
-            <p>
-              تجديد مكتب الجمعية – الجمعية العامة الاستثنائية بتاريخ 3 فبراير 2025
-            </p>
-          </div>
-
-          <div className={styles.cardDescBox}>
-            <p>
-              خلال الجمعية العامة الاستثنائية المنعقدة بتاريخ 3 فبراير 2025، انتخب الأعضاء
-              المكتب التنفيذي الجديد لولاية مدتها 5 سنوات، برئاسة السيد سمير أحرام.
-            </p>
-          </div>
-        </div>
-
-      </section>
-
-      {/* ===== خبر 2 ===== */}
-      <section className={styles.actuCard}>
-
-        <div className={styles.cardImageSingle}>
-          <Image src="/images/seisme.jpg" alt="" width={10000} height={240} />
-        </div>
-
-        <div className={`${styles.cardTexts} ${styles.oneCol}`}>
-          <div className={styles.cardTitleBox}>
-            <p>
-              بعد عام على الزلزال: حصيلة التضامن وآفاق إعادة الإعمار
-            </p>
-          </div>
-        </div>
-
-      </section>
-
-      {/* ===== خبر 3 ===== */}
-      <section className={styles.actuCard}>
-
-        <div className={styles.cardImages}>
-          <Image src="/images/recons1.jpg" alt="" width={580} height={280} />
-          <Image src="/images/recons2.jpg" alt="" width={580} height={280} />
-        </div>
-
-        <div className={styles.cardTexts}>
-          <div className={styles.cardTitleBox}>
-            <p>
-              استعراض الإجراءات التي اتخذتها الجمعية منذ الزلزال المدمر في 8 سبتمبر 2023:
-              توزيع المساعدات، ونصب الخيام، والدعم النفسي، ومتابعة أعمال إعادة الإعمار.
-            </p>
-          </div>
-        </div>
-
-      </section>
-
-      {/* ===== خبر 4 ===== */}
-      <section className={styles.actuCard}>
-
-        <div className={styles.cardImages}>
-          <Image src="/images/awrach1.jpg" alt="" width={580} height={280} />
-          <Image src="/images/awrach2.jpg" alt="" width={580} height={280} />
-        </div>
-
-        <div className={`${styles.cardTexts} ${styles.twoCol}`}>
-          <div className={styles.cardTitleBox}>
-            <p>نتائج برنامج أوراش 2022: تجديد أزقة دوار أسلدا</p>
-          </div>
-
-          <div className={styles.cardDescBox}>
-            <p>
-              أتاح البرنامج الوطني أوراش 2022 تبليط الأزقة والساحات العامة للدواوير الثلاث بالكامل،
-              مما أسهم في تحسين إطار الحياة اليومية للسكان بشكل ملحوظ.
-            </p>
-          </div>
-        </div>
-
-        <div style={{ textAlign: "center", marginTop: "20px" }}>
-          <a className={`${styles.btn} ${styles.btnGreenPill}`} href="#">
-            جميع الأخبار →
-          </a>
-        </div>
-
-      </section>
-
-      {/* ===== الفعاليات القادمة ===== */}
-      <section className={styles.eventsSection}>
-
-        <h2 className={styles.sectionTitle}>
-          الفعاليات القادمة (التقويم)
-        </h2>
-
-        <div className={styles.eventsContainer}>
-
-          <div className={styles.event}>
-            <div className={styles.eventLeft}>
-              <Image src="/images/Ev1.png" alt="الجمعية العامة" width={300} height={180} />
-            </div>
-            <div className={styles.eventRight}>
-              الجمعية العامة السنوية 2025 – تاريخ يُحدد لاحقاً – قاعة المجتمع أسني
-            </div>
-          </div>
-
-          <div className={styles.event}>
-            <div className={styles.eventLeft}>
-              <Image src="/images/Ev2.png" alt="قافلة طبية" width={300} height={180} />
-            </div>
-            <div className={styles.eventRight}>
-              قافلة طبية – تاريخ يُحدد لاحقاً – دوار أسلدا
-            </div>
-          </div>
-
-          <div className={styles.event}>
-            <div className={styles.eventLeft}>
-              <Image src="/images/Ev3.png" alt="حملة نظافة" width={300} height={180} />
-            </div>
-            <div className={styles.eventRight}>
-              يوم النظافة والتوعية – تاريخ يُحدد لاحقاً – دوار أسلدا
-            </div>
-          </div>
-
-          <div className={styles.event}>
-            <div className={styles.eventLeft}>
-              <Image src="/images/Ev4.png" alt="ورشة تكوين" width={300} height={180} />
-            </div>
-            <div className={styles.eventRight}>
-              ورشة تكوين الشباب – الإعلاميات وريادة الأعمال – تاريخ يُحدد لاحقاً
-            </div>
-          </div>
-
-        </div>
-
-      </section>
-
-      <section className={styles.atelierSection}>
-        <div className={styles.atelierButtons}>
-          <a className={`${styles.btn} ${styles.btnOutlineGreen}`} href="#">
-            التسجيل →
-          </a>
-
-          <a className={`${styles.btn} ${styles.btnOutlineGreen}`} href="#">
-            اتصل بنا →
-          </a>
-        </div>
-      </section>
-
-      {/* ===== تذييل الصفحة ===== */}
-      <footer className={styles.siteFooter}>
-        <div className={styles.footerInner}>
-          <p>جمعية أسلدا – منذ 1996</p>
-          <p>البريد الإلكتروني: associationasselda@gmail.com</p>
-        </div>
-      </footer>
-
-    </main>
-  );
+			{/* EVENTS */}
+			<section className="py-12 bg-gray-50">
+				<div className="max-w-7xl mx-auto px-6">
+					<h2 className="text-2xl font-bold mb-6">الفعاليات القادمة</h2>
+					<Suspense fallback={<div className="py-8 text-center">جارٍ تحميل الفعاليات...</div>}>
+						<EventsGrid events={eventsPromise} lang={lang} />
+					</Suspense>
+				</div>
+			</section>
+		</main>
+	);
 }

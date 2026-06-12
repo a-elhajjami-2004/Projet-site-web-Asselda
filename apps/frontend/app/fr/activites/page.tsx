@@ -4,9 +4,12 @@ import { useEffect, useState, Suspense } from "react";
 import { domains, type Domain } from "@/lib/activities";
 import ActivitiesGrid from "@/components/ActivitiesGrid";
 import { getActivities } from "@/lib/api";
+import { getTranslation, translations } from "@/lib/translations";
 
 export default function Activities() {
-	const [selectedDomain, setSelectedDomain] = useState<Domain>("Tous");
+	type DomainKey = keyof typeof translatedDomains | "all";
+	const [selectedDomain, setSelectedDomain] = useState<DomainKey>("all");
+	const translatedDomains = translations.fr.pages.activities.domains;
 
 	// const [activities, setActivities] = useState<any>({});
 	// useEffect(() => {
@@ -35,15 +38,24 @@ export default function Activities() {
 						<label className="font-semibold text-gray-900 text-xl">Filtrer par domaine :</label>
 						<div className="font-bold max-w-6xl flex flex-row justify-center gap-4">
 							<button
-								className="min-w-max bg-[#7cb645] text-white rounded-full px-4 py-2 cursor-pointer"
-								onClick={() => setSelectedDomain("Tous")}>
+								key="all"
+								className={
+									selectedDomain == "all"
+										? "min-w-max border-2 border-[#7cb645] bg-[#7cb645] text-white rounded-full px-4 py-2 cursor-pointer"
+										: "min-w-max border-2 border-[#7cb645] bg-white text-forground rounded-full px-4 py-2 cursor-pointer"
+								}
+								onClick={() => setSelectedDomain("all")}>
 								Tous
 							</button>
-							{domains.map((domain) => (
+							{Object.entries(translatedDomains).map(([key, domain]) => (
 								<button
-									key={domain}
-									className="min-w-max border-2 border-[#7cb645] bg-white text-forground rounded-full px-4 py-2 cursor-pointer"
-									onClick={() => setSelectedDomain(domain)}>
+									key={key}
+									className={
+										key == selectedDomain
+											? "min-w-max border-2 border-[#7cb645] bg-[#7cb645] text-white rounded-full px-4 py-2 cursor-pointer"
+											: "min-w-max border-2 border-[#7cb645] bg-white text-forground rounded-full px-4 py-2 cursor-pointer"
+									}
+									onClick={() => setSelectedDomain(key as DomainKey)}>
 									{domain}
 								</button>
 							))}
@@ -54,7 +66,10 @@ export default function Activities() {
 
 			{/* Grille de cartes */}
 			<Suspense fallback={<div>Chargement des activités...</div>}>
-				<ActivitiesGrid albums={getActivities("fr")} lang="fr" />
+				<ActivitiesGrid
+					activities={getActivities("fr", selectedDomain == "all" ? undefined : selectedDomain)}
+					lang="fr"
+				/>
 			</Suspense>
 		</main>
 	);

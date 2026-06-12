@@ -49,16 +49,15 @@ export default function Projects() {
 	return (
 		<main>
 			{/* Section Héro */}
-			<section className={styles.projectsHero}>
-				<div className={styles.projectsOverlay}></div>
-				<hgroup className={styles.projectsContent}>
-					<h1>Nos Projets</h1>
-					<p>
+			<section className="hero-section">
+				<div className="max-w-3xl z-10">
+					<h1 className="hero-title">Nos Projets</h1>
+					<p className="hero-copy">
 						Depuis 1996, l'Association Asselda a conçu et réalisé des projets structurants pour la
-						communauté de Douar Asselda. Chaque projet répond à un besoin réel, identifié avec et pour ses
+						communauté de Douar Asselda. Chaque projet répond à un besoin réel, identifié avec et pour les
 						habitants.
 					</p>
-				</hgroup>
+				</div>
 			</section>
 
 			{/* Section Projets */}

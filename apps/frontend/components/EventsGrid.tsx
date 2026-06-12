@@ -4,6 +4,7 @@ import { use } from "react";
 import Image from "next/image";
 import { API_URL } from "@/lib/api";
 import { getTranslation, Language } from "@/lib/translations";
+import { FaCalendarAlt, FaLocationArrow } from "react-icons/fa";
 
 type Props = {
 	events: Promise<any>;
@@ -77,14 +78,15 @@ export default function EventsGrid({ events, lang }: Props) {
 						<div
 							className="flex items-center gap-4 text-sm font-medium"
 							style={{ color: "var(--color-hero)" }}>
-							<svg
+							{/* <svg
 								xmlns="http://www.w3.org/2000/svg"
 								className="h-4 w-4"
 								viewBox="0 0 24 24"
 								fill="currentColor">
 								<path d="M12 8a4 4 0 100 8 4 4 0 000-8z" opacity=".25" />
 								<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
-							</svg>
+							</svg> */}
+							<FaCalendarAlt className="h-4 w-4" />
 							<span>{formatDate(e.date)}</span>
 
 							<svg

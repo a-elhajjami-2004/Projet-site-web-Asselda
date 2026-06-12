@@ -39,8 +39,8 @@
 }
 
 .projectsSection {
-	background-color: #c8e6a0;
-	padding: 60px 24px;
+	background-color: white;
+	/* padding: 30px 24px; */
 }
 
 .projectsContainer {
@@ -128,9 +128,9 @@
 
 .projectImage {
 	width: 100%;
-	height: 250px;
+	height: 100%;
 	background: linear-gradient(135deg, #cccccc 0%, #999999 100%);
-	border: 3px solid #999;
+	/* border: 3px solid #999; */
 	border-radius: 8px;
 	object-fit: cover;
 }

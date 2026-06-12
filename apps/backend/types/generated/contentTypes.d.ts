@@ -538,7 +538,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
 			Schema.Attribute.Required &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
 			}> &
 			Schema.Attribute.DefaultTo<"news">;
@@ -555,7 +555,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
 			Schema.Attribute.Required &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
 			}>;
 		locale: Schema.Attribute.String;
@@ -603,16 +603,22 @@ export interface ApiContactSubmissionContactSubmission extends Struct.Collection
 		locale: Schema.Attribute.String & Schema.Attribute.Private;
 		localizations: Schema.Attribute.Relation<"oneToMany", "api::contact-submission.contact-submission"> &
 			Schema.Attribute.Private;
-		message: Schema.Attribute.RichText & Schema.Attribute.Required;
-		phone: Schema.Attribute.String &
+		message: Schema.Attribute.Text &
 			Schema.Attribute.Required &
+			Schema.Attribute.SetMinMaxLength<{
+				maxLength: 1000;
+			}>;
+		phone: Schema.Attribute.String &
 			Schema.Attribute.SetMinMaxLength<{
 				maxLength: 10;
 				minLength: 10;
 			}>;
 		publishedAt: Schema.Attribute.DateTime;
 		read: Schema.Attribute.Boolean & Schema.Attribute.Private & Schema.Attribute.DefaultTo<false>;
-		subject: Schema.Attribute.String & Schema.Attribute.Required;
+		subject: Schema.Attribute.Enumeration<
+			["general", "partnership", "donation", "membership", "volunteering", "press", "other"]
+		> &
+			Schema.Attribute.Required;
 		updatedAt: Schema.Attribute.DateTime;
 		updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
 	};
@@ -638,9 +644,10 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
 		createdAt: Schema.Attribute.DateTime;
 		createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
 		date: Schema.Attribute.Date &
+			Schema.Attribute.Required &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
 			}>;
 		description: Schema.Attribute.RichText &
@@ -653,7 +660,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
 		image: Schema.Attribute.Media<"images"> &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
 			}>;
 		locale: Schema.Attribute.String;
@@ -750,7 +757,7 @@ export interface ApiPartnerPartner extends Struct.CollectionTypeSchema {
 			Schema.Attribute.Required &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
 			}>;
 		createdAt: Schema.Attribute.DateTime;
@@ -768,7 +775,7 @@ export interface ApiPartnerPartner extends Struct.CollectionTypeSchema {
 			Schema.Attribute.Required &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
 			}>;
 		name: Schema.Attribute.String &
@@ -783,7 +790,7 @@ export interface ApiPartnerPartner extends Struct.CollectionTypeSchema {
 			Schema.Attribute.Unique &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
 			}>;
 		projects: Schema.Attribute.Relation<"manyToMany", "api::project.project">;
@@ -827,9 +834,15 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
 		budget: Schema.Attribute.BigInteger &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
-			}>;
+			}> &
+			Schema.Attribute.SetMinMax<
+				{
+					min: "0";
+				},
+				string
+			>;
 		createdAt: Schema.Attribute.DateTime;
 		createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
 		description: Schema.Attribute.RichText &
@@ -843,13 +856,13 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
 			Schema.Attribute.Required &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
 			}>;
 		flagship: Schema.Attribute.Boolean &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
 			}> &
 			Schema.Attribute.DefaultTo<false>;
@@ -857,7 +870,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
 			Schema.Attribute.Required &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
 			}>;
 		locale: Schema.Attribute.String;
@@ -875,7 +888,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
 			Schema.Attribute.Required &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
 			}>;
 		title: Schema.Attribute.String &
@@ -918,12 +931,12 @@ export interface ApiTimelineEventTimelineEvent extends Struct.CollectionTypeSche
 		endYear: Schema.Attribute.Integer &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
 			}> &
 			Schema.Attribute.SetMinMax<
 				{
-					min: 2000;
+					min: 0;
 				},
 				number
 			>;
@@ -934,12 +947,12 @@ export interface ApiTimelineEventTimelineEvent extends Struct.CollectionTypeSche
 			Schema.Attribute.Required &
 			Schema.Attribute.SetPluginOptions<{
 				i18n: {
-					localized: true;
+					localized: false;
 				};
 			}> &
 			Schema.Attribute.SetMinMax<
 				{
-					min: 2000;
+					min: 0;
 				},
 				number
 			>;

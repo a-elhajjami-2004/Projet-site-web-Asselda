@@ -16,14 +16,7 @@ type Props = {
 function extractImage(item: any) {
 	// try a few possible shapes returned by Strapi or custom APIs
 	const attrs = item.attributes || item;
-	const candidate =
-		attrs.image?.data?.[0]?.attributes?.url ||
-		attrs.cover?.data?.[0]?.attributes?.url ||
-		attrs.imageCover?.url ||
-		attrs.image?.url ||
-		attrs.thumbnail?.url ||
-		attrs.coverUrl ||
-		null;
+	const candidate = attrs.imageCover || attrs.image || null;
 	return candidate;
 }
 
@@ -39,7 +32,7 @@ export default function ArticlesGrid({ articles, lang, search = "", category = "
 			summary: attrs.summary || attrs.excerpt || attrs.description || "",
 			slug: attrs.slug || attrs.id || it.slug,
 			category: attrs.category || attrs.type || "news",
-			imageUrl: extractImage(it),
+			imageCover: extractImage(it),
 			content: attrs.content || attrs.body || "",
 			date: attrs.publishedAt || attrs.date || null,
 			location: attrs.location || null,
@@ -58,21 +51,22 @@ export default function ArticlesGrid({ articles, lang, search = "", category = "
 	return (
 		<div className="max-w-7xl mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
 			{filtered.map((a) => (
-				<article key={a.slug} className="flex bg-white rounded-lg shadow-md overflow-hidden">
-					<div className="w-40 h-32 md:w-48 md:h-36 flex-shrink-0 relative">
-						{a.imageUrl ? (
+				<article key={a.slug} className="flex bg-white rounded-lg shadow-lg overflow-hidden">
+					<div className="w-40 md:w-48 flex-shrink-0 relative">
+						{a.imageCover.url ? (
 							// Next Image requires absolute or configured loader; we prefix with API_URL when needed
 							<Image
 								src={
-									a.imageUrl && a.imageUrl.startsWith("http")
-										? a.imageUrl
+									a.imageCover.url && a.imageCover.url.startsWith("http")
+										? a.imageCover.url
 										: API_URL
-											? `${API_URL}${a.imageUrl}`
-											: a.imageUrl
+											? `${API_URL}${a.imageCover.url}`
+											: a.imageCover.url
 								}
-								alt={a.title}
-								width={320}
-								height={240}
+								alt={a.imageCover.alternativeText || a.title}
+								width={a.imageCover.width}
+								height={a.imageCover.height}
+								loading="eager"
 								className="object-cover w-full h-full"
 							/>
 						) : (
@@ -80,7 +74,7 @@ export default function ArticlesGrid({ articles, lang, search = "", category = "
 						)}
 					</div>
 
-					<div className="p-4 flex-1 flex flex-col">
+					<div className="p-4 flex-1 flex flex-col items-start">
 						<span
 							className="inline-block text-xs font-semibold px-2 py-1 rounded"
 							style={{ backgroundColor: "var(--color-hero)", color: "var(--color-hero-text)" }}>
