@@ -7,7 +7,7 @@ import { getTranslation, translations, Language } from "@/lib/translations";
 import { API_URL } from "@/lib/api";
 import styles from "@/styles/partenaires.module.css";
 
-const translatedCategories = translations.fr.pages.partners.catergories;
+const translatedCategories = translations.fr.pages.partners.categories;
 
 export type Category = "all" | keyof typeof translatedCategories;
 
@@ -78,7 +78,7 @@ export default function PartnerCards({
 						<div className={styles["section-line"]} />
 						<h2 className={`${styles["section-badge"]}`}>
 							<i className={`ti ${section.icon}`} aria-hidden="true" />
-							{getTranslation(lang, `pages.partners.catergories.${section.cat}`)}
+							{getTranslation(lang, `pages.partners.categories.${section.cat}`)}
 						</h2>
 						<div className={styles["section-line"]} />
 					</div>

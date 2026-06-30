@@ -598,7 +598,7 @@ export interface ApiContactSubmissionContactSubmission extends Struct.Collection
 		fullName: Schema.Attribute.String &
 			Schema.Attribute.Required &
 			Schema.Attribute.SetMinMaxLength<{
-				maxLength: 3;
+				minLength: 3;
 			}>;
 		locale: Schema.Attribute.String & Schema.Attribute.Private;
 		localizations: Schema.Attribute.Relation<"oneToMany", "api::contact-submission.contact-submission"> &
@@ -707,7 +707,6 @@ export interface ApiMembershipMembership extends Struct.CollectionTypeSchema {
 			}>;
 		createdAt: Schema.Attribute.DateTime;
 		createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
-		domains: Schema.Attribute.JSON;
 		email: Schema.Attribute.Email & Schema.Attribute.Required;
 		engagementType: Schema.Attribute.Enumeration<["active", "support", "occasional"]> & Schema.Attribute.Required;
 		fullName: Schema.Attribute.String &
@@ -715,6 +714,10 @@ export interface ApiMembershipMembership extends Struct.CollectionTypeSchema {
 			Schema.Attribute.SetMinMaxLength<{
 				minLength: 3;
 			}>;
+		interestedInEducation: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+		interestedInEnvironment: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+		interestedInInfrastructure: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+		interestedInSocial: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
 		locale: Schema.Attribute.String & Schema.Attribute.Private;
 		localizations: Schema.Attribute.Relation<"oneToMany", "api::membership.membership"> & Schema.Attribute.Private;
 		message: Schema.Attribute.Text &
@@ -728,7 +731,7 @@ export interface ApiMembershipMembership extends Struct.CollectionTypeSchema {
 				minLength: 10;
 			}>;
 		publishedAt: Schema.Attribute.DateTime;
-		statusType: Schema.Attribute.Enumeration<["pending", "appected", "refused"]> &
+		statusType: Schema.Attribute.Enumeration<["pending", "accepted", "refused"]> &
 			Schema.Attribute.Private &
 			Schema.Attribute.DefaultTo<"pending">;
 		updatedAt: Schema.Attribute.DateTime;

@@ -55,7 +55,7 @@ async function sendContactNotification(contactData) {
     <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
       <p><strong>Nom:</strong> ${fullName}</p>
       <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-      <p><strong>Téléphone:</strong> ${phone || "Non fourni"}</p>
+      <p><strong>Téléphone:</strong> ${phone || "(Non fourni)"}</p>
       <p><strong>Sujet:</strong> ${subject}</p>
     </div>
 
@@ -85,7 +85,7 @@ async function sendContactNotification(contactData) {
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
   <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-    <h2 style="color: #2c3e50;">Merci de votre message!</h2>
+    <h2 style="color: #2c3e50;">Merci pour votre message!</h2>
     
     <p>Bonjour ${fullName},</p>
     
@@ -123,7 +123,7 @@ async function sendContactNotification(contactData) {
 		await transporter.sendMail({
 			from: `${smtpFromName} <${smtpFrom}>`,
 			to: adminEmail,
-			subject: `Nouveau message de contact: ${subject}`,
+			subject: `Nouveau message de contact de ${fullName}`,
 			html: adminEmailContent,
 			replyTo: email,
 		});

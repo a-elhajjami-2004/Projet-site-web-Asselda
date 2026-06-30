@@ -39,8 +39,21 @@
     "address": {
       "type": "string"
     },
-    "domains": {
-      "type": "json"
+    "interestedInEnvironment": {
+      "type": "boolean",
+      "default": false
+    },
+    "interestedInInfrastructure": {
+      "type": "boolean",
+      "default": false
+    },
+    "interestedInSocial": {
+      "type": "boolean",
+      "default": false
+    },
+    "interestedInEducation": {
+      "type": "boolean",
+      "default": false
     },
     "engagementType": {
       "type": "enumeration",
@@ -62,7 +75,7 @@
       "default": "pending",
       "enum": [
         "pending",
-        "appected",
+        "accepted",
         "refused"
       ]
     }

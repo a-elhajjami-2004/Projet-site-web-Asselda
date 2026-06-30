@@ -157,7 +157,7 @@ import { Category } from "@/components/PartnerCards";
 export default function PartenairesPage() {
 	const [active, setActive] = useState<Category>("all");
 
-	const translatedCategories = translations.fr.pages.partners.catergories;
+	const translatedCategories = translations.fr.pages.partners.categories;
 
 	return (
 		<main className={styles.page}>
@@ -191,7 +191,7 @@ export default function PartenairesPage() {
 			<section className="bg-white py-12 px-6 flex flex-col gap-4">
 				<div className="max-w-7xl mx-auto flex justify-center">
 					<div className="flex flex-col items-center gap-4">
-						<div className="font-bold max-w-6xl flex flex-row justify-center gap-4">
+						<div className="font-bold max-w-6xl flex flex-row flex-wrap justify-center gap-4">
 							<button
 								key={"all"}
 								className={

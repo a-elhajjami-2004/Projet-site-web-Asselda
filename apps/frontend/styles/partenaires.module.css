@@ -9,15 +9,6 @@
 	color-scheme: light;
 } */
 
-.page,
-.page button,
-.page p,
-.page span,
-.page h1,
-.page h2 {
-	/* font-family: "Segoe UI", "Inter", Arial, sans-serif; */
-}
-
 /* ============================================================
    HERO (Espaces réduits)
    ============================================================ */
@@ -295,28 +286,4 @@
 
 .stat i {
 	font-size: 13px;
-}
-
-/* ============================================================
-   DARK MODE
-   ============================================================ */
-@media (prefers-color-scheme: dark) {
-	.hero {
-		background: #2a5009;
-	}
-
-	.partner-card {
-		background: #1f2937;
-		border-color: #374151;
-	}
-
-	.card-title {
-		color: #f9fafb;
-	}
-	.card-desc {
-		color: #9ca3af;
-	}
-	.section-line {
-		background: #374151;
-	}
 }

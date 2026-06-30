@@ -6,10 +6,12 @@ const { verifyRecaptcha } = require("./recaptchaVerifier");
 
 const coreController = createCoreController("api::contact-submission.contact-submission");
 
-module.exports = {
-	...coreController,
+module.exports = createCoreController("api::contact-submission.contact-submission", ({ strapi }) => ({
 	async create(ctx) {
-		const { fullName, email, phone, subject, message, recaptchaToken } = ctx.request.body;
+		const { data } = ctx.request.body;
+		const { fullName, email, phone, subject, message, recaptchaToken } = data;
+
+		console.log(`${JSON.stringify(data)}`);
 
 		try {
 			// 1. Validate reCAPTCHA token
@@ -83,4 +85,4 @@ module.exports = {
 			return ctx.internalServerError("An error occurred while processing your submission");
 		}
 	},
-};
+}));

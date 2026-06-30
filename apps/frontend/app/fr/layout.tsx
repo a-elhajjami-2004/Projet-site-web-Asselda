@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Open_Sans, Noto_Kufi_Arabic } from "next/font/google";
 import { getPageMetadata } from "@/lib/translations";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/globals.css";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
+const openSans = Open_Sans({
+	variable: "--font-open-sans",
+	subsets: ["latin", "latin-ext"],
 });
 
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
+const notoKufi = Noto_Kufi_Arabic({
+	variable: "--font-noto-kufi",
+	subsets: ["arabic"],
 });
 
 const pageMetadata = getPageMetadata("fr", "home");
@@ -37,7 +37,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="fr" className={`font-sans h-full antialiased`}>
+		<html
+			lang="fr"
+			className={`${openSans.className} ${notoKufi.className} font-sans h-full antialiased`}
+			data-scroll-behavior="smooth">
 			<body className="min-h-full flex flex-col">
 				<Header />
 				{children}

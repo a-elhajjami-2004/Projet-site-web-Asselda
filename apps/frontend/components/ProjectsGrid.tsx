@@ -4,6 +4,7 @@ import { use } from "react";
 import Image from "next/image";
 import { getTranslation, Language } from "@/lib/translations";
 import { API_URL } from "@/lib/api";
+import Markdown from "react-markdown";
 import styles from "@/styles/projects.module.css";
 
 export default function ProjectsGrid({ projects, lang }: { projects: Promise<any>; lang: Language }) {
@@ -21,7 +22,7 @@ export default function ProjectsGrid({ projects, lang }: { projects: Promise<any
 						flagship,
 						title,
 						budget,
-						partner,
+						partners,
 						description,
 						results,
 					}: {
@@ -32,7 +33,7 @@ export default function ProjectsGrid({ projects, lang }: { projects: Promise<any
 						flagship: boolean;
 						title: string;
 						budget: string;
-						partner: { name: string };
+						partners: { name: string }[];
 						description: string;
 						results: string;
 					}) => (
@@ -63,12 +64,12 @@ export default function ProjectsGrid({ projects, lang }: { projects: Promise<any
 									</p>
 								)}
 
-								{partner && (
+								{partners.length > 0 && (
 									<p className={styles.projectDetail}>
 										<strong className={styles.projectDetailLabel}>
 											{getTranslation(lang, "pages.projects.partnerLabel")}
 										</strong>
-										<span>{partner.name}</span>
+										<span>{partners.map((partner) => partner.name).join(", ")}</span>
 									</p>
 								)}
 
@@ -79,7 +80,9 @@ export default function ProjectsGrid({ projects, lang }: { projects: Promise<any
 									</p>
 								))} */}
 
-								<div className={styles.projectDescription}>{description}</div>
+								<div className={styles.projectDescription}>
+									<Markdown>{description}</Markdown>
+								</div>
 
 								{results && (
 									<p className={styles.projectResults}>

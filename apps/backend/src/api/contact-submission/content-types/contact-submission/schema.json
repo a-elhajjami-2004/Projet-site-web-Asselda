@@ -14,7 +14,7 @@
   "attributes": {
     "fullName": {
       "type": "string",
-      "maxLength": 3,
+      "minLength": 3,
       "required": true
     },
     "email": {

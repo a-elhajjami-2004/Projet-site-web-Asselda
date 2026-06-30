@@ -36,7 +36,7 @@ export default function Activities() {
 				<div className="max-w-7xl mx-auto flex justify-center">
 					<div className="flex flex-col items-center gap-4">
 						<label className="font-semibold text-gray-900 text-xl">Filtrer par domaine :</label>
-						<div className="font-bold max-w-6xl flex flex-row justify-center gap-4">
+						<div className="font-bold max-w-6xl flex flex-row flex-wrap justify-center gap-4">
 							<button
 								key="all"
 								className={

@@ -119,3 +119,52 @@ export const getProjects = async (
 	const projects = await response.json();
 	return projects;
 };
+
+export const postContactSubmission = async (data: {
+	fullName: string;
+	email: string;
+	phone: string;
+	subject: "general" | "partnership" | "donation" | "membership" | "volunteering" | "press" | "other";
+	message: string;
+	recaptchaToken: string;
+}): Promise<[boolean, any]> => {
+	const body = JSON.stringify({ data });
+	const response = await fetch(`${API_URL}/api/contact-submissions`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body,
+	});
+
+	const contactSubmission = await response.json().catch(() => {});
+
+	return [response.ok, contactSubmission];
+};
+
+export const postMembership = async (data: {
+	fullName: string;
+	cin: string;
+	email: string;
+	phone: string;
+	address: string;
+	interestedInEnvironment: boolean;
+	interestedInInfrastructure: boolean;
+	interestedInSocial: boolean;
+	interestedInEducation: boolean;
+	engagementType: "active" | "support" | "occasional";
+	message: string;
+}): Promise<[boolean, any]> => {
+	const body = JSON.stringify({ data });
+	const response = await fetch(`${API_URL}/api/memberships`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body,
+	});
+
+	const contactSubmission = await response.json().catch(() => {});
+
+	return [response.ok, contactSubmission];
+};

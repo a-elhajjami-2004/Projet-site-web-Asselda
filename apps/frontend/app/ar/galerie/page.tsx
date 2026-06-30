@@ -1,44 +1,45 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { albums, albumCategories, getAlbumsByCategory, type AlbumCategory, Album } from "@/lib/gallery";
+import { useState, useEffect, Suspense } from "react";
+import Albums from "@/components/Albums";
+import { getAlbumTitles, getAlbumPhotos, getAlbums } from "@/lib/api";
 
 export default function Gallery() {
-	const [selectedCategory, setSelectedCategory] = useState<AlbumCategory>("Tous");
-
-	const filteredAlbums = useMemo(() => {
-		return getAlbumsByCategory(selectedCategory);
-	}, [selectedCategory]);
+	const [albumId, setAlbumId] = useState<string>("*");
+	const [albumTitles, setAlbumTiltes] = useState<{ data: { id: number; documentId: string; title: string }[] }>({
+		data: [],
+	});
+	useEffect(() => {
+		(async () => {
+			setAlbumTiltes(await getAlbumTitles("ar"));
+		})();
+	}, []);
 
 	return (
 		<main>
 			{/* Section Héro */}
-			<section
-				className="relative min-h-[60vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center px-6 py-20"
-				style={{ backgroundImage: 'url("https://picsum.photos/1600/900?random=20")' }}>
-				<div className="absolute inset-0 bg-black/50"></div>
+			<section className="hero-section">
 				<div className="relative z-10 max-w-3xl">
-					<h1 className="text-5xl font-bold text-white mb-5">Galerie Photos & Vidéos</h1>
-					<p className="text-lg text-white/95 leading-relaxed">
-						Une image vaut mille mots. Découvrez en images les projets, les actions et la vie de
-						l'Association Asselda et de Douar Asselda.
+					<h1 className="hero-title">معرض الصور والفيديوهات</h1>
+					<p className="hero-copy">
+						الصورة تُغني عن ألف كلمة. اكتشف في صور مشاريع جمعية أسلدة وأنشطتها وحياة دوار أسلدة.
 					</p>
 				</div>
 			</section>
 
 			{/* Section Filtres avec fond vert */}
-			<section className="bg-[#4a7c3d] py-12 px-6">
+			<section className="bg-white py-12 px-6">
 				<div className="max-w-7xl mx-auto flex justify-center">
 					<div className="flex flex-col items-center gap-4">
-						<label className="font-semibold text-white text-sm">Filtrer par album :</label>
+						<label className="font-semibold text-gray-900 text-xl">اختيار الألبوم:</label>
 						<select
-							className="px-4 py-2 border-2 border-white rounded text-base bg-white text-gray-900 cursor-pointer font-medium"
-							value={selectedCategory}
-							onChange={(e) => setSelectedCategory(e.target.value as AlbumCategory)}>
-							<option value="Tous">Tous les albums</option>
-							{albumCategories.map((category) => (
-								<option key={category} value={category}>
-									{category}
+							className="px-4 py-2 border-2 border-[#7cb645] rounded text-base bg-white text-gray-900 cursor-pointer font-medium"
+							value={albumId}
+							onChange={(e) => setAlbumId(e.target.value)}>
+							<option value="*">الكل</option>
+							{albumTitles.data.map(({ documentId, title }) => (
+								<option key={documentId} value={documentId}>
+									{title}
 								</option>
 							))}
 						</select>
@@ -47,33 +48,17 @@ export default function Gallery() {
 			</section>
 
 			{/* Section Galerie */}
-			<section className="bg-white py-16 px-6">
+			<section className="bg-white py-12 px-6">
 				<div className="max-w-7xl mx-auto">
 					{/* Album Photos */}
-					<h2 className="text-3xl font-bold mb-8 text-gray-900">Album Photos</h2>
-					<div className="grid grid-cols-4 gap-6">
-						{filteredAlbums.length > 0 ? (
-							filteredAlbums.map((album, key) => (
-								<div
-									key={key}
-									className="relative overflow-hidden rounded-xl cursor-pointer transition duration-300">
-									<img
-										src={(album as Album).image}
-										alt={album.title}
-										className="w-full h-64 object-cover"
-									/>
-									<div className="absolute inset-0 bg-black/40"></div>
-									<div className="absolute inset-0 flex items-center justify-center">
-										<p className="text-white font-semibold text-center px-4">{album.title}</p>
-									</div>
-								</div>
-							))
-						) : (
-							<div className="col-span-4 text-center text-gray-500 py-8">
-								Aucune photo trouvée pour cette sélection.
-							</div>
-						)}
-					</div>
+					<h2 className="text-3xl font-bold mb-8 text-gray-900 text-center">ألبوم الصور</h2>
+					<Suspense fallback={<div>جارٍ تحميل الصور...</div>}>
+						<Albums
+							albums={albumId == "*" ? getAlbums("ar") : getAlbumPhotos(albumId, "ar")}
+							all={albumId == "*"}
+							lang="ar"
+						/>
+					</Suspense>
 				</div>
 			</section>
 		</main>

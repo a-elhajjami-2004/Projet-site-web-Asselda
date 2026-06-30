@@ -12,7 +12,14 @@ export type PageKey =
 	| "contact"
 	| "join";
 
-export const languages: Language[] = ["fr", "ar"];
+export const languages: Language[] = ["fr", "ar", "en"];
+
+export const languageLabel: Map<Language, string> = new Map([
+	["fr", "Français"],
+	["ar", "العربية"],
+	["en", "English"],
+]);
+// {  };
 
 export const translations = {
 	fr: {
@@ -39,6 +46,7 @@ export const translations = {
 					project: "Projets",
 					solidarity: "Solidarité",
 				},
+				noArticles: "Aucun article trouvé",
 			},
 			projects: {
 				title: "Projets - Association Asselda",
@@ -111,7 +119,7 @@ export const translations = {
 				title: "Partenaires - Association Asselda",
 				description: "Découvrez nos partenaires et collaborateurs dans la mission de l'Association Asselda.",
 				keywords: ["partenaires", "collaborateurs", "association", "solidarité"],
-				catergories: {
+				categories: {
 					international: "Internationaux",
 					institutional: "Institutionnels",
 					national: "Nationaux",
@@ -136,10 +144,21 @@ export const translations = {
 				description:
 					"Rejoignez l'Association Asselda pour contribuer à nos projets et initiatives en faveur de l'environnement, du développement rural, du social et de l'éducation à Douar Asselda.",
 				keywords: ["Association Asselda", "Nous Rejoindre", "Projets", "Initiatives", "Douar Asselda"],
+				domains: {
+					environment: "Environnement",
+					infrastructure: "Infrastructure",
+					social: "Social",
+					education: "Éducation",
+				},
+				engagementTypes: {
+					active: "Membre actif",
+					support: "Membre soutien",
+					occasional: "Bénévole occasionnel",
+				},
 			},
 		},
 		footer: {
-			tagline: "« Pour l'environnement, le développement et la famille – depuis 1996 »",
+			tagline: "Pour l'environnement, le développement et la famille – depuis 1996",
 			navigation: "Navigation",
 			home: "Accueil",
 			about: "À Propos",
@@ -174,25 +193,27 @@ export const translations = {
 			partners: "Partenaires",
 			join: "Nous Rejoindre",
 			contact: "Contact",
+			openNavMenuLabel: "Ouvrir le menu de navigation",
+			changeLanguageLabel: "Changer la langue",
 		},
 	},
 	en: {
 		pages: {
 			home: {
-				title: "Association Asselda",
-				description: "Pour l'environnement, le développement et la famille – depuis 1996",
+				title: "Asselda Association",
+				description: "For the environment, development, and family – since 1996",
 			},
 			about: {
-				title: "À Propos - Association Asselda",
+				title: "About - Asselda Association",
 				description:
-					"Page à-propos donnant plus d'informations sur l'association Asselda contenant toutes les informations sur celle-ci et tous ces projets réalisés",
-				keywords: ["Asselda", "Association", "a-propos", "developpement", "rural", "al-houz"],
+					"About page providing more information about the Asselda Association, including details about the organization and all its completed projects",
+				keywords: ["Asselda", "Association", "about", "development", "rural", "al-houz"],
 			},
 			news: {
-				title: "Actualités - Association Asselda",
+				title: "News - Asselda Association",
 				description:
-					"Restez informé des dernières nouvelles de l'Association Asselda, y compris les projets, événements, communiqués et initiatives de solidarité.",
-				keywords: ["actualités", "événements", "projets", "communiqués", "solidarité"],
+					"Stay informed about the latest news from the Asselda Association, including projects, events, press releases, and solidarity initiatives.",
+				keywords: ["news", "events", "projects", "press releases", "solidarity"],
 				readMore: "Read more →",
 				categories: {
 					news: "News",
@@ -200,19 +221,20 @@ export const translations = {
 					project: "Projects",
 					solidarity: "Solidarity",
 				},
+				noArticles: "No articles found",
 			},
 			projects: {
-				title: "Projets - Association Asselda",
+				title: "Projects - Asselda Association",
 				description:
-					"Découvrez les projets réalisés et en cours de l'Association Asselda, visant à améliorer les conditions de vie des habitants de Douar Asselda à travers des initiatives durables dans les domaines de l'environnement, du rural, du social et de l'éducation.",
+					"Discover the completed and ongoing projects of the Asselda Association, aimed at improving the living conditions of the residents of Douar Asselda through sustainable initiatives in the areas of the environment, rural development, social welfare, and education.",
 				keywords: [
-					"projets",
-					"association asselda",
+					"projects",
+					"asselda association",
 					"douar asselda",
-					"environnement",
+					"environment",
 					"rural",
 					"social",
-					"éducation",
+					"education",
 				],
 				statuses: {
 					inProgress: "Ongoing",
@@ -232,15 +254,15 @@ export const translations = {
 				noProjects: "No projects match this selection.",
 			},
 			activities: {
-				title: "Activités - Association Asselda",
+				title: "Activities - Asselda Association",
 				description:
-					"Découvrez les projets et initiatives de l'Association Asselda pour le développement durable et le bien-être des habitants de la région d'Asni, Al Haouz.",
+					"Discover the projects and initiatives of the Asselda Association for the sustainable development and well-being of the residents of the Asni region, Al Haouz.",
 				keywords: [
-					"Association Asselda",
-					"Activités",
-					"Projets",
-					"Développement durable",
-					"Environnement",
+					"Asselda Association",
+					"Activities",
+					"Projects",
+					"sustainable development",
+					"Environment",
 					"Rural",
 					"Social",
 				],
@@ -253,35 +275,27 @@ export const translations = {
 				noActivities: "No activities found",
 			},
 			gallery: {
-				title: "Galerie - Association Asselda",
+				title: "Gallery - Asselda Association",
 				description:
-					"Découvrez les photos et vidéos des actions et événements de l'Association Asselda, mettant en lumière la vie quotidienne, les projets et les initiatives des habitants de Douar Asselda.",
-				keywords: [
-					"Association Asselda",
-					"Galerie",
-					"Photos",
-					"Vidéos",
-					"Projets",
-					"Événements",
-					"Douar Asselda",
-				],
-				allAlbums: "Tous les albums",
-				noAlbums: "Aucun album trouvé",
+					"View photos and videos of the Asselda Association's activities and events, highlighting the daily lives, projects, and initiatives of the residents of Douar Asselda.",
+				keywords: ["Asselda Association", "Gallery", "Photos", "Videos", "Projects", "Events", "Douar Asselda"],
+				allAlbums: "All albums",
+				noAlbums: "No albums found",
 			},
 			partners: {
-				title: "Partenaires - Association Asselda",
-				description: "Découvrez nos partenaires et collaborateurs dans la mission de l'Association Asselda.",
-				keywords: ["partenaires", "collaborateurs", "association", "solidarité"],
-				catergories: {
+				title: "Partners - Asselda Association",
+				description: "Discover our partners and collaborators in the Asselda Association's mission.",
+				keywords: ["partners", "collaborators", "association", "solidarity"],
+				categories: {
 					international: "International",
 					institutional: "Institutional",
 					national: "National",
 				},
 			},
 			contact: {
-				title: "Contact - Association Asselda",
-				description: "Contactez l'Association Asselda pour plus d'informations sur nos projets et initiatives.",
-				keywords: ["Association Asselda", "Contact", "Projets", "Initiatives", "Douar Asselda"],
+				title: "Contact - Asselda Association",
+				description: "Contact the Asselda Association for more information about our projects and initiatives.",
+				keywords: ["Association Asselda", "Contact", "Projects", "Initiatives", "Douar Asselda"],
 				subjectOptions: {
 					general: "General Information",
 					partnership: "Partnership",
@@ -293,48 +307,60 @@ export const translations = {
 				},
 			},
 			join: {
-				title: "Nous Rejoindre - Association Asselda",
+				title: "Join Us - Asselda Association",
 				description:
-					"Rejoignez l'Association Asselda pour contribuer à nos projets et initiatives en faveur de l'environnement, du développement rural, du social et de l'éducation à Douar Asselda.",
-				keywords: ["Association Asselda", "Nous Rejoindre", "Projets", "Initiatives", "Douar Asselda"],
+					"Join the Asselda Association to contribute to our projects and initiatives supporting the environment, rural development, social welfare, and education in Douar Asselda.",
+				keywords: ["Association Asselda", "Join Us", "Projects", "Initiatives", "Douar Asselda"],
+				domains: {
+					environment: "Environment",
+					infrastructure: "Infrastructure",
+					social: "Social",
+					education: "Education",
+				},
+				engagementTypes: {
+					active: "Active member",
+					support: "Support member",
+					occasional: "Occasional volunteer",
+				},
 			},
 		},
 		footer: {
-			tagline: "« Pour l'environnement, le développement et la famille – depuis 1996 »",
+			tagline: "For the environment, development, and family – since 1996",
 			navigation: "Navigation",
-			home: "Accueil",
-			about: "À Propos",
-			activities: "Activités",
-			projects: "Projets",
-			news: "Actualités",
-			gallery: "Galerie",
-			partners: "Partenaires",
-			join: "Nous Rejoindre",
+			home: "Home",
+			about: "About",
+			activities: "Activities",
+			projects: "Projects",
+			news: "News",
+			gallery: "Gallery",
+			partners: "Partners",
+			join: "Join Us",
 			contact: "Contact",
-			info: "Informations",
+			info: "Information",
 			location: "Douar Asselda, Asni",
 			email: "associationasselda@gmail.com",
 			phone: "06 60 01 57 30",
-			social: "Réseaux Sociaux",
-			followUs: "Suivez-nous",
-			copyright:
-				"© 2025 Association Asselda pour l'Environnement, le Développement Rural et la Famille. Tous droits réservés.",
-			legal: "Mentions légales",
-			privacy: "Politique de confidentialité",
+			social: "Socials",
+			followUs: "Follows Us",
+			copyright: "© 2025 Asselda Association for the Environment, Development, and Family. All rights reserved.",
+			legal: "Legal Notices",
+			privacy: "Privacy Policy",
 			credits:
-				"Site réalisé par Ikram Aboutayeb, Adam El Hajjami, Djamilatou Keita, Djelika Tiemtoré – ENSET Mohammedia – 2026",
+				"Website made by Ikram Aboutayeb, Adam El Hajjami, Djamilatou Keita, Djelika Tiemtoré – ENSET Mohammedia – 2026",
 		},
 		header: {
-			name: "Association Asselda",
-			home: "Accueil",
-			about: "À Propos",
-			activities: "Activités",
-			projects: "Projets",
-			news: "Actualités",
-			gallery: "Galerie",
-			partners: "Partenaires",
-			join: "Nous Rejoindre",
+			name: "Asselda Association",
+			home: "Home",
+			about: "About",
+			activities: "Activities",
+			projects: "Projects",
+			news: "News",
+			gallery: "Gallery",
+			partners: "Partners",
+			join: "Join Us",
 			contact: "Contact",
+			openNavMenuLabel: "Open navigation menu",
+			changeLanguageLabel: "Change language",
 		},
 	},
 	ar: {
@@ -361,6 +387,7 @@ export const translations = {
 					project: "مشاريع",
 					solidarity: "تضامن",
 				},
+				noArticles: "لم يتم العثور على أي مقالات",
 			},
 			projects: {
 				title: "المشاريع - جمعية أسلدة",
@@ -433,10 +460,21 @@ export const translations = {
 				title: "انضم إلينا - جمعية أسلدة",
 				description: "انضم إلينا لمساهمة في مشاريعنا ومبادراتنا لخدمة البيئة والتنمية والمجتمع في دوار أسلدة.",
 				keywords: ["جمعية أسلدة", "انضم إلينا", "مشاريع", "مبادرات", "دوار أسلدة"],
+				domains: {
+					environment: "البيئة",
+					infrastructure: "البنية التحتية",
+					social: "الشأن الاجتماعي",
+					education: "التعليم",
+				},
+				engagementTypes: {
+					active: "عضو فاعل",
+					support: "عضو داعم",
+					occasional: "متطوع عرضي",
+				},
 			},
 		},
 		footer: {
-			tagline: "« من أجل البيئة والتنمية والعائلة - منذ 1996 »",
+			tagline: "من أجل البيئة والتنمية والعائلة - منذ 1996",
 			navigation: "التنقل",
 			home: "الرئيسية",
 			about: "من نحن",
@@ -450,7 +488,7 @@ export const translations = {
 			info: "معلومات",
 			location: "دوار أسلدة، أسني",
 			email: "associationasselda@gmail.com",
-			phone: "06 60 01 57 30",
+			phone: "0660015730",
 			social: "وسائل التواصل الاجتماعي",
 			followUs: "تابعنا",
 			copyright: "© 2025 جمعية أسلدة للبيئة والتنمية القروية والأسرة. جميع الحقوق محفوظة.",
@@ -470,6 +508,8 @@ export const translations = {
 			partners: "الشركاء",
 			join: "انضم إلينا",
 			contact: "اتصل بنا",
+			openNavMenuLabel: "فتح قائمة التصفح",
+			changeLanguageLabel: "تغيير اللغة",
 		},
 	},
 };

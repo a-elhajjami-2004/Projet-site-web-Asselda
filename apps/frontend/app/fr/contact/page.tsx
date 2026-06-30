@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useActionState } from "react";
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import styles from "@/styles/contact.module.css";
 import {
@@ -17,11 +17,72 @@ import {
 	FaYoutube,
 	FaWhatsapp,
 } from "react-icons/fa";
-import { API_URL } from "@/lib/api";
+import { postContactSubmission } from "@/lib/api";
 import { translations } from "@/lib/translations";
 
 function RequiredMarker() {
 	return <FaAsterisk className={styles.requiredField} style={{ display: "inline" }} />;
+}
+
+type SubjectOption = keyof typeof translatedSubjectOptions;
+const translatedSubjectOptions = translations.fr.pages.contact.subjectOptions;
+
+async function sendContactForm(
+	prevState: any,
+	formData: FormData,
+	executeRecaptcha: ((action?: string) => Promise<string>) | undefined,
+) {
+	try {
+		// Get reCAPTCHA token
+		if (!executeRecaptcha) {
+			throw new Error("reCAPTCHA not available");
+		}
+		const token = await executeRecaptcha("submit_form");
+
+		// Collect form data
+		// const formData = new FormData(formRef.current);
+		const data = {
+			fullName: formData.get("fullName") as string,
+			email: formData.get("email") as string,
+			phone: formData.get("phone") as string,
+			subject: formData.get("subject") as SubjectOption,
+			message: formData.get("message") as string,
+			recaptchaToken: token,
+		};
+
+		// Validate required fields
+		if (!data.fullName || !data.email || !data.subject || !data.message) {
+			throw new Error("Veuillez remplir tous les champs requis");
+		}
+
+		if (data.message.length < 20) {
+			throw new Error("Le message doit contenir au moins 20 caractères");
+		}
+
+		if (data.message.length > 1000) {
+			throw new Error("Le message ne doit pas dépasser 1000 caractères");
+		}
+
+		// Submit to backend
+		const [ok, contactResponse] = await postContactSubmission(data);
+
+		if (!ok) {
+			console.log(`E: ${JSON.stringify(contactResponse)}`);
+			throw new Error("Erreur lors de l'envoi du message");
+		}
+
+		// Clear success message after 5 seconds
+		// setTimeout(() => setSubmissionStatus("idle"), 5000);
+
+		return { success: true, error: "", message: "Message envoyé avec succès" };
+	} catch (error) {
+		console.error("Form submission error:", error);
+		return {
+			success: false,
+			error: "Erreur lors du traitement du formulaire",
+			message: "",
+		};
+	}
 }
 
 function updateCharCount(event: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -36,87 +97,19 @@ function updateCharCount(event: React.ChangeEvent<HTMLTextAreaElement>) {
 
 function ContactFormContent() {
 	const { executeRecaptcha } = useGoogleReCaptcha();
-	const [isLoading, setIsLoading] = useState(false);
-	const [submissionStatus, setSubmissionStatus] = useState<"idle" | "success" | "error">("idle");
-	const [errorMessage, setErrorMessage] = useState("");
-	const formRef = useRef<HTMLFormElement | null>(null);
+	const formActionCallback = async (
+		prevState: { success: boolean; error: string; message: string },
+		formData: FormData,
+	) => await sendContactForm(prevState, formData, executeRecaptcha);
+	const [state, formAction, isPending] = useActionState(formActionCallback, {
+		success: false,
+		error: "",
+		message: "",
+	});
 
 	const mapUrl = "https://www.google.com/maps/search/?api=1&query=31.249,-7.984";
 	const embedUrl =
 		"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3412.3!2d-7.984!3d31.249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sma!4v1700000000000";
-
-	const translatedSubjectOptions = translations.fr.pages.contact.subjectOptions;
-
-	const handleFormSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
-		if (!formRef.current) return;
-
-		try {
-			setIsLoading(true);
-			setSubmissionStatus("idle");
-			setErrorMessage("");
-
-			// Get reCAPTCHA token
-			if (!executeRecaptcha) {
-				throw new Error("reCAPTCHA not available");
-			}
-			const token = await executeRecaptcha("submit_form");
-
-			// Collect form data
-			const formData = new FormData(formRef.current);
-			const data = {
-				fullName: formData.get("fullName") as string,
-				email: formData.get("email") as string,
-				phone: formData.get("phone") as string,
-				subject: formData.get("subject") as string,
-				message: formData.get("message") as string,
-				recaptchaToken: token,
-			};
-
-			// Validate required fields
-			if (!data.fullName || !data.email || !data.subject || !data.message) {
-				throw new Error("Veuillez remplir tous les champs requis");
-			}
-
-			if (data.message.length < 20) {
-				throw new Error("Le message doit contenir au moins 20 caractères");
-			}
-
-			if (data.message.length > 1000) {
-				throw new Error("Le message ne doit pas dépasser 1000 caractères");
-			}
-
-			// Submit to backend
-			const response = await fetch(`${API_URL}/api/contact-submissions`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ data }),
-			});
-
-			if (!response.ok) {
-				const errorData = await response.json().catch(() => ({}));
-				throw new Error(errorData.message || "Erreur lors de l'envoi du message");
-			}
-
-			setSubmissionStatus("success");
-			formRef.current.reset();
-			document.getElementById("charCount")!.textContent = "0/1000";
-
-			// Clear success message after 5 seconds
-			setTimeout(() => setSubmissionStatus("idle"), 5000);
-		} catch (error) {
-			setSubmissionStatus("error");
-			setErrorMessage(
-				error instanceof Error ? error.message : "Une erreur est survenue lors de l'envoi du message",
-			);
-			console.error("Form submission error:", error);
-		} finally {
-			setIsLoading(false);
-		}
-	};
 
 	return (
 		<main>
@@ -174,83 +167,63 @@ function ContactFormContent() {
 
 						<div className={styles.formWrapper}>
 							<h3 className={styles.formTitle}>Formulaire de contact</h3>
-							{submissionStatus === "success" && (
-								<div
-									style={{
-										backgroundColor: "#d4edda",
-										border: "1px solid #c3e6cb",
-										color: "#155724",
-										padding: "12px",
-										borderRadius: "4px",
-										marginBottom: "16px",
-										textAlign: "center",
-									}}>
-									Votre message a été envoyé avec succès. Merci!
-								</div>
-							)}
-							{submissionStatus === "error" && (
-								<div
-									style={{
-										backgroundColor: "#f8d7da",
-										border: "1px solid #f5c6cb",
-										color: "#721c24",
-										padding: "12px",
-										borderRadius: "4px",
-										marginBottom: "16px",
-										textAlign: "center",
-									}}>
-									Erreur: {errorMessage}
-								</div>
-							)}
-							<form ref={formRef} className={styles.contactForm} onSubmit={handleFormSubmit}>
+							<form className={styles.contactForm} action={formAction}>
 								<div className={styles.formRow}>
 									<div className={styles.formField} style={{ flex: 1 }}>
-										<label>
+										<label htmlFor="fullName">
 											Nom complet <RequiredMarker />
 										</label>
 										<input
 											type="text"
+											id="fullName"
 											name="fullName"
 											className={styles.inputField}
 											minLength={3}
 											placeholder="Entrez votre nom complet"
 											required
-											disabled={isLoading}
+											disabled={isPending}
 										/>
 										<p className={styles.fieldHint}>3 caractères minimum</p>
 									</div>
 									<div className={styles.formField} style={{ flex: 1 }}>
-										<label>Téléphone</label>
+										<label htmlFor="phone">Téléphone</label>
 										<input
 											type="tel"
+											id="phone"
 											name="phone"
 											className={styles.inputField}
 											pattern="^0[67]\d{8}$"
 											placeholder="Ex : 0612345678"
-											disabled={isLoading}
+											disabled={isPending}
 										/>
 										<p className={styles.fieldHint}>Numéro en 06 ou 07</p>
 									</div>
 								</div>
 
 								<div className={styles.formField}>
-									<label>
+									<label htmlFor="email">
 										Email <RequiredMarker />
 									</label>
 									<input
 										type="email"
+										id="email"
 										name="email"
 										className={styles.inputField}
 										placeholder="nom@email.com"
 										required
-										disabled={isLoading}
+										disabled={isPending}
 									/>
 								</div>
 								<div className={styles.formField} style={{ flex: 1 }}>
-									<label>
+									<label htmlFor="subject">
 										Objet de message <RequiredMarker />
 									</label>
-									<select name="subject" className={styles.inputField} required disabled={isLoading}>
+									<select
+										id="subject"
+										name="subject"
+										className={styles.inputField}
+										required
+										disabled={isPending}>
 										<option value="">Sélectionnez un objet...</option>
 										{Object.entries(translatedSubjectOptions).map(([key, label]) => (
 											<option key={key} value={key}>
@@ -261,35 +234,37 @@ function ContactFormContent() {
 								</div>
 
 								<div className={styles.formField}>
-									<label>
+									<label htmlFor="message">
 										Message <RequiredMarker />
 									</label>
 									<textarea
 										className={styles.inputField}
+										id="message"
 										name="message"
 										minLength={20}
 										maxLength={1000}
 										rows={4}
 										onChange={updateCharCount}
 										required
-										disabled={isLoading}></textarea>
+										disabled={isPending}></textarea>
 									<p className={styles.fieldHint} id="messageHint">
 										20 caractères min. 1000 caractères max. <span id="charCount">0/1000</span>
 									</p>
 								</div>
 
 								<div className={styles.formFooter}>
-									<div className={styles.recaptchaPlaceholder}>
-										<img
-											src="https://www.gstatic.com/recaptcha/api2/logo_48.png"
-											width="25"
-											alt="recap"
-										/>
-										<span>reCAPTCHA</span>
-									</div>
-									<button type="submit" className={styles.submitBtn} disabled={isLoading}>
-										<FaPaperPlane /> {isLoading ? "Envoi..." : "Envoyer"}
+									<button type="submit" className={styles.submitBtn} disabled={isPending}>
+										<FaPaperPlane /> {isPending ? "Envoi en cours..." : "Envoyer"}
 									</button>
+									{state.success && state.message !== "" && (
+										<p className={`${styles.formResult} ${styles.success}`}>
+											Votre message a bien été envoyé. Nous vous répondrons dans un délai de 48
+											heures ouvrables. Merci de votre intérêt pour l'Association Asselda.
+										</p>
+									)}
+									{!state.success && state.error !== "" && (
+										<p className={`${styles.formResult} ${styles.error}`}>{state.error}</p>
+									)}
 								</div>
 							</form>
 						</div>

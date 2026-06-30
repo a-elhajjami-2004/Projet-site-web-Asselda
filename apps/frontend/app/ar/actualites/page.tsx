@@ -8,7 +8,7 @@ import EventsGrid from "@/components/EventsGrid";
 
 export default function NewsPage() {
 	const [search, setSearch] = useState("");
-	const [selectedCategory, setSelectedCategory] = useState<string>("الكل");
+	const [selectedCategory, setSelectedCategory] = useState<string>("all");
 	const lang = "ar";
 
 	const articlesPromise = getArticles("ar");
@@ -50,7 +50,7 @@ export default function NewsPage() {
 				<div className="max-w-7xl mx-auto flex justify-center">
 					<div className="flex flex-col items-center gap-4">
 						<label className="font-semibold text-gray-900 text-xl">فلتر حسب الفئة</label>
-						<div className="font-bold max-w-6xl flex flex-row justify-center gap-4">
+						<div className="font-bold max-w-6xl flex flex-row flex-wrap justify-center gap-4">
 							{categories.map((category) => (
 								<button
 									key={category.key}

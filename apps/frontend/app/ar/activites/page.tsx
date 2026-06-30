@@ -7,8 +7,9 @@ import { getActivities } from "@/lib/api";
 import { translations } from "@/lib/translations";
 
 export default function Activities() {
-	const [selectedDomain, setSelectedDomain] = useState<string>("الكل");
-	const translatedDomains = translations["ar"].pages.activities.domains;
+	type DomainKey = keyof typeof translatedDomains | "all";
+	const [selectedDomain, setSelectedDomain] = useState<DomainKey>("all");
+	const translatedDomains = translations.ar.pages.activities.domains;
 
 	// const [activities, setActivities] = useState<any>({});
 	// useEffect(() => {
@@ -35,25 +36,25 @@ export default function Activities() {
 				<div className="max-w-7xl mx-auto flex justify-center">
 					<div className="flex flex-col items-center gap-4">
 						<label className="font-semibold text-gray-900 text-xl"></label>
-						<div className="font-bold max-w-6xl flex flex-row justify-center gap-4">
+						<div className="font-bold max-w-6xl flex flex-row flex-wrap justify-center gap-4">
 							<button
 								className={
-									selectedDomain == "الكل"
+									selectedDomain == "all"
 										? "min-w-max border-2 border-[#7cb645] bg-[#7cb645] text-white rounded-full px-4 py-2 cursor-pointer"
 										: "min-w-max border-2 border-[#7cb645] bg-white text-forground rounded-full px-4 py-2 cursor-pointer"
 								}
-								onClick={() => setSelectedDomain("الكل")}>
+								onClick={() => setSelectedDomain("all")}>
 								الكل
 							</button>
 							{Object.entries(translatedDomains).map(([key, domain]) => (
 								<button
 									key={key}
 									className={
-										domain == selectedDomain
+										key == selectedDomain
 											? "min-w-max border-2 border-[#7cb645] bg-[#7cb645] text-white rounded-full px-4 py-2 cursor-pointer"
 											: "min-w-max border-2 border-[#7cb645] bg-white text-forground rounded-full px-4 py-2 cursor-pointer"
 									}
-									onClick={() => setSelectedDomain(domain)}>
+									onClick={() => setSelectedDomain(key as DomainKey)}>
 									{domain}
 								</button>
 							))}
@@ -64,7 +65,10 @@ export default function Activities() {
 
 			{/* Grille de cartes */}
 			<Suspense fallback={<div>جاري تحميل الأنشطة...</div>}>
-				<ActivitiesGrid albums={getActivities("ar")} lang="ar" />
+				<ActivitiesGrid
+					activities={getActivities("ar", selectedDomain === "all" ? undefined : selectedDomain)}
+					lang="ar"
+				/>
 			</Suspense>
 		</main>
 	);

@@ -9,7 +9,7 @@ export function useCurrentLanguage(): Language {
 	const pathname = usePathname();
 
 	for (const lang of languages) {
-		if (pathname.includes(`/${lang}`) || pathname.startsWith(lang)) {
+		if (pathname.startsWith(`/${lang}`)) {
 			return lang;
 		}
 	}
@@ -20,14 +20,14 @@ export function useCurrentLanguage(): Language {
 /**
  * Build a navigation link with language prefix if needed
  */
-export function buildLocalizedLink(path: string, language: Language): string {
+export function buildLocalizedLink(path: string, language?: Language): string {
 	if (language) {
 		return `/${language}${path}`;
 	}
-	return path;
+	return `/${useCurrentLanguage()}${path}`;
 }
 
-export function getPath(localizedPath:string) {
-// /fr/,,,,
-	return localizedPath.substring(3);
+export function getPath(localizedPath: string) {
+	// /fr/,,,,
+	return localizedPath.replace(RegExp(`^\/(?:${languages.join("|")})`), "");
 }

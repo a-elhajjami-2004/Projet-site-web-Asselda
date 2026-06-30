@@ -228,8 +228,10 @@
 
 .formFooter {
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+	justify-content: center;
 	align-items: center;
+	gap: var(--form-gap);
 }
 .submitBtn {
 	background-color: var(--color-hero);
@@ -243,6 +245,27 @@
 	cursor: pointer;
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+.formResult {
+	padding: 12px;
+	border-radius: 4px;
+	margin-bottom: 16px;
+	text-align: center;
+	align-self: stretch;
+
+	&.success {
+		background-color: #d4edda;
+		border: 1px solid #c3e6cb;
+		color: #155724;
+	}
+
+	&.error {
+		background-color: #f8d7da;
+		border: 1px solid #f5c6cb;
+		color: #721c24;
+	}
+}
+
 .recaptchaPlaceholder {
 	text-align: center;
 	font-size: 8px;

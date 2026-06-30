@@ -1,6 +1,7 @@
 "use client";
 
 import { use } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { API_URL } from "@/lib/api";
@@ -14,8 +15,7 @@ type Props = {
 };
 
 function extractImage(item: any) {
-	// try a few possible shapes returned by Strapi or custom APIs
-	const attrs = item.attributes || item;
+	const attrs = item || item.attributes;
 	const candidate = attrs.imageCover || attrs.image || null;
 	return candidate;
 }
@@ -35,7 +35,6 @@ export default function ArticlesGrid({ articles, lang, search = "", category = "
 			imageCover: extractImage(it),
 			content: attrs.content || attrs.body || "",
 			date: attrs.publishedAt || attrs.date || null,
-			location: attrs.location || null,
 		};
 	});
 
@@ -86,7 +85,7 @@ export default function ArticlesGrid({ articles, lang, search = "", category = "
 						<p className="text-gray-700 mb-4 flex-1">{a.summary}</p>
 
 						<div className="mt-2">
-							<Link href={`/fr/actualites/${a.slug}`} className="text-green-700 font-semibold">
+							<Link href={`${usePathname()}/${a.slug}`} className="text-green-700 font-semibold">
 								{getTranslation(lang, "pages.news.readMore")}
 							</Link>
 						</div>
@@ -94,7 +93,9 @@ export default function ArticlesGrid({ articles, lang, search = "", category = "
 				</article>
 			))}
 			{filtered.length === 0 && (
-				<div className="col-span-1 md:col-span-2 text-center text-gray-500 py-8">Aucune actualité trouvée.</div>
+				<div className="col-span-1 md:col-span-2 text-center text-gray-500 py-8">
+					{getTranslation(lang, "pages.news.noArticles")}
+				</div>
 			)}
 		</div>
 	);
