@@ -3,6 +3,7 @@
 import styles from "@/styles/footer.module.css";
 import { getTranslation, type Language } from "@/lib/translations";
 import { useCurrentLanguage, buildLocalizedLink } from "@/lib/useLanguage";
+import Link from "next/link";
 import FacebookLogo from "@/public/icons/facebook.png";
 import WhatsAppLogo from "@/public/icons/whatsapp.png";
 import YouTubeLogo from "@/public/icons/youtube.png";
@@ -20,18 +21,7 @@ export default function Footer() {
 				<div className={styles.footerContent}>
 					<div className={styles.aboutColumn}>
 						<div className={styles.logo}>
-							<svg
-								viewBox="0 0 100 100"
-								xmlns="http://www.w3.org/2000/svg"
-								style={{
-									width: "80px",
-									height: "80px",
-									borderRadius: "50%",
-								}}>
-								<text x="50" y="55" textAnchor="middle" fontSize="24" fontWeight="bold" fill="#f4c430">
-									LOGO
-								</text>
-							</svg>
+							<img src="/images/logo.png" alt="Logo Association Asselda" />
 						</div>
 						<h3 className={styles.brandName}>Association Asselda</h3>
 						<q className={styles.tagline}>{t("footer.tagline")}</q>
@@ -41,44 +31,44 @@ export default function Footer() {
 						<h3 className={styles.columnTitle}>{t("footer.navigation")}</h3>
 						<ul className={styles.columnLinks}>
 							<li>
-								<a href={link("/")} className={styles.columnLink}>
+								<Link href={link("/")} className={styles.columnLink}>
 									{t("footer.home")}
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a href={link("/a-propos")} className={styles.columnLink}>
+								<Link href={link("/a-propos")} className={styles.columnLink}>
 									{t("footer.about")}
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a href={link("/activites")} className={styles.columnLink}>
+								<Link href={link("/activites")} className={styles.columnLink}>
 									{t("footer.activities")}
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a href={link("/projets")} className={styles.columnLink}>
+								<Link href={link("/projets")} className={styles.columnLink}>
 									{t("footer.projects")}
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a href={link("/actuatites")} className={styles.columnLink}>
+								<Link href={link("/actuatites")} className={styles.columnLink}>
 									{t("footer.news")}
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a href={link("/gallerie")} className={styles.columnLink}>
+								<Link href={link("/galerie")} className={styles.columnLink}>
 									{t("footer.gallery")}
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a href={link("/rejoindre")} className={styles.columnLink}>
+								<Link href={link("/rejoindre")} className={styles.columnLink}>
 									{t("footer.join")}
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a href={link("/contact")} className={styles.columnLink}>
+								<Link href={link("/contact")} className={styles.columnLink}>
 									{t("footer.contact")}
-								</a>
+								</Link>
 							</li>
 						</ul>
 					</div>
@@ -123,7 +113,7 @@ export default function Footer() {
 							</li>
 							<li>
 								<a
-									href="#"
+									href="https://wa.me/212663046167"
 									className={styles.socialLink}
 									target="_blank"
 									rel="noopener noreferrer"
@@ -149,12 +139,12 @@ export default function Footer() {
 					<div className={styles.bottomContent}>
 						<ul className={styles.bottomLinks}>
 							<li>
-								<a href={link("/mentions-legales")} className={styles.bottomLink}>
+								<a href={link("/mentions")} className={styles.bottomLink}>
 									{t("footer.legal")}
 								</a>
 							</li>
 							<li>
-								<a href={link("/politique-confidentialite")} className={styles.bottomLink}>
+								<a href={link("/confidentialite")} className={styles.bottomLink}>
 									{t("footer.privacy")}
 								</a>
 							</li>

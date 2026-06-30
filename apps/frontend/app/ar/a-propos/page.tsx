@@ -1,300 +1,292 @@
 "use client";
-import Header from "@/components/Header";
-import styles from "@/styles/about.module.css";
-export default function Home() {
+import { FaClipboardList, FaLeaf, FaHeart, FaGlobe, FaShieldAlt, FaUsers, FaDownload } from "react-icons/fa";
+import { FiTarget } from "react-icons/fi";
 
-  return (
+export default function About() {
+	return (
+		<>
+			<main>
+				{/* Hero Section */}
+				<section className="hero-section">
+					<div className="max-w-3xl">
+						<h1 className="hero-title">من نحن</h1>
+					</div>
+				</section>
 
-<main>
-  <section className={styles.section_definition}>
-    <h1>من نحن – جمعية أسلدة</h1>
+				{/* Definition Section */}
+				<section className="bg-white py-16 px-6">
+					<div className="max-w-6xl mx-auto">
+						<h2 className="text-5xl font-bold text-gray-900 text-center mb-12">من نحن – جمعية أسلدة</h2>
 
-    <div className={styles.definition}>
-      <div className={styles.text}>
-        <p>
-          منذ عام 1996، تعمل جمعية أسلدة يومياً على تحسين ظروف حياة سكان دوار أسلدة وجماعة أسني، برؤية تنمية دائمة متكاملة.
-        </p>
-      </div>
+						<div className="flex flex-col lg:flex-row gap-8 ">
+							<div className="flex-1 flex flex-col gap-3">
+								<p className="text-lime-700 text-lg text-justify font-bold leading-relaxed mbe-6">
+									منذ عام 1996، تعمل جمعية أسلدة يومياً على تحسين ظروف حياة سكان دوار أسلدة وجماعة
+									أسني، برؤية تنمية دائمة متكاملة.
+								</p>
 
-      <div className={styles.image}>
-        <img
-          src="/images/logo.png"
-          alt="شعار جمعية أسلدة"
-        />
-      </div>
-    </div>
+								<p className="text-foreground text-base text-justify leading-relaxed font-semibold">
+									جمعية أسلدة للبيئة والتنمية الريفية والأسرة (اختصاراً « جمعية أسلدة » أو « AAEDRF »)
+									هي منظمة من منظمات المجتمع المدني تأسست عام 1996، ومقرها الاجتماعي بدوار أسلدة،
+									جماعة أسني، إقليم الحوز، مراكش – المغرب.
+								</p>
 
-    <div className={styles.history_asselda}>
-      <p>
-        جمعية أسلدة للبيئة والتنمية الريفية والأسرة (اختصاراً « جمعية أسلدة » أو « AAEDRF ») هي منظمة من منظمات المجتمع المدني تأسست عام 1996، ومقرها الاجتماعي بدوار أسلدة، جماعة أسني، إقليم الحوز، مراكش – المغرب.
-      </p>
+								<p className="text-foreground text-base text-justify leading-relaxed font-semibold">
+									معترف بها رسمياً وودعت لدى السلطات المحلية (وصل إيداع نهائي موقع من قاضي أسني في 11
+									مارس 2025)، تعمل الجمعية في امتثال تام مع الظهير الشريف رقم 1-58-376 بتاريخ 15
+									نوفمبر 1958 المتعلق بحق التجمع، كما تم تعديله وإكماله.
+								</p>
+							</div>
 
-      <p>
-        معترف بها رسمياً وودعت لدى السلطات المحلية (وصل إيداع نهائي موقع من قاضي أسني في 11 مارس 2025)، تعمل الجمعية في امتثال تام مع الظهير الشريف رقم 1-58-376 بتاريخ 15 نوفمبر 1958 المتعلق بحق التجمع، كما تم تعديله وإكماله.
-      </p>
-    </div>
-  </section>
-<section className={styles.vision_mission_section}>
-  <div className={styles.vision_mission_container}> 
-     <h2>رؤيتنا ورسالتنا</h2>
-    <div className={styles.vision_mission_boxes}>
-      <div className={styles.vision_box}>
-        <div className={styles.box_header}>
-          <span className={styles.box_icon}>🎯</span>
-          <h3 className={styles.box_title}>رؤيتنا</h3>
-        </div>
+							<div className="aspect-square">
+								<img
+									src="/images/logo.png"
+									alt="شعار جمعية أسلدة"
+									className="aspect-square max-w-xs object-cover rounded-full"
+								/>
+							</div>
+						</div>
+					</div>
+				</section>
 
-        <div className={styles.box_content}>
-          <p>
-            المساهمة في تنمية البيئة الريفية وتحسين ظروف حياة السكان الريفيين، من خلال نهج بيئية واجتماعية وتعليمية وتنمية مستدامة قائمة على الشراكة والحكم الرشيد وتعزيز قيم التضامن والمسؤولية.
-          </p>
-        </div>
-      </div>
+				{/* Vision & Mission Section */}
+				<section className="bg-[#7cb645] py-16 px-6">
+					<div className="max-w-6xl mx-auto">
+						<h2 className="text-4xl font-bold text-white text-center mb-12">رؤيتنا ورسالتنا</h2>
 
-      <div className={styles.mission_box}>
-        <div className={styles.box_header}>
-          <span className={styles.box_icon}>📄</span>
-          <h3 className={styles.box_title}>رسالتنا</h3>
-        </div>
+						<div className="grid md:grid-cols-2 gap-8">
+							{/* Vision Card */}
+							<div className="bg-white rounded-lg overflow-hidden shadow-lg">
+								<div className="bg-[#3b6428] px-8 py-6 text-center">
+									<FiTarget className="w-8 h-8 text-white mx-auto mb-3" />
+									<h3 className="text-2xl font-bold text-white">رؤيتنا</h3>
+								</div>
+								<div className="p-8">
+									<p className="text-gray-800 text-justify leading-relaxed">
+										المساهمة في تنمية البيئة الريفية وتحسين ظروف حياة السكان الريفيين، من خلال نهج
+										بيئية واجتماعية وتعليمية وتنمية مستدامة قائمة على الشراكة والحكم الرشيد وتعزيز
+										قيم التضامن والمسؤولية.
+									</p>
+								</div>
+							</div>
 
-        <div className={styles.box_content}>
-          <p>
-            تنفيذ مشاريع بيئية وتنموية وخدمات اجتماعية لصالح سكان دوار أسلدة، مع التركيز على توفير المياه الصالحة للشرب والصرف الصحي وجمع النفايات المنزلية وإعادة تأهيل المساحات الريفية وتشجيع المبادرات التضامنية والعمل التطوعي.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section className={styles.objectifs_section}>
-  <div className={styles.objectifs_container}>
-    <h2 className={styles.objectifs_title}>
-      أهدافنا
-    </h2>
+							{/* Mission Card */}
+							<div className="bg-white rounded-lg overflow-hidden shadow-lg">
+								<div className="bg-[#3b6428] px-8 py-6 text-center">
+									<FaClipboardList className="w-8 h-8 text-white mx-auto mb-3" />
+									<h3 className="text-2xl font-bold text-white">رسالتنا</h3>
+								</div>
+								<div className="p-8">
+									<p className="text-gray-800 text-justify leading-relaxed">
+										تنفيذ مشاريع بيئية وتنموية وخدمات اجتماعية لصالح سكان دوار أسلدة، مع التركيز على
+										توفير المياه الصالحة للشرب والصرف الصحي وجمع النفايات المنزلية وإعادة تأهيل
+										المساحات الريفية وتشجيع المبادرات التضامنية والعمل التطوعي.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
 
-    <div className={styles.objectifs_grid}>
-      <article className={styles.objectif_card}>
-        <h3 className={styles.objectif_card_title}>
-          01 – المشاركة في البرامج
-        </h3>
-        <p className={styles.objectif_card_text}>
-          المساهمة في جميع البرامج الاجتماعية والاقتصادية والثقافية والرياضية والصحية، وتشجيع المشاريع البيئية.
-        </p>
-      </article>
+				{/* Goals Section */}
+				<section className="bg-white py-16 px-6">
+					<div className="max-w-6xl mx-auto">
+						<h2 className="text-4xl font-bold text-[#3b6428] text-center mb-12">أهدافنا</h2>
 
-      <article className={styles.objectif_card}>
-        <h3 className={styles.objectif_card_title}>
-          02 – الخدمات الاجتماعية الريفية
-        </h3>
-        <p className={styles.objectif_card_text}>
-          تحسين الخدمات الاجتماعية المرتبطة بالبيئة الريفية والعمل على ازدهار المنطقة على جميع الأصعدة، لتحقيق تنمية متكاملة ومستدامة تركز على الإنسان.
-        </p>
-      </article>
+						<div className="grid md:grid-cols-2 gap-6">
+							{[
+								{
+									num: "01",
+									title: "المشاركة في البرامج",
+									icon: FaLeaf,
+									text: "المساهمة في جميع البرامج الاجتماعية والاقتصادية والثقافية والرياضية والصحية، وتشجيع المشاريع البيئية.",
+								},
+								{
+									num: "02",
+									title: "الخدمات الاجتماعية الريفية",
+									icon: FaUsers,
+									text: "تحسين الخدمات الاجتماعية المرتبطة بالبيئة الريفية والعمل على ازدهار المنطقة على جميع الأصعدة، لتحقيق تنمية متكاملة ومستدامة تركز على الإنسان.",
+								},
+								{
+									num: "03",
+									title: "النساء والأطفال",
+									icon: FaHeart,
+									text: "إيلاء اهتمام خاص للنساء والأطفال والأشخاص ذوي الاحتياجات الخاصة. دعم محو الأمية والتدريب المهني والأنشطة المدرة للدخل.",
+								},
+								{
+									num: "04",
+									title: "الديمقراطية التشاركية",
+									icon: FaGlobe,
+									text: "المساهمة كقوة اقتراح فعالة في إطار النهج التشاركية عند صياغة وتقييم مشاريع وقرارات الجماعات والسلطات.",
+								},
+								{
+									num: "05",
+									title: "التنسيق المؤسسي",
+									icon: FaShieldAlt,
+									text: "التنسيق مع السلطات المحلية والإقليمية والمنظمات غير الحكومية لتنفيذ مشاريع تنموية مشتركة في إطار اتفاقيات الشراكة.",
+								},
+								{
+									num: "06",
+									title: "المبادرة الوطنية",
+									icon: FaLeaf,
+									text: "المساهمة في تنفيذ البرنامج الوطني للمبادرة الوطنية للتنمية البشرية (INDH) على المستوى المحلي.",
+								},
+							].map((goal, index) => {
+								const Icon = goal.icon;
+								return (
+									<div key={index} className="bg-lime-100 rounded-lg p-8 relative overflow-hidden">
+										<div className="text-6xl font-bold text-lime-500 absolute inset-bs-4 inset-s-4 opacity-50">
+											{goal.num}
+										</div>
+										<div className="relative z-10">
+											<Icon className="w-8 h-8 text-lime-600 mx-auto mb-3" />
+											<h3 className="text-2xl text-center font-bold text-[#3b6428] mb-3">
+												{goal.title}
+											</h3>
+											<p className="text-gray-800 text-justify leading-relaxed">{goal.text}</p>
+										</div>
+									</div>
+								);
+							})}
+						</div>
+					</div>
+				</section>
 
-      <article className={styles.objectif_card}>
-        <h3 className={styles.objectif_card_title}>
-          03 – النساء والأطفال
-        </h3>
-        <p className={styles.objectif_card_text}>
-          إيلاء اهتمام خاص للنساء والأطفال والأشخاص ذوي الاحتياجات الخاصة. دعم محو الأمية والتدريب المهني والأنشطة المدرة للدخل.
-        </p>
-      </article>
+				{/* Members Section */}
+				<section className="bg-[#7cb645] py-16 px-6">
+					<div className="max-w-6xl mx-auto">
+						<h2 className="text-4xl font-bold text-white text-center mb-8">
+							المكتب التنفيذي (الولاية 2025)
+						</h2>
 
-      <article className={styles.objectif_card}>
-        <h3 className={styles.objectif_card_title}>
-          04 – الديمقراطية التشاركية
-        </h3>
-        <p className={styles.objectif_card_text}>
-          المساهمة كقوة اقتراح فعالة في إطار النهج التشاركية عند صياغة وتقييم مشاريع وقرارات الجماعات والسلطات.
-        </p>
-      </article>
+						<p className="text-white/90 text-center mb-12 text-lg">
+							جدول الأعضاء المنتخبين في الجمعية العامة بتاريخ 3 فبراير 2025.
+						</p>
 
-      <article className={styles.objectif_card}>
-        <h3 className={styles.objectif_card_title}>
-          05 – التنسيق المؤسسي
-        </h3>
-        <p className={styles.objectif_card_text}>
-          التنسيق مع السلطات المحلية والإقليمية والمنظمات غير الحكومية لتنفيذ مشاريع تنموية مشتركة في إطار اتفاقيات الشراكة.
-        </p>
-      </article>
+						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+							{[
+								{ nameFr: "Samir Ahram", nameAr: "سمير أهرام", role: "الرئيس" },
+								{
+									nameFr: "Moulay Lahcen Maroi",
+									nameAr: "مولاي لحسن مروة",
+									role: "نائب الرئيس الأول",
+								},
+								{ nameFr: "Yassine Baouti", nameAr: "ياسين باوتي", role: "نائب الرئيس الثاني" },
+								{
+									nameFr: "Abderrahim Darrih",
+									nameAr: "عبد الرحيم الضارح",
+									role: "الأمين العام",
+								},
+								{
+									nameFr: "Abdelaziz Benzaina",
+									nameAr: "عبد العزيز بنزينة",
+									role: "الأمين العام المساعد",
+								},
+								{ nameFr: "Mohamed Baouti", nameAr: "محمد باوتي", role: "أمين الصندوق" },
+								{ nameFr: "Youssef Id Braim", nameAr: "يوسف إد برايم", role: "أمين الصندوق المساعد" },
+								{ nameFr: "Hassan ait elmokef", nameAr: "حسن أيت موقف", role: "مستشار" },
+								{ nameFr: "Lahcen ouarbane", nameAr: "لحسن واعربان", role: "مستشار" },
+								{ nameFr: "Rachid id abdellah", nameAr: "رشيد إد عبد الله", role: "مستشار" },
+								{ nameFr: "Abderrahim agzoul", nameAr: "عبد الرحيم أكزول", role: "مستشار" },
+								{ nameFr: "Hamid Iznagen", nameAr: "حميد إزناكن", role: "مستشار" },
+								{ nameFr: "Abdellah amadid", nameAr: "عبد الله أمديد", role: "مستشار" },
+							].map((member, index) => (
+								<div
+									key={index}
+									className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition">
+									<p className="font-bold text-gray-900 text-base">{member.nameFr}</p>
+									<p className="font-bold text-gray-900 mb-3">{member.nameAr}</p>
+									<p className="text-[#3b6428] font-bold text-base uppercase">{member.role}</p>
+								</div>
+							))}
+						</div>
+					</div>
+				</section>
 
-      <article className={styles.objectif_card}>
-        <h3 className={styles.objectif_card_title}>
-          06 – المبادرة الوطنية
-        </h3>
-        <p className={styles.objectif_card_text}>
-          المساهمة في تنفيذ البرنامج الوطني للمبادرة الوطنية للتنمية البشرية (INDH) على المستوى المحلي.
-        </p>
-      </article>
-    </div>
-  </div>
-</section>
-<section className={styles.bureau_section}>
-  <div className={styles.bureau_container}>
-    <h2 className={styles.bureau_title}>
-       المكتب التنفيذي (الولاية 2025)
-    </h2>
+				{/* Values Section */}
+				<section className="bg-white py-16 px-6">
+					<div className="max-w-6xl mx-auto">
+						<h2 className="text-4xl font-bold text-[#3b6428] text-center mb-12">قيمنا</h2>
 
-    <p className={styles.bureau_subtitle}>
-      جدول الأعضاء المنتخبين في الجمعية العامة بتاريخ 3 فبراير 2025.
-    </p>
+						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+							{[
+								{
+									title: "التضامن",
+									icon: FaUsers,
+									text: "العمل معاً ودعم الأكثر ضعفاً وتعزيز النسيج الاجتماعي لمجتمعاتنا.",
+								},
+								{
+									title: "الاستدامة",
+									icon: FaLeaf,
+									text: "تصميم مشاريع تحترم البيئة وقابلة للبقاء على المدى الطويل ومفيدة للأجيال القادمة.",
+								},
+								{
+									title: "الشفافية",
+									icon: FaShieldAlt,
+									text: "إدارة الموارد بصدق وتقديم حسابات عن أفعالنا والحفاظ على حكم راشد واضح.",
+								},
+								{
+									title: "المشاركة",
+									icon: FaGlobe,
+									text: "إشراك السكان في جميع القرارات التي تؤثر عليهم، مع تقدير معارفهم ومبادراتهم.",
+								},
+							].map((value, index) => {
+								const Icon = value.icon;
+								return (
+									<div
+										key={index}
+										className="bg-gradient-to-br from-lime-200 to-lime-200 rounded-lg p-8 text-lime-600 text-center shadow-lg">
+										<Icon className="w-8 h-8 mx-auto mb-4" />
+										<h3 className="text-2xl font-bold mb-4">{value.title}</h3>
+										<p className="text-lime-900 leading-relaxed text-base">{value.text}</p>
+									</div>
+								);
+							})}
+						</div>
+					</div>
+				</section>
 
-    <div className={styles.table_wrapper}>
-      <table className={styles.bureau_table}>
-        <thead>
-          <tr>
-            <th>الرقم</th>
-            <th>الاسم الكامل</th>
-            <th>الوظيفة</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>01</td>
-            <td>سمير أهرام</td>
-            <td>الرئيس</td>
-          </tr>
-          <tr>
-            <td>02</td>
-            <td>مولاي لحسن مروقي</td>
-            <td>نائب الرئيس الأول</td>
-          </tr>
-          <tr>
-            <td>03</td>
-            <td>ياسين باوتي</td>
-            <td>نائب الرئيس الثاني</td>
-          </tr>
-          <tr>
-            <td>04</td>
-            <td>عبد الرحيم الصاريح</td>
-            <td>الأمين العام</td>
-          </tr>
-          <tr>
-            <td>05</td>
-            <td>عبد العزيز بنزينة</td>
-            <td>الأمين العام المساعد</td>
-          </tr>
-          <tr>
-            <td>06</td>
-            <td>محمد باوتي</td>
-            <td>أمين الصندوق</td>
-          </tr>
-          <tr>
-            <td>07</td>
-            <td>يوسف إد إبراهيم</td>
-            <td>أمين الصندوق المساعد</td>
-          </tr>
-          <tr>
-            <td>08</td>
-            <td>حسن أيت موكف</td>
-            <td>مستشار</td>
-          </tr>
-          <tr>
-            <td>09</td>
-            <td>لحسن وعربان</td>
-            <td>مستشار</td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td>رشيد إد عبد الله</td>
-            <td>مستشار</td>
-          </tr>
-          <tr>
-            <td>11</td>
-            <td>عبد الرحيم أكزول</td>
-            <td>مستشار</td>
-          </tr>
-          <tr>
-            <td>12</td>
-            <td>حميد إزناكن</td>
-            <td>مستشار</td>
-          </tr>
-          <tr>
-            <td>13</td>
-            <td>عبد الله أماديد</td>
-            <td>مستشار</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-<section className={styles.values_section}>
-  <div className={styles.values_container}>
-    <h2 className={styles.values_title}> قيمنا</h2>
+				{/* Downloads Section */}
+				<section className="bg-[#7cb645] py-16 px-6">
+					<div className="max-w-6xl mx-auto">
+						<h2 className="text-4xl font-bold text-white text-center mb-12">المستندات القابلة للتنزيل</h2>
 
-    <div className={styles.values_grid}>
-      <article className={styles.value_card}>
-        <h3 className={styles.value_name}>التضامن</h3>
-        <p className={styles.value_text}>
-          العمل معاً ودعم الأكثر ضعفاً وتعزيز النسيج الاجتماعي لمجتمعاتنا.
-        </p>
-      </article>
-
-      <article className={styles.value_card}>
-        <h3 className={styles.value_name}>الاستدامة</h3>
-        <p className={styles.value_text}>
-          تصميم مشاريع تحترم البيئة وقابلة للبقاء على المدى الطويل ومفيدة للأجيال القادمة.
-        </p>
-      </article>
-
-      <article className={styles.value_card}>
-        <h3 className={styles.value_name}>الشفافية</h3>
-        <p className={styles.value_text}>
-          إدارة الموارد بصدق وتقديم حسابات عن أفعالنا والحفاظ على حكم راشد واضح.
-        </p>
-      </article>
-
-      <article className={styles.value_card}>
-        <h3 className={styles.value_name}>المشاركة</h3>
-        <p className={styles.value_text}>
-          إشراك السكان في جميع القرارات التي تؤثر عليهم، مع تقدير معارفهم ومبادراتهم.
-        </p>
-      </article>
-    </div>
-  </div>
-</section>
-<section className={styles.docs_section}>
-  <div className={styles.docs_container}>
-    <h2 className={styles.docs_title}>المستندات القابلة للتنزيل</h2>
-
-    <div className={styles.docs_panel}>
-      <a href="/documents/recepisse-depot.pdf" className={styles.doc_card}>
-        <h3 className={styles.doc_name}>وصل الإيداع (PDF)</h3>
-        <p className={styles.doc_text}>
-          الوصل النهائي الصادر من قاضي أسني – 11 مارس 2025
-        </p>
-      </a>
-
-      <a href="/documents/proces-verbal-ag.pdf" className={styles.doc_card}>
-        <h3 className={styles.doc_name}>محضر الجمعية العامة (PDF)</h3>
-        <p className={styles.doc_text}>
-          تقرير الجمعية العامة بتاريخ 3 فبراير 2025
-        </p>
-      </a>
-
-      <a href="/documents/statuts-association.pdf" className={styles.doc_card}>
-        <h3 className={styles.doc_name}>نظام الجمعية (PDF)</h3>
-        <p className={styles.doc_text}>
-          النص الكامل للائحة الداخلية وعقد التأسيس – الإصدار 2025
-        </p>
-      </a>
-
-      <a href="/documents/fiche-technique.pdf" className={styles.doc_card}>
-        <h3 className={styles.doc_name}>البطاقة الفنية (PDF)</h3>
-        <p className={styles.doc_text}>
-          ملخص مؤسسي: الأهداف والمحاور الحد الأدنى والجهات المسؤولة
-        </p>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-
-
-
-
-</main>
-
-  )}
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+							{[
+								{
+									title: "وصل الإيداع (PDF)",
+									description: "الوصل النهائي الصادر من قاضي أسني – 11 مارس 2025",
+									href: "/documents/recepisse-depot.pdf",
+								},
+								{
+									title: "محضر الجمعية العامة (PDF)",
+									description: "تقرير الجمعية العامة بتاريخ 3 فبراير 2025",
+									href: "/documents/proces-verbal-ag.pdf",
+								},
+								{
+									title: "نظام الجمعية (PDF)",
+									description: "النص الكامل للائحة الداخلية وعقد التأسيس – الإصدار 2025",
+									href: "/documents/statuts-association.pdf",
+								},
+								{
+									title: "البطاقة الفنية (PDF)",
+									description: "ملخص مؤسسي: الأهداف والمحاور الحد الأدنى والجهات المسؤولة",
+									href: "/documents/fiche-technique.pdf",
+								},
+							].map((doc, index) => (
+								<a
+									key={index}
+									href={doc.href}
+									className="bg-lime-200 rounded-full p-8 text-center hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col justify-center">
+									<FaDownload className="w-6 h-6 text-[#3b6428] mx-auto mb-4" />
+									<h3 className="text-lg font-bold text-[#3b6428] mb-2">{doc.title}</h3>
+									<p className="text-gray-700 text-base">{doc.description}</p>
+								</a>
+							))}
+						</div>
+					</div>
+				</section>
+			</main>
+		</>
+	);
+}

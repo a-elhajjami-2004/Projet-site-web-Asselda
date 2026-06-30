@@ -1,253 +1,289 @@
-/* ─── Reset & Base ─────────────────────────────────────────────────────────── */
-.main {
-  font-family: "Segoe UI", sans-serif;
-  color: #1a1a1a;
-  background: #ffffff;
-  margin: 0;
-  padding: 0;
+.page {
+	box-sizing: border-box;
 }
 
-/* ─── Hero Header ───────────────────────────────────────────────────────────── */
+/* .page * {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	color-scheme: light;
+} */
+
+/* ============================================================
+   HERO (Espaces réduits)
+   ============================================================ */
 .hero {
-  background-color: #a8c96a;
-  text-align: center;
-  padding: 48px 24px 32px;
+	background: #3b6d11; /* vert Asselda */
+	padding: 1.5rem 1rem 1.25rem;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
 }
 
-.heroTitle {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #1a1a1a;
-  margin: 0 0 16px;
+.hero::before {
+	content: "";
+	position: absolute;
+	top: -40px;
+	right: -40px;
+	width: 180px;
+	height: 180px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.05);
+}
+.hero::after {
+	content: "";
+	position: absolute;
+	bottom: -60px;
+	left: -30px;
+	width: 220px;
+	height: 220px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.04);
 }
 
-.heroDesc {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1a1a1a;
-  max-width: 680px;
-  margin: 0 auto 20px;
-  line-height: 1.6;
+.hero h1 {
+	color: #fff;
+	font-size: 2rem;
+	font-weight: 600;
+	margin-bottom: 0.75rem;
+	position: relative;
+	z-index: 1;
 }
 
-.heroCat {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin: 0;
+.hero p {
+	color: rgba(255, 255, 255, 0.82);
+	font-size: 0.93rem;
+	max-width: 560px;
+	margin: 0 auto 1rem;
+	line-height: 1.5;
+	position: relative;
+	z-index: 1;
 }
 
-/* ─── Sections Wrapper ──────────────────────────────────────────────────────── */
-.sectionsWrapper {
-  border: 2px solid #a855f7;
-  border-radius: 16px;
-  margin: 24px auto;
-  max-width: 1060px;
-  overflow: hidden;
+/* ─── Filtres ─────────────────────────────────────────────── */
+.filter-bar {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	flex-wrap: wrap;
+	position: relative;
+	z-index: 1;
 }
 
+.filter-btn {
+	background: rgba(255, 255, 255, 0.15);
+	border: 1.5px solid rgba(255, 255, 255, 0.35);
+	color: #fff;
+	font-size: 0.82rem;
+	font-weight: 500;
+	padding: 6px 18px;
+	border-radius: 20px;
+	cursor: pointer;
+	transition:
+		background 0.2s,
+		border-color 0.2s;
+}
+
+.filter-btn:hover {
+	background: rgba(255, 255, 255, 0.25);
+}
+
+.filter-btn.active {
+	background: #fff;
+	color: #3b6d11;
+	border-color: #fff;
+}
+
+/* ============================================================
+   CONTENU (Élargi au maximum)
+   ============================================================ */
+.content {
+	padding: 1.25rem 0rem;
+	max-width: 1200px;
+	margin: 0 auto;
+	width: 100%;
+}
+
+/* ─── Section ─────────────────────────────────────────────── */
 .section {
-  padding: 32px 40px 40px;
-  border-bottom: 1px solid #e5e7eb;
+	margin-bottom: 1.5rem;
 }
 
-.section:last-child {
-  border-bottom: none;
+.section-header {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 0.85rem;
 }
 
-/* ─── Category Badge ────────────────────────────────────────────────────────── */
-.categoryBadgeWrapper {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 32px;
+.section-line {
+	flex: 1;
+	height: 1.5px;
+	background: #e5e7eb;
 }
 
-.categoryBadge {
-  background-color: #7dc455;
-  color: #1a1a1a;
-  font-size: 1.1rem;
-  font-weight: 700;
-  padding: 10px 36px;
-  border-radius: 999px;
-  display: inline-block;
+.section-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 1.1rem;
+	font-weight: 700;
+	padding: 5px 16px;
+	border-radius: 20px;
+	white-space: nowrap;
+	background: #eaf3de;
+	color: #3b6d11;
+	border: 1px solid #84b670;
 }
 
-/* ─── Partner Grid ──────────────────────────────────────────────────────────── */
-.partnerGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px 48px;
-  align-items: stretch;
+.badge-intl {
+	background: #eaf3de;
+	color: #3b6d11;
+	border: 1px solid #c0dd97;
+}
+.badge-inst {
+	background: #eaf3de;
+	color: #3b6d11;
+	border: 1px solid #c0dd97;
+} /* Uniformisé en Vert */
+.badge-nat {
+	background: #eaf3de;
+	color: #3b6d11;
+	border: 1px solid #c0dd97;
+} /* Uniformisé en Vert */
+
+/* ─── Grille de cartes étirée ────────────────────────────── */
+.cards-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+	gap: 16px;
+	width: 100%;
 }
 
-@media (max-width: 640px) {
-  .partnerGrid {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 900px) {
+	.cards-grid {
+		grid-template-columns: 1fr;
+	}
 }
 
-.partnerCol {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  height: 100%;
+/* ============================================================
+   CARTE PARTENAIRE (Toujours blanche et propre)
+   ============================================================ */
+.partner-card {
+	background: #fff; /* Fixé sur blanc pour toutes les cartes */
+	border: 1px solid #e5e7eb;
+	border-radius: 14px;
+	padding: 1rem 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	transition:
+		border-color 0.2s,
+		box-shadow 0.2s;
+	width: 100%;
 }
 
-/* ─── Logos ─────────────────────────────────────────────────────────────────── */
-.logoWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 120px;
+.partner-card:hover {
+	border-color: #3b6d11; /* Changement de couleur au survol vers le vert Asselda */
+	box-shadow: 0 4px 12px rgba(59, 109, 17, 0.08);
 }
 
-.logoSquare {
-  max-width: 200px;
-  max-height: 120px;
-  object-fit: contain;
+/* ─── Conteneur Logo (Agrandi & Vert pour tous) ───────────── */
+/* ─── Conteneur Logo (Agrandi à 78px) ──────────────────────── */
+
+/* ============================================================
+   LOGOS SANS CONTENEUR (Alignement fluide)
+   ============================================================ */
+
+.partner-logo-free {
+	height: 100% !important; /* Hauteur fixe pour l'alignement */
+	width: auto !important; /* Ratio préservé */
+	max-width: 70px !important; /* Largeur max pour éviter de déborder */
+	object-fit: contain !important;
+	margin-right: 16px !important; /* Espace avec le texte */
+	display: flex !important;
+	align-self: flex-start !important; /* Aligne le haut du logo avec le haut du titre */
 }
 
-.logoCircle {
-  width: 130px;
-  height: 130px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid #e5e7eb;
+.partner-initials-free {
+	width: 60px;
+	height: 60px;
+	border-radius: 10px;
+	background-color: #f9fafb;
+	border: 1px solid #e5e7eb;
+	color: #6b7280;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600;
+	margin-right: 16px;
+	flex-shrink: 0;
 }
 
-/* ─── Info Cards ────────────────────────────────────────────────────────────── */
-.infoCard {
-  border-radius: 20px;
-  padding: 18px 22px;
-  width: 100%;
-  box-sizing: border-box;
-  flex-grow: 1; /* Force l'élément à s'étirer pour remplir tout l'espace vertical */
-  height: 100%; /* Force la hauteur à 100% de son parent */
-  width: 100%;
+/* ─── En-tête de carte ────────────────────────────────────── */
+.card-header {
+	display: flex;
+	align-items: center;
+	gap: 16px;
 }
 
-.infoTag {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 4px 14px;
-  border-radius: 999px;
-  margin-bottom: 10px;
-  font-style: italic;
+.card-info {
+	flex: 1;
+	min-width: 0;
 }
 
-.infoTagSub {
-  font-weight: 400;
-  font-style: normal;
+.card-name {
+	font-size: 1.4rem;
+	font-weight: 700;
+	color: #3b6d11; /* Nom du partenaire en vert */
+	line-height: 1.2;
+	margin-bottom: 3px;
 }
 
-.infoTitle {
-  font-size: 1rem;
-  font-weight: 800;
-  margin: 0 0 8px;
-  color: #1a1a1a;
+.card-role {
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.4px;
+	color: #214222;
 }
 
-.infoDesc {
-  font-size: 0.88rem;
-  color: #333;
-  line-height: 1.6;
-  margin: 0;
+/* ─── Tag catégorie (Vert harmonieux) ─────────────────────── */
+.card-tag {
+	display: inline-block;
+	font-size: 0.7rem;
+	font-weight: 500;
+	padding: 3px 10px;
+	border-radius: 20px;
+	width: fit-content;
+	background: #eaf3de; /* Uniformisé en vert clair */
+	color: #3b6d11;
 }
 
-/* ─── Card Background Colors ────────────────────────────────────────────────── */
-.cardBlue {
-  background-color: #cff0f5;
+/* ─── Description ─────────────────────────────────────────── */
+.card-desc {
+	font-size: 1rem;
+	/* color: #4b5563; */
+	line-height: 1.55;
 }
 
-.cardOrange {
-  background-color: #fde8d0;
+/* ─── Barre de statistiques ───────────────────────────────── */
+.stats-bar {
+	display: flex;
+	gap: 16px;
+	padding-top: 6px;
+	border-top: 1px solid #f3f4f6;
+	margin-top: 2px;
 }
 
-.cardGreen {
-  background-color: #dcf0cc;
+.stat {
+	font-size: 0.72rem;
+	color: #3b6d11; /* Stat Label en vert également pour le rappel */
+	display: flex;
+	align-items: center;
+	gap: 5px;
 }
 
-.cardYellow {
-  background-color: #f5f5c0;
+.stat i {
+	font-size: 13px;
 }
-
-.cardPink {
-  background-color: #fbd5d5;
-}
-
-.cardGreenLight {
-  background-color: #e0f0d5;
-}
-
-/* ─── Tag Colors ────────────────────────────────────────────────────────────── */
-.tagBlue {
-  background-color: #b2e0ea;
-  color: #0d5c72;
-}
-
-.tagOrange {
-  background-color: #f8c89a;
-  color: #7a3b00;
-}
-
-.tagGray {
-  background-color: #d4d4d4;
-  color: #2d4a22 ;
-}
-
-.tagYellow {
-  background-color: #e8e88a;
-  color: #5a5a00;
-}
-
-.tagPink {
-  background-color: #f5a8a8;
-  color: #6b0000;
-}
-
-.tagGrayGreen {
-  background-color: #c5ddb8;
-  color: #2d4a22;
-}
-
-/* ─── CTA Section ───────────────────────────────────────────────────────────── */
-.cta {
-  background-color: #c8e08a;
-  text-align: center;
-  padding: 40px 24px;
-  margin: 0;
-}
-
-.ctaTitle {
-  font-size: 1.3rem;
-  font-weight: 800;
-  margin: 0 0 12px;
-  color: #1a1a1a;
-}
-
-.ctaDesc {
-  font-size: 1rem;
-  color: #1a1a1a;
-  line-height: 1.7;
-  margin: 0 0 24px;
-}
-
-.ctaBtn {
-  display: inline-block;
-  background-color: #7dc455;
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.95rem;
-  padding: 12px 32px;
-  border-radius: 999px;
-  text-decoration: none;
-  transition: background 0.2s ease;
-}
-
-.ctaBtn:hover {
-  background-color: #5faa3a;
-}
-
-/* ─── Footer ────────────────────────────────────────────────────────────────── */

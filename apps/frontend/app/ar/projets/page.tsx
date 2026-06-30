@@ -1,27 +1,25 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
 import styles from "@/styles/projects.module.css";
-import {
-	projects,
-	timelineEvents,
-	statuses,
-	domains,
-	getStatusColor,
-	getDomainColor,
-	filterProjects,
-	type ProjectStatus,
-	type ProjectDomain,
-} from "@/lib/projects";
+import ProjectsGrid from "@/components/ProjectsGrid";
+import EventsTimeline from "@/components/EventsTimeline";
+import { translations } from "@/lib/translations";
+import { getProjects, getTimelineEvents } from "@/lib/api";
 
 export default function Projects() {
-	const [selectedStatus, setSelectedStatus] = useState<ProjectStatus | "Tous">("Tous");
-	const [selectedDomain, setSelectedDomain] = useState<ProjectDomain | "Tous">("Tous");
+	type StatusKey = keyof typeof translatedStatues | "all";
+	type DomainKey = keyof typeof translatedDomains | "all";
+	const [selectedStatus, setSelectedStatus] = useState<StatusKey>("all");
+	const [selectedDomain, setSelectedDomain] = useState<DomainKey>("all");
 	const [timelineVisible, setTimelineVisible] = useState(false);
+
+	const translatedStatues = translations.ar.pages.projects.statuses;
+	const translatedDomains = translations.ar.pages.projects.domains;
 
 	const timelineRef = useRef<HTMLDivElement>(null);
 
-	const filteredProjects = filterProjects(projects, selectedStatus, selectedDomain);
+	// const filteredProjects = filterProjects(projects, selectedStatus, selectedDomain);
 
 	// Intersection Observer for timeline animation
 	useEffect(() => {
@@ -49,106 +47,88 @@ export default function Projects() {
 	return (
 		<main>
 			{/* Section Héro */}
-			<section className={styles.projectsHero}>
-				<div className={styles.projectsOverlay}></div>
-				<hgroup className={styles.projectsContent}>
-					<h1>مشاريعنا</h1>
-					<p>
-						منذ عام 1996، صممت جمعية أسلدة ونفّذت مشاريع هيكلية تخدم مجتمع دوار أسلدة. كل مشروع يستجيب لحاجة حقيقية، حُدِّدت مع السكان ومن أجلهم.
+			<section className="hero-section">
+				<div className="max-w-3xl z-10">
+					<h1 className="hero-title">مشاريعنا</h1>
+					<p className="hero-copy">
+						منذ عام 1996، صممت جمعية أسلدة ونفّذت مشاريع هيكلية تخدم مجتمع دوار أسلدة. كل مشروع يستجيب لحاجة
+						حقيقية، حُدِّدت مع السكان ومن أجلهم.
 					</p>
-				</hgroup>
+				</div>
+			</section>
+			<section className="bg-white py-12 px-6 flex flex-col gap-4">
+				<div className="max-w-7xl mx-auto flex justify-center">
+					<div className="flex flex-col items-center gap-4">
+						<label className="font-semibold text-gray-900 text-xl">الاختيار حسب الحالة</label>
+						<div className="font-bold max-w-6xl flex flex-row flex-wrap justify-center gap-4">
+							<button
+								key={"all"}
+								className={
+									selectedStatus == "all"
+										? "min-w-max border-2 border-[#7cb645] bg-[#7cb645] text-white rounded-full px-4 py-2 cursor-pointer"
+										: "min-w-max border-2 border-[#7cb645] bg-white text-forground rounded-full px-4 py-2 cursor-pointer"
+								}
+								onClick={() => setSelectedStatus("all")}>
+								الكل
+							</button>
+							{Object.entries(translatedStatues).map(([key, status]) => (
+								<button
+									key={key}
+									className={
+										key == selectedStatus
+											? "min-w-max border-2 border-[#7cb645] bg-[#7cb645] text-white rounded-full px-4 py-2 cursor-pointer"
+											: "min-w-max border-2 border-[#7cb645] bg-white text-forground rounded-full px-4 py-2 cursor-pointer"
+									}
+									onClick={() => setSelectedStatus(key as StatusKey)}>
+									{status}
+								</button>
+							))}
+						</div>
+					</div>
+				</div>
+				<div className="max-w-7xl mx-auto flex justify-center">
+					<div className="flex flex-col items-center gap-4">
+						<label className="font-semibold text-gray-900 text-xl">الاختيار حسب المجال</label>
+						<div className="font-bold max-w-6xl flex flex-row flex-wrap justify-center gap-4">
+							<button
+								key={"all"}
+								className={
+									selectedDomain == "all"
+										? "min-w-max border-2 border-[#7cb645] bg-[#7cb645] text-white rounded-full px-4 py-2 cursor-pointer"
+										: "min-w-max border-2 border-[#7cb645] bg-white text-forground rounded-full px-4 py-2 cursor-pointer"
+								}
+								onClick={() => setSelectedDomain("all")}>
+								الكل
+							</button>
+							{Object.entries(translatedDomains).map(([key, domain]) => (
+								<button
+									key={key}
+									className={
+										key == selectedDomain
+											? "min-w-max border-2 border-[#7cb645] bg-[#7cb645] text-white rounded-full px-4 py-2 cursor-pointer"
+											: "min-w-max border-2 border-[#7cb645] bg-white text-forground rounded-full px-4 py-2 cursor-pointer"
+									}
+									onClick={() => setSelectedDomain(key as DomainKey)}>
+									{domain}
+								</button>
+							))}
+						</div>
+					</div>
+				</div>
 			</section>
 
 			{/* Section Projets */}
-			<section className={styles.projectsSection}>
-				<div className={styles.projectsContainer}>
-					<h2 className={styles.sectionTitle}>المشاريع الحالية</h2>
-
-					{/* Filtres */}
-					<div className={styles.filtersWrapper}>
-						<div className={styles.filterSection}>
-							<label className={styles.filterLabel}>الاختيار حسب الحالة:</label>
-							<div className={styles.filterButtonsGroup}>
-								<button
-									className={`${styles.filterButton} ${selectedStatus === "Tous" ? styles.active : ""}`}
-									onClick={() => setSelectedStatus("Tous")}>
-									Tous
-								</button>
-								{statuses.map((status) => (
-									<button
-										key={status}
-										className={`${styles.filterButton} ${selectedStatus === status ? styles.active : ""}`}
-										onClick={() => setSelectedStatus(status)}>
-										{status}
-									</button>
-								))}
-							</div>
-						</div>
-
-						<div className={styles.filterSection}>
-							<label className={styles.filterLabel}>الاختيار حسب المجال:</label>
-							<div className={styles.filterButtonsGroup}>
-								<button
-									className={`${styles.filterButton} ${selectedDomain === "Tous" ? styles.active : ""}`}
-									onClick={() => setSelectedDomain("Tous")}>
-									Tous
-								</button>
-								{domains.map((domain) => (
-									<button
-										key={domain}
-										className={`${styles.filterButton} ${selectedDomain === domain ? styles.active : ""}`}
-										onClick={() => setSelectedDomain(domain)}>
-										{domain}
-									</button>
-								))}
-							</div>
-						</div>
-					</div>
-
-					{/* Cartes de projets */}
-					<div className={styles.projectsGrid}>
-						{filteredProjects.length > 0 ? (
-							filteredProjects.map((project, key) => (
-								<article key={key} className={styles.projectCard}>
-									<img src={project.image} alt={project.title} className={styles.projectImage} />
-									<main className={styles.projectBody}>
-										<section className={styles.projectMeta}>
-											<span
-												className={styles.badge}
-												style={{ backgroundColor: getStatusColor(project.status) }}>
-												{project.status}
-											</span>
-											<span
-												className={styles.badge}
-												style={{ backgroundColor: getDomainColor(project.domain) }}>
-												{project.domain}
-											</span>
-										</section>
-
-										<h3 className={styles.projectTitle}>{project.title}</h3>
-
-										{Object.entries(project.details).map(([key, value]) => (
-											<p className={styles.projectDetail}>
-												<strong className={styles.projectDetailLabel}>{key}</strong>
-												<span>{value}</span>
-											</p>
-										))}
-
-										<div className={styles.projectDescription}>{project.description}</div>
-
-										{project.results && (
-											<p className={styles.projectResults}>
-												<strong>Résultats :</strong> {project.results}
-											</p>
-										)}
-									</main>
-								</article>
-							))
-						) : (
-							<div className={styles.emptyState}>لا توجد مشاريع مطابقة لهذا الاختيار.</div>
+			<section className={styles.projectsSection + " bg-white"}>
+				<Suspense fallback={<div className="py-12 text-center">جاري التحميل...</div>}>
+					<ProjectsGrid
+						projects={getProjects(
+							"ar",
+							selectedStatus === "all" ? undefined : selectedStatus,
+							selectedDomain === "all" ? undefined : selectedDomain,
 						)}
-					</div>
-				</div>
+						lang="ar"
+					/>
+				</Suspense>
 			</section>
 
 			{/* Section Timeline */}
@@ -158,17 +138,9 @@ export default function Projects() {
 					ref={timelineRef}
 					className={`${styles.timelineContainer} ${timelineVisible ? styles.visible : ""}`}>
 					<div className={styles.timelineLine}></div>
-
-					<div className={styles.timelineContent}>
-						{timelineEvents.map((event, key) => (
-							<div key={key} className={styles.timelineItem}>
-								<div className={styles.timelineYear}>{event.year}</div>
-								<div className={styles.timelineEventBody}>
-									<h3 className={styles.timelineEventTitle}>{event.title}</h3>
-								</div>
-							</div>
-						))}
-					</div>
+					<Suspense fallback={<div className="py-12 text-center">جاري التحميل...</div>}>
+						<EventsTimeline eventsTimeline={getTimelineEvents("ar")} lang="ar" />
+					</Suspense>
 				</div>
 			</section>
 		</main>

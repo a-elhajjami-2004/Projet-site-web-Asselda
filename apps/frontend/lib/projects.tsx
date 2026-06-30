@@ -1,5 +1,7 @@
 import { ReactElement } from "react";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
+
 export type ProjectStatus = "Opérationel" | "Terminé" | "En cours";
 export type ProjectDomain = "Environnement" | "Eau" | "Infrastructure & Rural" | "Social & Famille";
 
@@ -23,7 +25,7 @@ export const projects: Project[] = [
 		title: "Projet d'assainissement liquide et de traitement des eaux usées de Douar Asselda",
 		status: "Opérationel",
 		domain: "Environnement",
-		image: "https://picsum.photos/400/280?random=1",
+		image: "http://localhost:1337/uploads/projet_assainissement_01_a82246aa8d.jpeg",
 		details: {
 			"Budget total": "12 000 000.00 DH (12 MDH)",
 			"Partenaire principal": "AMEED - Association Maroco-Suisse pour le Développement",
@@ -52,7 +54,7 @@ export const projects: Project[] = [
 		title: "Réseau d'eau potable alimenté par énergie solaire",
 		status: "Opérationel",
 		domain: "Eau",
-		image: "https://picsum.photos/400/280?random=2",
+		image: "http://localhost:1337/uploads/projet_eau_01_26fbe7d195.jpeg",
 		details: {},
 		description: (
 			<>
@@ -78,7 +80,7 @@ export const projects: Project[] = [
 		title: "Trottoirs et ruelles de Douar Asselda – Programme Awrach 2022",
 		status: "Terminé",
 		domain: "Infrastructure & Rural",
-		image: "https://picsum.photos/400/280?random=3",
+		image: "http://localhost:1337/uploads/projet_voirie_03_2dc2698353.png",
 		details: {
 			Programme: "Programme National Awrach 2022 – Royaume du Maroc",
 			"Zones concernées": "Douar Asselda 1, Douar Asselda 2, Douar Asselda 3",
@@ -96,7 +98,7 @@ export const projects: Project[] = [
 		title: "Réponse humanitaire au séisme du 8 septembre 2023",
 		status: "En cours",
 		domain: "Social & Famille",
-		image: "https://picsum.photos/400/280?random=4",
+		image: "http://localhost:1337/uploads/projet_seisme_03_e55843567b.jpg",
 		details: {
 			Contexte:
 				"Le 8 septembre 2023, un séisme dévastateur a frappé la région. La quasi-totalité des maisons du douar a été endommagée ou détruite. Les ruelles ont été obstruées, les réseaux d'eau et d'électricité coupés. L'école et la mosquée ont subi des fissures importantes.",

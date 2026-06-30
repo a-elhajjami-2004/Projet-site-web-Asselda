@@ -1,216 +1,93 @@
+"use client";
 
-import Image from "next/image";
-import styles from "@/styles/actualites.module.css";
+import { Suspense, useState } from "react";
+import { getArticles, getEvents } from "@/lib/api";
+import { getTranslation } from "@/lib/translations";
+import ArticlesGrid from "@/components/ArticlesGrid";
+import EventsGrid from "@/components/EventsGrid";
 
-export default function News() {
- 
+export default function NewsPage() {
+	const [search, setSearch] = useState("");
+	const [selectedCategory, setSelectedCategory] = useState<string>("all");
+	const lang = "fr";
 
-  return (
-    <main className={styles.main}>
+	const articlesPromise = getArticles("fr");
+	const eventsPromise = getEvents("fr");
 
-      {/* ===== HERO ===== */}
-      <section className={styles.heroActualites}>
-        <h1 className={styles.title}>Actualités / Événements</h1>
- 
-         <p className={styles.heroSubtitle}>
-          Restez informé des dernières nouvelles, projets, événements et communiqués de l'Association Asselda.
-        </p>
+	const categories = [
+		{ key: "all", label: "Toutes" },
+		{ key: "news", label: getTranslation(lang, "pages.news.categories.news") },
+		{ key: "event", label: getTranslation(lang, "pages.news.categories.event") },
+		{ key: "project", label: getTranslation(lang, "pages.news.categories.project") },
+		{ key: "solidarity", label: getTranslation(lang, "pages.news.categories.solidarity") },
+	];
 
-        <div className={styles.categoriesBar}>
-          <span className={styles.catLabel}>Catégories</span>
-          <nav className={styles.catLinks}>
-            <a href="#">Toutes</a> |
-            <a href="#">Projets</a> |
-            <a href="#">Événements</a> |
-            <a href="#">Communiqués</a> |
-            <a href="#">Solidarité</a>
-          </nav>
-        </div>
+	return (
+		<main className="min-h-screen bg-white text-gray-900">
+			{/* HERO */}
+			<section className="hero-section">
+				<div className="max-w-3xl z-10">
+					<h1 className="hero-title">Actualités & Événements</h1>
+					<p className="hero-copy">
+						Restez informé des dernières nouvelles, projets, événements et communiqués de l'Association
+						Asselda.
+					</p>
+				</div>
+			</section>
 
-        
-        <div className={styles.searchBox}>
-          <input type="text" placeholder="Rechercher une actualité..." />
-          <span className={styles.searchArrow}>→</span>
-        </div>
-      
+			<section className="bg-white py-12 px-6 flex flex-col gap-4">
+				<div className="max-w-7xl mx-auto flex justify-center">
+					<div className="flex flex-col items-center gap-4">
+						<label className="font-semibold text-gray-900 text-xl">Rechercher un article</label>
+						<input
+							aria-label="Rechercher..."
+							value={search}
+							onChange={(e) => setSearch(e.target.value)}
+							placeholder="Rechercher une actualité..."
+							className="rounded-md p-3 border-2 border-[#7cb645] text-black"
+						/>
+					</div>
+				</div>
+				<div className="max-w-7xl mx-auto flex justify-center">
+					<div className="flex flex-col items-center gap-4">
+						<label className="font-semibold text-gray-900 text-xl">Filtrer par catégorie</label>
+						<div className="font-bold max-w-6xl flex flex-row flex-wrap justify-center gap-4">
+							{categories.map((category) => (
+								<button
+									key={category.key}
+									className={
+										category.key == selectedCategory
+											? "min-w-max border-2 border-[#7cb645] bg-[#7cb645] text-white rounded-full px-4 py-2 cursor-pointer"
+											: "min-w-max border-2 border-[#7cb645] bg-white text-forground rounded-full px-4 py-2 cursor-pointer"
+									}
+									onClick={() => setSelectedCategory(category.key)}>
+									{category.label}
+								</button>
+							))}
+						</div>
+					</div>
+				</div>
+			</section>
 
+			{/* ARTICLES */}
+			<Suspense fallback={<div className="py-12 text-center">Chargement des actualités...</div>}>
+				<ArticlesGrid
+					articles={articlesPromise}
+					lang={lang}
+					search={search}
+					category={selectedCategory === "all" ? "" : selectedCategory}
+				/>
+			</Suspense>
 
-        <div className={styles.heroImage}>
-          <Image
-            src="/images/image-actu.png"
-            alt="Bénévoles"
-            width={1200}
-            height={500}
-          />
-        </div>
-       
-        <a href="#actualites" className={`${styles.btn} ${styles.btnOutlineDark}`}>
-          Blog d'actualités →
-        </a>
-      </section>
-
-      {/* ===== ACTU 1 ===== */}
-      <section className={styles.actuCard} id="actualites">
-
-        <div className={styles.cardImages}>
-          <Image src="/images/ag1.jpg" alt="" width={580} height={280} />
-          <Image src="/images/ag2.jpg" alt="" width={580} height={280} />
-        </div>
-
-        <div className={`${styles.cardTexts} ${styles.twoCol}`}>
-          <div className={styles.cardTitleBox}>
-            <p>
-             Renouvellement du bureau de l'association – Assemblée Générale du 3 février 2025
-            </p>
-          </div>
-
-          <div className={styles.cardDescBox}>
-            <p>
-              Lors de l'AG extraordinaire du 3 février 2025, les membres ont élu 
-              le nouveau bureau exécutif pour un mandat de 5 ans, sous la présidence de M. Samir Ahram.
-            </p>
-          </div>
-        </div>
-
-      </section>
-
-      {/* ===== ACTU 2 ===== */}
-      <section className={styles.actuCard}>
-
-        <div className={styles.cardImageSingle}>
-          <Image src="/images/seisme.jpg" alt="" width={10000} height={240}/>
-        </div>
-
-        <div className={`${styles.cardTexts} ${styles.oneCol}`}>
-          <div className={styles.cardTitleBox}>
-            <p>
-              Un an après le séisme : bilan de la solidarité et perspectives de reconstruction
-            </p>
-          </div>
-        </div>
-
-      </section>
-
-      {/* ===== ACTU 3 ===== */}
-      <section className={styles.actuCard}>
-
-        <div className={styles.cardImages}>
-          <Image src="/images/recons1.jpg" alt="" width={580} height={280} />
-          <Image src="/images/recons2.jpg" alt="" width={580} height={280} />
-        </div>
-
-        <div className={styles.cardTexts}>
-          <div className={styles.cardTitleBox}>
-            <p>
-             Retour sur les actions menées par l'association depuis le séisme dévastateur du 8 septembre 2023 : 
-             distribution d'aide, montage de tentes, soutien psychologique et suivi de la reconstruction.
-            </p>
-          </div>
-        </div>
-
-      </section>
-
-      {/* ===== ACTU 4 ===== */}
-      <section className={styles.actuCard}>
-
-        <div className={styles.cardImages}>
-          <Image src="/images/awrach1.jpg" alt="" width={580} height={280} />
-          <Image src="/images/awrach2.jpg" alt="" width={580} height={280} />
-        </div>
-
-        <div className={`${styles.cardTexts} ${styles.twoCol}`}>
-          <div className={styles.cardTitleBox}>
-            <p>Résultats du programme Awrach 2022 : les ruelles de Douar Asselda rénovées</p>
-          </div>
-
-          <div className={styles.cardDescBox}>
-            <p>
-             Le programme national Awrach 2022 a permis le pavage complet des ruelles et 
-             places publiques des trois douars, améliorant significativement le cadre de vie des habitants
-            </p>
-          </div>
-        </div>
-
-        <div style={{ textAlign: "center", marginTop: "20px" }}>
-          <a className={`${styles.btn} ${styles.btnGreenPill}`} href="#">
-            Toutes les actualités →
-          </a>
-        </div>
-
-      </section>
-
-      
-      {/* ===== ÉVÉNEMENTS À VENIR ===== */}
-<section className={styles.eventsSection}>
-
-  <h2 className={styles.sectionTitle}>
-    Événements à Venir (Calendrier)
-  </h2>
-
-  <div className={styles.eventsContainer}>
-
-    <div className={styles.event}>
-      <div className={styles.eventLeft}>
-        <Image src="/images/Ev1.png" alt="Assemblée Générale" width={300} height={180} />
-      </div>
-      <div className={styles.eventRight}>
-        Assemblée Générale Annuelle 2025 – Date à définir – Salle communautaire Asni
-      </div>
-    </div>
-
-    <div className={styles.event}>
-      <div className={styles.eventLeft}>
-        <Image src="/images/Ev2.png" alt="Caravane médicale" width={300} height={180} />
-      </div>
-      <div className={styles.eventRight}>
-        Caravane médicale – Date à planifier – Douar Asselda
-      </div>
-    </div>
-
-    <div className={styles.event}>
-      <div className={styles.eventLeft}>
-        <Image src="/images/Ev3.png" alt="Nettoyage" width={300} height={180} />
-      </div>
-      <div className={styles.eventRight}>
-        Journée de nettoyage et sensibilisation – Date à définir – Douar Asselda
-      </div>
-    </div>
-
-<div className={styles.event}>
-      <div className={styles.eventLeft}>
-        <Image src="/images/Ev4.png" alt="Nettoyage" width={300} height={180} />
-      </div>
-      <div className={styles.eventRight}>
-        Atelier de formation jeunes – Informatique et entrepreneuriat – Date à définir
-      </div>
-    </div>
-
-
-  </div>
-
-</section>
-
-      <section className={styles.atelierSection}>
-        <div className={styles.atelierButtons}>
-          <a className={`${styles.btn} ${styles.btnOutlineGreen}`} href="#">
-            s'inscrire →
-          </a>
-
-          <a className={`${styles.btn} ${styles.btnOutlineGreen}`} href="#">
-            nous contacter →
-          </a>
-        </div>
-
-      </section>
-
-      {/* ===== FOOTER ===== */}
-      <footer className={styles.siteFooter}>
-        <div className={styles.footerInner}>
-          <p>Association Asselda – Depuis 1996</p>
-          <p>contact : associationasselda@gmail.com</p>
-        </div>
-      </footer>
-
-    </main>
-  );
+			{/* EVENTS */}
+			<section className="py-12 bg-gray-50">
+				<div className="max-w-7xl mx-auto px-6">
+					<h2 className="text-2xl font-bold mb-6">Événements à venir</h2>
+					<Suspense fallback={<div className="py-8 text-center">Chargement des événements...</div>}>
+						<EventsGrid events={eventsPromise} lang={lang} />
+					</Suspense>
+				</div>
+			</section>
+		</main>
+	);
 }
