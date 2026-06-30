@@ -1,0 +1,370 @@
+.pageWrapper {
+	/* background-color: #f9fbf7; */
+	/* min-height: 100vh; */
+	/* font-family: 'Inter', sans-serif; */
+	scroll-behavior: smooth;
+
+	--panel-bg: #f0fced;
+	--accent-fg: #345f24;
+	--field-hint-fg: #58774c;
+}
+
+/* --- HERO SECTION --- */
+.heroSection {
+	text-align: center;
+	padding: 80px 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.heroBanner {
+	background-color: #a1c654;
+	border-radius: 15px;
+	padding: 60px 40px;
+	margin-bottom: 40px;
+	max-width: 1000px;
+	width: 100%;
+}
+
+.heroBanner h1 {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+.heroBanner p {
+	font-size: 1.1rem;
+	line-height: 1.6;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.heroNavButtons {
+	display: flex;
+	justify-content: center;
+	gap: 30px;
+}
+
+.navBtnLarge {
+	background-color: #b2d380;
+	color: #1a1a1a;
+	text-decoration: none;
+	padding: 15px 40px;
+	border-radius: 50px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	font-weight: 600;
+	transition: transform 0.2s;
+}
+
+.iconBtn {
+	color: #5b7a3a;
+}
+
+/* --- FORM SECTION --- */
+.formSection {
+	display: flex;
+	justify-content: center;
+	padding: 60px 20px;
+}
+
+.formCard {
+	background: #ffffff;
+	border-radius: 20px;
+	padding: 35px;
+	width: 100%;
+	max-width: 950px;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.columnsContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0;
+	align-items: start;
+}
+
+.leftColumn {
+	border-inline-end: 2px solid #eef2ea;
+	padding-inline-end: 40px;
+}
+.rightColumn {
+	padding-inline-start: 40px;
+}
+
+.icon {
+	color: var(--color-hero) !important;
+}
+.inputGroup {
+	margin-bottom: 22px;
+}
+
+.labelContainer {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-weight: 600;
+	margin-bottom: 8px;
+	font-size: 1rem;
+}
+
+.inputField {
+	width: 100%;
+	padding: 14px;
+	border: none;
+	border-radius: 10px;
+	background-color: var(--panel-bg);
+	font-family: inherit;
+
+	&:focus-visible {
+		outline: 2px solid var(--color-hero);
+	}
+
+	&:user-invalid {
+		outline: 2px solid red;
+	}
+
+	/* font-size: 0.9rem; */
+	/* outline: none; */
+}
+
+.requiredField {
+	font-size: 60%;
+	vertical-align: +0.4ex;
+	color: red;
+}
+
+.helperText,
+.sectionSubtitle {
+	font-size: 0.8rem;
+	color: var(--field-hint-fg);
+	margin-top: 4px;
+}
+
+.sectionHeader {
+	margin-bottom: 12px;
+}
+
+.gridInterest {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+	margin-bottom: 25px;
+}
+.fullWidth {
+	grid-column: span 2;
+}
+
+.selectBtn {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 13px 15px;
+	background-color: var(--panel-bg);
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 0.9rem;
+	width: 100%;
+}
+
+.selectBtnLabel {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.selectBtn input {
+	accent-color: var(--color-hero);
+
+	&:user-invalid {
+		outline: 2px solid red;
+	}
+}
+
+.activeBtn {
+	/* color: var(--color-hero-text); */
+	background-color: var(--color-hero) !important;
+	font-weight: 600;
+}
+
+.engagementList {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	width: 100%;
+}
+
+.formFooter {
+	margin-top: 30px;
+	border-top: 1px solid #eee;
+	padding-top: 25px;
+	/* text-align: center; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+.consentBox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	background: var(--panel-bg);
+	padding: 12px;
+	border-radius: 10px;
+	cursor: pointer;
+	align-self: stretch;
+}
+
+.consentBox input {
+	accent-color: var(--color-hero);
+
+	&:user-invalid {
+		outline: 2px solid red;
+	}
+}
+
+.submitBtn {
+	background-color: #a1c654;
+	border: none;
+	padding: 15px 45px;
+	border-radius: 50px;
+	font-weight: 700;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.formResult {
+	padding: 12px;
+	border-radius: 4px;
+	margin-bottom: 16px;
+	text-align: center;
+	align-self: stretch;
+
+	&.success {
+		background-color: #d4edda;
+		border: 1px solid #c3e6cb;
+		color: #155724;
+	}
+
+	&.error {
+		background-color: #f8d7da;
+		border: 1px solid #f5c6cb;
+		color: #721c24;
+	}
+}
+
+/* --- SECTION BÉNÉVOLAT (OPPORTUNITÉS) --- */
+.oppSection {
+	max-width: 950px;
+	margin: 60px auto;
+	padding-bottom: 100px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.oppSection h2 {
+	color: #345f24;
+	font-size: 24px;
+	font-weight: 700;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.oppIntroBox {
+	background-color: #ffffff;
+	padding: 25px;
+	border-radius: 15px;
+	text-align: center;
+	margin-bottom: 40px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.oppGrid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+}
+.oppCard {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	padding: 20px;
+	border-radius: 15px;
+	font-size: 0.95rem;
+	line-height: 1.4;
+	font-weight: 500;
+}
+.oppIcon {
+	color: #5b7a3a !important;
+	flex-shrink: 0;
+}
+
+.bgGreen {
+	background-color: #e8f3d6;
+}
+.bgBlue {
+	background-color: #e0f2f8;
+}
+.bgYellow {
+	background-color: #fdf5d3;
+}
+.bgOrange {
+	background-color: #fcecd4;
+}
+
+.availabilityCard {
+	background-color: #e3ebd8;
+	padding: 25px;
+	border-radius: 15px;
+	text-align: center;
+	margin: 40px 0;
+}
+
+.finalCtaWrapper {
+	display: flex;
+	justify-content: center;
+}
+.benevoleFinalBtn {
+	background-color: #a1c654;
+	color: #000;
+	text-decoration: none;
+	padding: 15px 45px;
+	border-radius: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2px;
+	transition: transform 0.2s;
+}
+.ctaMainText {
+	font-weight: 700;
+	font-size: 1.1rem;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.ctaSubText {
+	font-size: 0.8rem;
+	opacity: 0.7;
+}
+
+@media (max-width: 800px) {
+	.columnsContainer,
+	.heroNavButtons,
+	.oppGrid {
+		grid-template-columns: 1fr;
+	}
+	.leftColumn {
+		border-right: none;
+		padding-right: 0;
+		margin-bottom: 30px;
+	}
+	.rightColumn {
+		padding-left: 0;
+	}
+}
