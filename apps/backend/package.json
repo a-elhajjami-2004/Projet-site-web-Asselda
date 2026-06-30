@@ -7,7 +7,7 @@
 		"uuid": "a1b2c3d4-e5f6-4g7h-8i9j-0k1l2m3n4o5p"
 	},
 	"engines": {
-		"node": ">=18.0.0",
+		"node": "24",
 		"npm": ">=9.0.0"
 	},
 	"scripts": {
