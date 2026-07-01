@@ -39,7 +39,7 @@ export default function ArticlesGrid({ articles, lang, search = "", category = "
 	});
 
 	const q = (search || "").trim().toLowerCase();
-	const filtered = normalized.filter((a) => {
+	const filtered = normalized.filter((a: any) => {
 		if (category && category !== "all") {
 			if (a.category !== category) return false;
 		}
@@ -49,7 +49,7 @@ export default function ArticlesGrid({ articles, lang, search = "", category = "
 
 	return (
 		<div className="max-w-7xl mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-			{filtered.map((a) => (
+			{filtered.map((a: any) => (
 				<article key={a.slug} className="flex bg-white rounded-lg shadow-lg overflow-hidden">
 					<div className="w-40 md:w-48 flex-shrink-0 relative">
 						{a.imageCover.url ? (

@@ -50,7 +50,7 @@ export default function EventsGrid({ events, lang }: Props) {
 
 	return (
 		<div className="max-w-7xl mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-			{normalized.map((e) => (
+			{normalized.map((e: any) => (
 				<article key={e.id} className="flex bg-white rounded-lg shadow-md overflow-hidden">
 					<div className="w-44 h-32 flex-shrink-0 relative">
 						{e.imageUrl ? (
