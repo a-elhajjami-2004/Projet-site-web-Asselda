@@ -11,6 +11,7 @@
 	"dependencies": {
 		"@formatjs/intl-localematcher": "^0.5.4",
 		"lucide-react": "^1.14.0",
+		"negotiator": "^0.6.3",
 		"next": "^16.2.9",
 		"next-auth": "^4.24.14",
 		"react": "19.2.4",
@@ -23,6 +24,7 @@
 	},
 	"devDependencies": {
 		"@tailwindcss/postcss": "^4",
+		"@types/negotiator": "^0.6.4",
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
