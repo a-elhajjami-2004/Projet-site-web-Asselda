@@ -9,6 +9,9 @@ module.exports = ({ env }) => ({
 	apiToken: {
 		salt: env("API_TOKEN_SALT", "api-token-salt-change-this"),
 	},
+	secrets: {
+		encryptionKey: env("ENCRYPTION_KEY"),
+	},
 	transfer: {
 		token: {
 			salt: env("TRANSFER_TOKEN_SALT"),
