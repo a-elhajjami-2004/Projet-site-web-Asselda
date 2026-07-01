@@ -35,7 +35,8 @@ Thumbs.db
 *.sqlite3
 
 # Uploads
-/public/uploads
+/public/uploads/*
+!/public/uploads/.gitkeep
 /tmp
 
 # Testing
