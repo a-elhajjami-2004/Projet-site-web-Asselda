@@ -11,6 +11,9 @@ package-lock.json
 !.yarn/releases
 !.yarn/versions
 
+# Strapi
+.strapi-updater.json
+
 # testing
 /coverage
 
